@@ -1,0 +1,76 @@
+@import './settings.scss';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  // color: $color-dark;
+  letter-spacing: 0.8px;
+}
+
+:global(.container) {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.toggleMenu {
+  display: none;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 36px;
+  text-align: left;
+  line-height: 120%;
+  color: #464849;
+  // color: #000;
+  // -webkit-font-smoothing: antialiased;
+  //   text-rendering: optimizeLegibility;
+  //   -moz-osx-font-smoothing: grayscale;
+  //   font-feature-settings: 'liga';
+  //   -webkit-text-size-adjust: 100%;
+  //   margin-block-start: 0.83em;
+  //   margin-block-end: 0.83em;
+  //   margin-inline-start: 0px;
+  //   margin-inline-end: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: sans-serif;
+  letter-spacing: -.01em;
+  word-spacing: -.02em;
+}
+
+p {
+  font-size: 17px;
+  font-weight: 400;
+  font-family: sans-serif;
+  text-align: left;
+  line-height: 200%;
+  color: #464849;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 0;
+  // letter-spacing: -.01em;
+  word-spacing: -.01em;
+  text-align: justify;
+}
+
+body {
+  font-family: 'Exo', sans-serif;
+}
+
+h1 {
+  font-family: 'Avenir', sans-serif;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+@import "./typography.scss";

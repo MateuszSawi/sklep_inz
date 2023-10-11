@@ -1,0 +1,30 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+// .wrapper {
+//   // width: 80vw;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+// }
+
+.wrapper {
+  margin: 100px 10vw 0px 10vw;
+}
+
+.wrapperStretchedForLittlePx {
+  margin: 100px 10vw 0px 10vw;
+}
+
+@media (max-width: 480px) {
+  .wrapperStretchedForLittlePx {
+    margin: 100px 2vw 0px 2vw;
+  }
+}

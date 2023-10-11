@@ -1,0 +1,26 @@
+@import '../../styles/settings.scss';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: $color_dark;
+  color: $color_white;
+  padding: 100px 10vw 100px 10vw;
+  margin-top: 100px;
+
+  .column {
+    flex: 1;
+    padding: 0 15px;
+
+    h4 {
+      margin-top: 0;
+      border-bottom: 1px solid $color_white;
+      padding-bottom: 10px;
+    }
+
+    p {
+      margin-top: 15px;
+      color: $color_white;
+    }
+  }
+}

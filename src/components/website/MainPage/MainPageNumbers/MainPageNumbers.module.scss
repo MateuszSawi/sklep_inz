@@ -1,0 +1,62 @@
+@import '../../../../styles/settings.scss';
+
+.stats_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: $color_dark;
+  text-align: center;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: normal;
+
+    h2 {
+      margin-bottom: 8px;
+      font-size: 1.5em;
+    }
+
+    p {
+      font-size: 2em;
+      font-weight: bold;
+      color: $color_dark;
+    }
+  }
+
+  // Dla tabletów (przykładowo od 768px do 991px)
+  @media (min-width: 768px) and (max-width: 991px) {
+    div h2 {
+      font-size: 1.3em;
+    }
+
+    div p {
+      font-size: 1.8em;
+    }
+  }
+
+  // Dla dużych telefonów (przykładowo od 480px do 767px)
+  @media (min-width: 480px) and (max-width: 767px) {
+    div h2 {
+      font-size: 1.1em;
+    }
+
+    div p {
+      font-size: 1.6em;
+    }
+  }
+
+  // Dla małych telefonów (poniżej 480px)
+  @media (max-width: 479px) {
+    div h2 {
+      font-size: 0.9em;
+      // white-space: pre-line;
+    }
+
+    div p {
+      font-size: 1.2em;
+    }
+  }
+}
