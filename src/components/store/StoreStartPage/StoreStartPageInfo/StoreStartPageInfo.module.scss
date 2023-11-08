@@ -1,0 +1,43 @@
+@import '../../../../styles/settings.scss';
+
+.companyInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin: 100px 0px;
+
+  @media (max-width: 1142px) {
+    // justify-content: flex-start;
+  }
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  max-width: 250px;
+
+  @media (max-width: 1142px) {
+    scale: 0.8;
+  }
+
+
+  p {
+    text-align: left;
+    margin: 0;
+  }
+
+  svg {
+    margin: 0px 10px;
+    height: 30px;
+    width: 30px;
+    color: $color_dark;
+  }
+}

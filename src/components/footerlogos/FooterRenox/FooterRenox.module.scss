@@ -1,0 +1,15 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  background-color: $color_dark;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+
+  img {
+    width: 150px;
+    
+  }
+}

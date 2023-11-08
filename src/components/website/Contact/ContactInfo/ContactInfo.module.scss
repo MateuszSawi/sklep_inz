@@ -1,0 +1,42 @@
+@import '../../../../styles/settings.scss';
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.5;
+  color: $color_dark;
+  margin-top: 80px;
+}
+
+.header {
+  font-size: 2rem;
+  margin-top: 20px;
+  // text-align: center;
+  text-align: left;
+  color: $color_dark;
+}
+
+.subHeader {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  text-decoration: underline;
+  color: $color_dark;
+}
+
+.paragraph {
+  font-size: 1rem;
+  margin-top: 10px;
+  // text-align: justify;
+  color: $color_dark;
+  text-align: left;
+}
+
+.paragraphLower {
+  font-size: 1rem;
+  margin-top: 10px;
+  // text-align: justify;
+  color: $color_dark;
+  line-height: 100%;
+  text-align: left;
+}

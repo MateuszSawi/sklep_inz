@@ -1,26 +1,288 @@
 @import '../../styles/settings.scss';
 
+.footerWrapper {
+  display: block;
+  background-color: $color_dark;
+}
+
+.footerLogo {
+  display: flex;
+  justify-content: center;
+  background-color: $color_dark;
+  padding-bottom: 50px;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
   background-color: $color_dark;
   color: $color_white;
-  padding: 100px 10vw 100px 10vw;
+  padding: 100px 10vw 20px 10vw;
   margin-top: 100px;
+
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 2vw;
+    justify-content: flex-start;
+  }
+
+  img {
+    width: 50px;
+  }
 
   .column {
     flex: 1;
-    padding: 0 15px;
+    padding: 0 15px 30px 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 
-    h4 {
+    @media only screen and (max-width: 900px) {
+      width: 400px;
+    }
+
+    @media only screen and (max-width: 450px) {
+      width: 300px;
+      padding: 0 0px 30px 0px;
+    }
+
+    .title {
       margin-top: 0;
       border-bottom: 1px solid $color_white;
       padding-bottom: 10px;
+      text-align: left;
     }
 
     p {
       margin-top: 15px;
       color: $color_white;
+      text-align: left;
     }
   }
 }
+
+.footerColumn {
+  color: $color_white;
+  width: 100%;
+  text-align: center;
+  line-height: 150%;
+}
+
+.box {
+  margin: 5px 0px;
+  position: relative;
+  display: inline-block;
+
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none; /* Usunięcie podkreślenia */
+    color: inherit; /* Ustawienie koloru tekstu takiego jak reszta tekstu na stronie */
+    
+    :visited {
+      color: inherit; /* Ustawienie koloru tekstu takiego jak reszta tekstu na stronie */
+    }
+  }
+}
+
+.underlineWhite {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  border-radius: 5px;
+  background: $color_white;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(.57,.01,.29,.99);
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+}
+
+.box:hover .underlineWhite, .link:hover .underlineWhite {
+  transform: scaleX(1);
+  transition-delay: 0.1s;
+  transform-origin: top left;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0px 5px;
+  text-align: left;
+
+  &:hover, &:focus, &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+
+
+
+
+// @import '../../styles/settings.scss';
+
+// .footer {
+//   display: flex;
+//   justify-content: space-between;
+//   background-color: $color_dark;
+//   color: $color_white;
+//   padding: 100px 10vw 100px 10vw;
+//   margin-top: 100px;
+
+//   .column {
+//     flex: 1;
+//     padding: 0 15px;
+//     display: flex;
+//     flex-direction: column;
+//     width: auto;
+//     position: relative;
+
+//     .title {
+//       margin-top: 0;
+//       border-bottom: 1px solid $color_white;
+//       padding-bottom: 10px;
+//       text-align: left;
+//     }
+
+//     p {
+//       margin-top: 15px;
+//       color: $color_white;
+//       text-align: left;
+//     }
+//   }
+// }
+
+// // .titleHidden {
+// //   border-bottom: 0px solid $color_dark;
+// // }
+
+// .footerColumn {
+//   color: $color_white;
+//   width: 100%;
+//   text-align: left;
+//   line-height: 150%;
+//   text-align: center;
+// }
+
+// @media only screen and (max-width: 600px) {
+//   .footerColumn {
+//     color: $color_white;
+//     width: 100%;
+//     text-align: center;
+//     line-height: 150%;
+//   }
+// }
+
+// .footerColumn:hover {
+//   .underlineWhite {
+//     transform: scaleX(1);
+//   }
+// }
+
+// .box {
+//   margin: 5px 0px;
+//   width: auto;
+// 	position: relative;
+// 	display: inline-block;
+// 	// cursor: pointer;
+
+//   position: relative; /* Dodane */
+//   width: auto;
+//   display: inline-block;
+// }
+
+// @media only screen and (max-width: 600px) {
+//   .box {
+//     margin: 5px 0px;
+//     width: auto;
+//     // margin: 1px;
+//     position: relative;
+//     // display: inline-block;
+//     display: flex;
+//     justify-content: center;
+//     cursor: pointer;
+//     min-width: 100%;
+//     // width: auto;
+//     text-align: center;
+//     align-items: center;
+//   }
+// }
+
+// .underlineWhite {
+//   position: absolute;
+//   display: block;
+//   background: $color_white;
+//   transition: all 0.3s linear;
+
+//   bottom: 0;
+//   right: 0;
+//   transition-delay: 0.1s;
+
+//   width: 100%;
+//   height: 1px;
+//   border-radius: 5px;
+//   transform: scaleX(0);
+
+//   transform-origin: right;
+//   transition: transform 0.3s cubic-bezier(.57,.01,.29,.99);
+  
+// }
+
+// .box:hover {
+//   .underlineWhite {
+//     transform: scaleX(1);
+//     transition-delay: 0.1s;
+//     transform-origin: top left;
+//   }
+// }
+
+// @media only screen and (max-width: 600px) {
+//   .underlineWhite {
+//     display: none;    
+//   }
+// }
+
+// ////////////////////////////////////////////////////////////////
+
+// .link {
+//   text-decoration: none;   /* Usuwa podkreślenie */
+//   color: inherit;          /* Dziedziczy kolor tekstu z elementu nadrzędnego */
+//   cursor: pointer;
+//   padding: 0px 5px;
+//   text-align: left;
+// }
+
+// .link:hover {
+//   text-decoration: none;   /* Usuwa podkreślenie */
+//   color: inherit;   /* Dodaje podkreślenie przy najechaniu - dla lepszej interaktywności */
+// }
+
+// .link:visited {
+//   text-decoration: none;   /* Usuwa podkreślenie */
+//   color: inherit;  /* Zapobiega zmianie koloru dla odwiedzonych linków */
+// }
+
+// .link:focus {
+//   text-decoration: none;   /* Usuwa podkreślenie */
+//   color: inherit;     /* Usuwa domyślną obwódkę, ale pamiętaj o dostępności! */
+// }
+
+// .link:hover {
+//   .underlineWhite {
+//     transform: scaleX(1);
+//     transition-delay: 0.1s;
+//     transform-origin: top left;
+//   }
+// }

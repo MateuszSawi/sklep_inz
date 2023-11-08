@@ -1,0 +1,78 @@
+@import '../../../../styles/settings.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.storeProducts {
+
+  .categoryTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 5px;
+    
+    &:hover {
+      background-color: #f2f2f2a2;
+    }
+
+    p {
+      max-width: 250px;
+      text-align: start;
+      line-height: 1.1;
+      flex-grow: 1;
+    }
+  }
+
+  .subcategories {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .subcategoryItem {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f2f2f2a2;
+    }
+
+    p {
+      max-width: 240px;
+      text-align: start;
+      line-height: 1.1;
+      flex-grow: 1;
+      margin-left: 10px;
+      font-size: 0.9em;
+    }
+  }
+}
+
+.link {
+  color: inherit; 
+  text-decoration: none; 
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: inherit; 
+    text-decoration: none;
+  }
+}
+
+.activeCategory {
+  font-weight: bold;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}

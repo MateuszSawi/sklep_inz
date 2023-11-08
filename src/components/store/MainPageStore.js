@@ -6,24 +6,45 @@ import Register from './Login/Register';
 import ResetPassword from './Login/ResetPassword';
 import ChangePassword from './Login/ChangePassword';
 
-import Store from './Store/Store';
 import HeaderStore from './HeaderStore/HeaderStore';
+import StoreStartPage from './StoreStartPage/StoreStartPage';
+import StoreProductsPage from './StoreProductsPage/StoreProductsPage';
 
 function MainPageStore() {
 
   // let { path } = useMatch();
+  const [category, setCategory] = useState('');
+  const [subcategory, setSubcategory] = useState('');
+
+  const [categoryPath, setCategoryPath] = useState('');
 
   return (
     <div>      
+      <HeaderStore />
+      
       <Routes>
-        <Route path="/" element={<HeaderStore />} />
+        <Route path="/" element={<StoreStartPage 
+          category={category} 
+          setCategory={setCategory} 
 
-        <Route path="logowanie" element={<Login />} />
+          categoryPath={categoryPath} 
+          setCategoryPath={setCategoryPath} 
+        />} />
+
+        {/* <Route path={`/${category}`} element={<StoreProductsPage  */}\
+        <Route path=":category" element={<StoreProductsPage 
+          category={category} 
+          setCategory={setCategory}   
+          
+          categoryPath={categoryPath} 
+          setCategoryPath={setCategoryPath} 
+        />} />
+
+        {/* <Route path="logowanie" element={<Login />} />
         <Route path="rejestracja" element={<Register />} />
         <Route path="reset-hasła" element={<ResetPassword />} />
-        <Route path="zmiana-hasła" element={<ChangePassword />} />
+        <Route path="zmiana-hasła" element={<ChangePassword />} /> */}
 
-        <Route path="sklep-internetowy" element={<Store />} />
       </Routes>
     </div>
   );

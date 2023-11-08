@@ -24,14 +24,14 @@ const RegistrationForm = () => {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        const headers = response.headers;
-        const cookies = headers.get('set-cookie');
-        console.log('REGISTER: ', response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    .then((response) => {
+      const headers = response.headers;
+      const cookies = headers.get('set-cookie');
+      console.log('REGISTER: ', response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   };
 
   return (

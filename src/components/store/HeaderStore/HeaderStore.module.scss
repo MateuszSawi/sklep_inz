@@ -1,0 +1,68 @@
+@import '../../../styles/settings.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 20px;
+  background-color: $color_white; /* Kolor tła nagłówka */
+  margin: 20px 100px 0px 100px;
+
+  // width: 90%;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &_center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    justify-content: center;
+
+    .inputContainer {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      min-width: 280px;
+      border: 1px solid $color_white;
+      border-radius: 20px; /* Zaokrąglenie narożników */
+      box-shadow: 2px 4px 8px $color-text-light; /* Lekki cień */
+    
+      .input {
+        flex: 1;
+        border: none;
+        padding: 10px;
+        border-radius: 20px; /* Dla kompatybilności z różnymi przeglądarkami */
+        outline: none; /* Usunięcie obramowania na focus */
+      }
+    
+      .searchButton {
+        background-color: $color_white;
+        border: none;
+        border-radius: 20px; /* Zaokrąglenie narożników przycisku */
+        cursor: pointer;
+        padding: 10px;
+      }
+    }
+  }
+
+  &_right {
+    display: flex;
+    gap: 1rem;
+
+    .icon {
+      font-size: 1.5rem; /* Rozmiar ikon */
+      color: $color_dark; /* Kolor ikon */
+      cursor: pointer;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.2rem;
+        margin-top: 30px;
+      }
+    }
+  }
+}
