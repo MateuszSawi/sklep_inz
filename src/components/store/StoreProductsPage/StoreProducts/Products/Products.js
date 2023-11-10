@@ -12,7 +12,8 @@ function Products(props) {
     axios.post("http://127.0.0.1:8000/products/product_list/", { 
       params: {
         category : "Lemiesze" , 
-        subcategory : 'Śruby lemiesza' 
+        subcategory : 'Śruby lemiesza',
+        page_size : 30
       }
     })
     .then(response => {

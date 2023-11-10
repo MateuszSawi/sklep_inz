@@ -7,7 +7,7 @@ function SingleProductMain() {
   const product_id = localStorage.getItem('product_id');
 
   useEffect(() => {
-    axios.post("http://127.0.0.1:8000/products/product_data/", { 
+    axios.get("http://127.0.0.1:8000/products/get_product/", { 
       params: {
         product_id : product_id
       }

@@ -33,13 +33,30 @@ function StoreProductsFilters() {
 export default StoreProductsFilters;
 
 // sortowanie po czyms: {
-//   A-Z
+//   A-Z 
 //   Z-A
 //   cena malejaco
 //   cena rosnaco
 //   dostepnosc
 // }
 
+// sort:
+// A_Z
+// Z_A
+// price_desc - malejaco
+// price_asc - rosnaco
+// available - to bedzie od najwiekszej ilosci
+
+// -----------------------------------
+
 // ilosc produktow na stronie (30/40/50???)
 
-// nr strony - musze dostac liczbe stron
+// page_size:
+// 20
+// 30 - domyślne
+// 40 
+
+// -----------------------------------
+
+// ilość strony - musze dostac liczbe stron
+// page_number
