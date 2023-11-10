@@ -70,11 +70,12 @@ function StoreStartPageCategories(props) {
   const navigate = useNavigate();
 
   const handleLinkClick = (category, title) => {
-    // Ustaw kategorię w stanie nadrzędnego komponentu
     props.setCategory(category);
-    //
     props.setCategoryPath(title);
-    // Następnie nawiguje do nowego URL
+
+    localStorage.setItem('category', category);
+
+    // Nawigacja do URL
     navigate(`/sklep/${category}`);
   };
 

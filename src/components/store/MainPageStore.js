@@ -9,6 +9,7 @@ import ChangePassword from './Login/ChangePassword';
 import HeaderStore from './HeaderStore/HeaderStore';
 import StoreStartPage from './StoreStartPage/StoreStartPage';
 import StoreProductsPage from './StoreProductsPage/StoreProductsPage';
+import SingleProductMain from './SingleProductPage/SingleProductMain';
 
 function MainPageStore() {
 
@@ -38,6 +39,11 @@ function MainPageStore() {
           
           categoryPath={categoryPath} 
           setCategoryPath={setCategoryPath} 
+        />} />
+
+        <Route path=":category/single" element={<SingleProductMain 
+
+
         />} />
 
         {/* <Route path="logowanie" element={<Login />} />

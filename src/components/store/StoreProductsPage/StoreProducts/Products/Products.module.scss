@@ -1,1 +1,117 @@
 @import '../../../../../styles/settings.scss';
+
+.cardsWrapper {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+
+  @media screen and (max-width: 2800px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  @media screen and (max-width: 2500px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media screen and (max-width: 2050px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media screen and (max-width: 1800px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (max-width: 1600px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  width: 250px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  img {
+    width: 200px;
+    height: 100%;
+    // object-fit: cover;
+    object-fit: contain;
+    // border: solid 1px #ddd;
+  }
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  // Reszta stylowania .card pozostaje bez zmian
+}
+
+.imageContainer {
+  position: relative;
+  // display: inline-block;
+  // width: 200px;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+}
+
+.watermark {
+  display: block;
+  width: 100%; // Rozciąga znak wodny na całą szerokość karty
+  height: auto; // Zachowuje oryginalne proporcje obrazu
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.05; // Dostosuj przezroczystość według potrzeb
+  z-index: 1; // Upewnij się, że znak wodny znajduje się nad innymi elementami
+}
+
+.cardBody {
+  padding: 15px;
+
+  h5 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.productTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+  color: #333;
+}
