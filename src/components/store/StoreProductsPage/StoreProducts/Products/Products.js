@@ -24,7 +24,7 @@ function Products(props) {
 
     console.log('API products: ', category);
 
-    axios.get("http://127.0.0.1:8000/products/product_list/", { 
+    axios.post("http://127.0.0.1:8000/products/product_list/", { 
       params: {
         category : category , 
         subcategory : '',
