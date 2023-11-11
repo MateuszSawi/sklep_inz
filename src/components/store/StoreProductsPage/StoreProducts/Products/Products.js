@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Products.module.scss';
 import axios from 'axios';
-// import categoriesData from '../categories';
 
 function Products(props) {
 
@@ -39,7 +38,7 @@ function Products(props) {
   return (
     <div className={styles.cardsWrapper}>
       {products.map(product => 
-        product.product_name &&
+        product.product_name && product.price_netto && product.price_brutto &&
 
         <div key={product.product_id} className={styles.card} onClick={() => handleLinkClick(product.product_id)}>
           <div className={styles.cardBody}>
