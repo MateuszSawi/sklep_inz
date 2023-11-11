@@ -6,27 +6,10 @@ import axios from 'axios';
 function Products(props) {
 
   const [products, setProducts] = useState([]);
-  
-  useEffect(() => {
-    axios.post("http://127.0.0.1:8000/products/product_list/", { 
-      params: {
-        category : "Lemiesze" , 
-        subcategory : 'Śruby lemiesza',
-        page_size : 30
-      }
-    })
-    .then(response => {
-      console.log(response.data.products);
-      setProducts(response.data.products);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }, []);
-
-  // --------------------------------------------------------------------------
 
   const category = localStorage.getItem('category');
+
+  console.log('products: ', category);
 
   const navigate = useNavigate();
 
@@ -34,6 +17,29 @@ function Products(props) {
     localStorage.setItem('product_id', product_id);
     navigate(`/sklep/${category}/single`);
   };
+
+  // -------------------------------------------------------------------------- api
+  
+  useEffect(() => {
+
+    console.log('API products: ', category);
+
+    axios.get("http://127.0.0.1:8000/products/product_list/", { 
+      params: {
+        category : category , 
+        subcategory : '',
+        page_size : 30,
+        page_number: 1
+      }
+    })
+    .then(response => {
+      // console.log(response.data.products);
+      setProducts(response.data.products);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, []);
 
   return (
     <div className={styles.cardsWrapper}>
@@ -47,7 +53,12 @@ function Products(props) {
 
           <div className={styles.imageContainer}>
             <img src="/website/logo/logo_renox_transparent.png" alt="Watermark" className={styles.watermark} />
-            <img src={product.primary_link} alt={product.product_name} className={styles.productImage} />
+            
+            {product.primary_link ? (
+              <img src={product.primary_link} alt={product.product_name} className={styles.productImage} />
+            ) : (
+              <img src="/k.png" alt="Domyślny obraz" className={styles.productImage} />
+            )}
           </div>
 
           <div className={styles.cardBody}>

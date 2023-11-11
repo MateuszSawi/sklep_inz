@@ -5,23 +5,23 @@ import axios from 'axios';
 
 function StoreProductsFilters() {
 
-  useEffect(() => {
-    axios.post("http://127.0.0.1:8000/products/filters/", { 
-      params: {
+  // useEffect(() => {
+  //   axios.post("http://127.0.0.1:8000/products/filters/", { 
+  //     params: {
         
 
 
 
-      }
-    })
-    .then(response => {
-      console.log(response.data.products);
+  //     }
+  //   })
+  //   .then(response => {
+  //     console.log(response.data.products);
       
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }, []);
+  //   })
+  //   .catch(error => {
+  //     console.error(error);
+  //   });
+  // }, []);
 
   return (
     <div>      

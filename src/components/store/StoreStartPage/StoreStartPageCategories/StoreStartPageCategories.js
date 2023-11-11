@@ -73,6 +73,8 @@ function StoreStartPageCategories(props) {
     props.setCategory(category);
     props.setCategoryPath(title);
 
+    console.log(category)
+
     localStorage.setItem('category', category);
 
     // Nawigacja do URL

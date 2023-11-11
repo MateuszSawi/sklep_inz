@@ -6,7 +6,7 @@ function StoreProductsPath(props) {
 
   const savedCategory = localStorage.getItem('category');
 
-  console.log(savedCategory);
+  // console.log(savedCategory);
 
   return (
     <div>      
