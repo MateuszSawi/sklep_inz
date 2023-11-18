@@ -1,8 +1,10 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useParams  } from 'react-router-dom';
 import styles from './StoreProducts.module.scss';
 import categoriesData from '../categories';
 import { FaChevronDown } from 'react-icons/fa';
+import axios from 'axios';
+
 
 import Products from './Products/Products';
 
@@ -28,6 +30,58 @@ function StoreProducts(props) {
   const setRef = (category, el) => {
     refs.current[category] = el;
   };
+
+  // params
+
+  const { category, subcategory } = useParams();
+
+  const navigate = useNavigate();
+
+  const handleLinkClick = (subcategory, categoryParam) => {
+    props.setSubcategory(subcategory);
+
+    const params = {
+      category: categoryParam, 
+      subcategory: category === subcategory ? '' : subcategory,
+      page_size: 30,
+      page_number: 1
+    };
+
+    axios.post("http://127.0.0.1:8000/products/product_list/", { 
+      params: params
+    })
+    .then(response => {
+      // console.log(response.data.products);
+      props.setProducts(response.data.products);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+    navigate(`/sklep/${category}/${subcategory}`);
+  };
+
+  //
+
+  useEffect(() => {
+    const params = {
+      category: category, 
+      subcategory: category === subcategory ? '' : subcategory,
+      page_size: 30,
+      page_number: 1
+    };
+
+    axios.post("http://127.0.0.1:8000/products/product_list/", { 
+      params: params
+    })
+    .then(response => {
+      // console.log(response.data.products);
+      props.setProducts(response.data.products);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -96,13 +150,16 @@ function StoreProducts(props) {
                     transition: 'max-height 0.3s ease-in-out'
                   }}
                 >
-                  {categoriesData[category].map((subCategory, subIndex) => (
-                    <Link key={subIndex} to={`/sklep/${category}/${subCategory}`} className={styles.link} >
-                      <div className={styles.subcategoryItem}>
-                        <p>{subCategory}</p>
-                      </div>
-                    </Link>
-                  ))}
+                  {categoriesData[category].map((subCategory, subIndex) => {
+                    //  console.log(category)
+                     return (
+                      <Link key={subIndex} to={`/sklep/${category}/${subCategory}`} className={styles.link} onClick={() => handleLinkClick(subCategory, category)}>
+                        <div className={styles.subcategoryItem}>
+                          <p>{subCategory}</p>
+                        </div>
+                      </Link>
+                     )
+                  })}
                 </div>
               </div>
             );
@@ -113,6 +170,7 @@ function StoreProducts(props) {
       <div>
         <Products 
           category={props.category} 
+          products={props.products}
         />
       </div>
     </div>

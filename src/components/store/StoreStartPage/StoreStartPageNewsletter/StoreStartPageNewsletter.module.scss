@@ -8,12 +8,19 @@
 
   input[type="email"] {
     padding: 10px;
-    border: 2px solid $color_dark;
+    // border: 0px solid $color_dark;
+    border: none;
     border-radius: 5px;
     font-size: 16px;
-    box-shadow: 5px 10px 10px $color_button_shadow;
+    box-shadow: $box_shadow_input;
     width: 280px;
     text-align: center;
+
+    &:focus {
+      outline: none; // Usuwa standardowy obrys
+      border: none;
+      box-shadow: $box_shadow_input_focused;
+    }
   }
 
   button {
@@ -24,10 +31,11 @@
     color: $color_white;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    box-shadow: 5px 10px 10px $color_button_shadow;
+    box-shadow: $box_shadow;
 
     &:hover {
-      background-color: $color_button_hover;
+      background-color: $color_black;
+      box-shadow: $box_shadow_hover;
     }
   }
 }

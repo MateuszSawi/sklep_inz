@@ -2,26 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useMatch } from 'react-router-dom';
 
 import StoreProductsPath from './StoreProductsPath/StoreProductsPath';
-import StoreProductsRestCategories from './StoreProductsRestCategories/StoreProductsRestCategories';
 import StoreProducts from './StoreProducts/StoreProducts';
 import StoreProductsFilters from './StoreProductsFilters/StoreProductsFilters';
 import StoreStartPageInfo from './StoreStartPageInfo/StoreStartPageInfo';
 
 function StoreProductsPage(props) {
 
+  const [products, setProducts] = useState([]);
+
   return (
     <div>      
-      sssss
       <StoreProductsPath 
-        categoryPath={props.categoryPath} 
-        setCategoryPath={props.setCategoryPath}
+        products={products} 
+        setProducts={setProducts}
       />
-
-      <StoreProductsRestCategories />
 
       <StoreProductsFilters />
 
       <StoreProducts 
+        products={products} 
+        setProducts={setProducts}
+        
+        subcategory={props.subcategory} 
+        setSubcategory={props.setSubcategory}  
+
         category={props.category} 
         setCategory={props.setCategory}
       />

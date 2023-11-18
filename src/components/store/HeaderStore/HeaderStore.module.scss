@@ -30,7 +30,7 @@
       min-width: 280px;
       border: 1px solid $color_white;
       border-radius: 20px; /* Zaokrąglenie narożników */
-      box-shadow: 2px 4px 8px $color-text-light; /* Lekki cień */
+      box-shadow: $box_shadow_input; /* Lekki cień */
     
       .input {
         flex: 1;
@@ -48,6 +48,10 @@
         padding: 10px;
       }
     }
+  }
+
+  .inputContainer:focus-within {
+    box-shadow: $box_shadow_input_focused; // Zmiana cienia dla .inputContainer, gdy dowolny z jego dzieci jest w fokusie
   }
 
   &_right {

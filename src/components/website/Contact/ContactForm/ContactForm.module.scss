@@ -49,7 +49,6 @@
   }
 }
 
-
 // mial form
 
 .mailFormWrapper {
@@ -60,25 +59,27 @@
 .inputContainer {
   position: relative;
   margin-bottom: 20px;
-}
 
-.inputContainer input {
-  width: 80%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid $color_white;
-  border-radius: 5px;
-  box-shadow: 0 0 5px $color_gray;
-
-  @media (max-width: 1024px) {
-    width: 100%;
+  input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid $color_white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px $color_gray;
+    // box-shadow: $box_shadow_input;
+  
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+  
+    &:focus {
+      outline: none;
+      // border-color: $color_green;
+      box-shadow: 0 0 5px $color_green;
+      // box-shadow: $box_shadow_hover_green;
+    }
   }
-}
-
-.inputContainer input:focus {
-  outline: none;
-  // border-color: $color_green;
-  box-shadow: 0 0 5px $color_green;
 }
 
 .inputContainer input:focus ~ label,

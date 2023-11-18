@@ -10,6 +10,26 @@
   @media screen and (max-width: 1200px) {
     margin: 0 100px;
   }
+
+  @media screen and (max-width: 1800px) {
+    margin: 0 100px;
+  }
+
+  @media screen and (max-width: 1600px) {
+    margin: 0 100px;
+  }
+
+  @media screen and (max-width: 1400px) {
+    margin: 0 50px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    margin: 0 100px;
+  }
+
+  @media screen and (max-width: 1100px) {
+    margin: 0 50px;
+  }
 }
 
 .storeProducts {
@@ -31,6 +51,8 @@
       text-align: start;
       line-height: 1.1;
       flex-grow: 1;
+
+      font: $font_categories;
     }
   }
 
@@ -51,12 +73,14 @@
     }
 
     p {
-      max-width: 240px;
+      max-width: 230px;
       text-align: start;
       line-height: 1.1;
       flex-grow: 1;
-      margin-left: 10px;
-      font-size: 0.9em;
+      margin-left: 20px;
+      // font-size: 0.9em;
+
+      font: $font_subcategories;
     }
   }
 }

@@ -21,8 +21,8 @@ function StoreStartPage(props) {
           category={props.category} 
           setCategory={props.setCategory}
 
-          categoryPath={props.categoryPath} 
-          setCategoryPath={props.setCategoryPath}
+          // categoryPath={props.categoryPath} 
+          // setCategoryPath={props.setCategoryPath}
         />
       </div>
 

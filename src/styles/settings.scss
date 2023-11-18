@@ -1,12 +1,16 @@
 // Kolory
 $color_dark: #221F20;
+$color_black: #050505;
 $color_white: #fff;
+$color_lighter_gray: #9696967c;
+$color_lightest_gray: #96969656;
 $color_gray: #969696;
 $color_button_shadow: rgba(0,0,0,.4);
 $color_gray_hover_store_header: #7a7a7a;
 $color_light_shadow: #eee;
 $color_button_hover: #555;
 $color_dark_II: #333;
+$color_light_green: rgb(45, 172, 45);
 $color_green: green;
 $color_darker_green: rgb(0, 104, 0);
 $color_red: red;
@@ -21,10 +25,28 @@ $font-family-base: 'Arial', sans-serif;
 $font-size-base: 16px;
 $font-weight-bold: bold;
 
+$font_price: 500 42px/50px 'Roboto', Arial, sans-serif;
+$font_price_desc: 500 21px/25px 'Roboto', Arial, sans-serif;
+$font_button_specyfication: 500 21px/26px 'Roboto', Arial, sans-serif;
+
+$font_categories: 500 17px/23px 'Roboto', Arial, sans-serif;
+$font_subcategories: 500 14px/21px 'Roboto', Arial, sans-serif;
+
 // Cienie
 $box-shadow-light: 0px 4px 6px rgba(0, 0, 0, 0.1);
 $box-shadow-medium: 0px 6px 12px rgba(0, 0, 0, 0.15);
 $box-shadow-strong: 0px 10px 20px rgba(0, 0, 0, 0.2);
+
+$box_shadow_input: 3px 4px 8px rgba(0, 0, 0, 0.3);
+$box_shadow_input_focused: 3px 4px 8px rgba(0, 0, 0, 0.4);
+$box_shadow_input_focused_green: 3px 4px 8px green;
+
+$box_shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+$box_shadow_hover: 2px 4px 5px rgba(0, 0, 0, 0.4);
+$box_shadow_hover_green: 2px 4px 5px green;
+
+$box_shadow_cards_main_page: 2px 4px 10px rgba(0, 0, 0, 0.3);
+$box_shadow_cards_main_page_hover: 2px 4px 10px rgba(0, 0, 0, 0.3);
 
 // Inne zmienne, takie jak paddingi, marginesy itp.
 $container-width: 80%;

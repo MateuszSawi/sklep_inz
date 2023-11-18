@@ -16,8 +16,9 @@ function MainPageStore() {
   // let { path } = useMatch();
   const [category, setCategory] = useState('');
   const [subcategory, setSubcategory] = useState('');
+  const [singleProduct, setSingleProduct] = useState('');
 
-  const [categoryPath, setCategoryPath] = useState('');
+  // const [categoryPath, setCategoryPath] = useState('');
 
   return (
     <div>      
@@ -27,23 +28,38 @@ function MainPageStore() {
         <Route path="/" element={<StoreStartPage 
           category={category} 
           setCategory={setCategory} 
-
-          categoryPath={categoryPath} 
-          setCategoryPath={setCategoryPath} 
         />} />
 
-        {/* <Route path={`/${category}`} element={<StoreProductsPage  */}\
-        <Route path=":category" element={<StoreProductsPage 
-          category={category} 
-          setCategory={setCategory}   
+        <Route path="/:category" element={<StoreProductsPage 
+          category={category}
+          setCategory={setCategory}  
           
-          categoryPath={categoryPath} 
-          setCategoryPath={setCategoryPath} 
+          subcategory={subcategory}
+          setSubcategory={setSubcategory}
+          
+          singleProduct={singleProduct}
+          setSingleProduct={setSingleProduct}
         />} />
 
-        <Route path=":category/single" element={<SingleProductMain 
+        <Route path="/:category/:subcategory" element={<StoreProductsPage 
+          category={category} 
+          setCategory={setCategory}  
+          
+          subcategory={subcategory} 
+          setSubcategory={setSubcategory}  
+          
+          singleProduct={singleProduct}
+          setSingleProduct={setSingleProduct}
+        />} />
 
+        <Route path=":category/:subcategory/:singleProduct" element={<SingleProductMain 
+          singleProduct={singleProduct}
+          setSingleProduct={setSingleProduct}
+        />} />
 
+        <Route path=":category/:category/:singleProduct" element={<SingleProductMain 
+          singleProduct={singleProduct}
+          setSingleProduct={setSingleProduct}
         />} />
 
         {/* <Route path="logowanie" element={<Login />} />

@@ -71,13 +71,6 @@ function StoreStartPageCategories(props) {
 
   const handleLinkClick = (category, title) => {
     props.setCategory(category);
-    props.setCategoryPath(title);
-
-    console.log(category)
-
-    localStorage.setItem('category', category);
-
-    // Nawigacja do URL
     navigate(`/sklep/${category}`);
   };
 
