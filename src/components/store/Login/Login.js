@@ -6,7 +6,7 @@ function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    axios.post('http://localhost:8000/accounts/login/', {
+    axios.post('/accounts/login/', {
         username: data.username,
         password: data.password
     })

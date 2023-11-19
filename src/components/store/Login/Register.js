@@ -11,7 +11,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8000/auth/register/', {
+    axios.post('/auth/register/', {
       name: name,
       surname: surname,
       email: email,
