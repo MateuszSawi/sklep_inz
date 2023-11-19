@@ -24,7 +24,7 @@ function SingleProductMain() {
   }, [product.primary_link]);
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/products/get_product/", { 
+    axios.get("/products/get_product/", { 
       params: {
         product_id : singleProduct
       }

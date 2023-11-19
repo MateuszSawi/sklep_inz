@@ -8,7 +8,7 @@ function ChangePassword() {
     const onSubmit = (data) => {
       // Jeśli używasz ciasteczek, axios automatycznie je dołączy do zapytania
 
-      axios.post('/accounts/password/change/', {
+      axios.post('http://localhost:8000/accounts/password/change/', {
           old_password: data.oldPassword,
           new_password1: data.newPassword1,
           new_password2: data.newPassword2

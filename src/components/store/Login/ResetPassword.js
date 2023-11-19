@@ -6,7 +6,7 @@ function ResetPassword() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-      axios.post('/accounts/password/reset/', {
+      axios.post('http://localhost:8000/accounts/password/reset/', {
         email: data.email
       })
       .then(response => {
