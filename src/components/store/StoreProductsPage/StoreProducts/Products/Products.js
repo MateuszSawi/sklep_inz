@@ -58,7 +58,7 @@ function Products(props) {
             {product.primary_link ? (
               <img src={product.primary_link} alt={product.product_name} className={styles.productImage} />
             ) : (
-              <img src="/k.png" alt="Domyślny obraz" className={styles.productImage} />
+              <img src="/inprogress.png" alt="Domyślny obraz" className={styles.productImage} />
             )}
           </div>
 

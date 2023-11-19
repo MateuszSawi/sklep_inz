@@ -24,8 +24,13 @@ function StoreProductsFilters() {
   // }, []);
 
   return (
-    <div>      
-      StoreProductsFilters
+    <div className={styles.container}>      
+
+      <img 
+        src={process.env.PUBLIC_URL + '/inprogress.png'} 
+        alt="Renox logo" 
+      />
+      <p>Filtry produktów nie są jeszcze gotowe</p>
     </div>
   );
 }

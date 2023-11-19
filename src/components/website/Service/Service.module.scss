@@ -1,0 +1,41 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  margin: 100px;
+
+  @media (max-width: 600px) {
+    margin: 100px 50px;
+  }
+
+  @media (max-width: 400px) {
+    margin: 100px 10px;
+  }
+}
+
+.gap {
+  height: 50px;
+}
+
+.imagesWrapper {
+  display: flex;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px; /* Odstęp między zdjęciami */
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 50px;
+
+  @media (max-width: 1220px) {
+    justify-content: space-evenly;
+  }
+
+  img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover; /* Aby zachować proporcje zdjęć */
+
+    @media (max-width: 400px) {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

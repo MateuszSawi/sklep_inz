@@ -28,12 +28,12 @@ function Header() {
             <span className={styles.underlineWhite}></span>
           </div>
         </Link>
-        <Link to="/aktualności" className={styles.reset_link}>
+        {/* <Link to="/aktualności" className={styles.reset_link}>
           <div className={styles.box}>
             <span>Aktualności</span>
             <span className={styles.underlineWhite}></span>
           </div>
-        </Link>
+        </Link> */}
         <Link to="/oferta" className={styles.reset_link}>
           <div className={styles.box}>
             <span>Oferta</span>

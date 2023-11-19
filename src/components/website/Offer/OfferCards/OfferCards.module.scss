@@ -9,17 +9,22 @@
 .card {
   background-color: $color_white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
   padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &:hover {
+    box-shadow: 2px 4px 9px rgba(0, 0, 0, 0.4);
+    cursor: default;
+  }
 }
 
 .card img {
   width: 100px;
   height: 100px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
   margin-bottom: 8px;
 }
@@ -43,8 +48,8 @@
   background-color: $color_green;
   color: $color_white;
   cursor: pointer;
-}
 
-.card button:hover {
-  background-color: $color_green;
+  &:hover {
+    background-color: $color_darker_green;
+  }
 }

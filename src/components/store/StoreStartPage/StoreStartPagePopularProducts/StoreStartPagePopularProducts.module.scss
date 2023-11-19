@@ -9,6 +9,7 @@
   margin: 0 auto;
 
   width: 100%;
+
 }
 
 .title_container {
@@ -127,4 +128,16 @@
   /* Pozostałe style */
   transform: translateX(calc(-100% * var(--startIndex))); /* Przesuń zawartość na podstawie zmiennej --startIndex */
   transition: transform 0.5s ease; /* Dodaj przejście do transformacji */
+}
+
+.inprogress {
+  img {
+    // position: absolute;
+    z-index: 1000;
+    width: 200px;
+  }
+
+  p {
+    color: red;
+  }
 }

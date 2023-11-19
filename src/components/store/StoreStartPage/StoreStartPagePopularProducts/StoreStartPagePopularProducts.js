@@ -31,10 +31,21 @@ function StoreStartPagePopularProducts() {
 
   return (
     <div className={styles.wrapper}>
+
       <div className={styles.title_container}>
         <h1>Popularne produkty</h1>
       </div>
-      <div className={styles.carousel}>
+
+      <div className={styles.inprogress}>
+        <img 
+          src={process.env.PUBLIC_URL + '/inprogress.png'} 
+          alt="Renox logo" 
+        />
+
+        <p>Ten element nie jest jeszcze gotowy</p>
+      </div>
+
+      {/* <div className={styles.carousel}>
         <button className={styles.prevButton} onClick={handlePrevClick} disabled={startIndex === 0}>Previous</button>
         <div className={styles.productsContainer}>
           {visibleProducts.map((product) => (
@@ -45,7 +56,7 @@ function StoreStartPagePopularProducts() {
           ))}
         </div>
         <button className={styles.nextButton} onClick={handleNextClick} disabled={startIndex + 4 >= products.length}>Next</button>
-      </div>
+      </div> */}
     </div>
   );
 }
