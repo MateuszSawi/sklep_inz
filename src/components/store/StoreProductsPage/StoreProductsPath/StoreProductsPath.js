@@ -19,7 +19,7 @@ function StoreProductsPath(props) {
       page_number: 1
     };
 
-    axios.post("/products/product_list/", { 
+    axios.post("http://127.0.0.1:8000/products/product_list/", { 
       params: params
     })
     .then(response => {
@@ -41,7 +41,7 @@ function StoreProductsPath(props) {
       page_number: 1
     };
 
-    axios.post("/products/product_list/", { 
+    axios.post("http://127.0.0.1:8000/products/product_list/", { 
       params: params
     })
     .then(response => {

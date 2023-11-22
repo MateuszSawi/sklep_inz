@@ -4,6 +4,7 @@ import { Routes, Route, useMatch } from 'react-router-dom';
 import Login from './Login/Login';
 import Register from './Login/Register';
 import ResetPassword from './Login/ResetPassword';
+import ResetSetNewPassword from './Login/ResetSetNewPassword'
 import ChangePassword from './Login/ChangePassword';
 
 import HeaderStore from './HeaderStore/HeaderStore';
@@ -62,11 +63,11 @@ function MainPageStore() {
           setSingleProduct={setSingleProduct}
         />} />
 
-        {/* <Route path="logowanie" element={<Login />} />
+        <Route path="logowanie" element={<Login />} />
         <Route path="rejestracja" element={<Register />} />
         <Route path="reset-hasła" element={<ResetPassword />} />
-        <Route path="zmiana-hasła" element={<ChangePassword />} /> */}
-
+        <Route path="zmiana-hasła" element={<ChangePassword />} />
+        <Route path="reset-nowe-hasło" element={<ResetSetNewPassword />} />
       </Routes>
     </div>
   );
