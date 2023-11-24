@@ -2,13 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-function Login() {
+function ResetSetNewPassword() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    axios.post('http://localhost:8000/auth/login/', {
-        email: data.username,
-        password: data.password
+    axios.post('http://localhost:8000/auth/activate/10/cebc5f1f-b987-415a-8b8c-78596933b5e9/', {
+      newpassword1: data.username,
+      newpassword2: data.password
     },
     {
       withCredentials: true,
@@ -27,7 +27,7 @@ function Login() {
 
   return (
     <div>
-      <h2>Logowanie</h2>
+      <h2>Logowanie GTHSGAS</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
           <div>
               <label>Użytkownik:</label>
@@ -45,4 +45,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ResetSetNewPassword;

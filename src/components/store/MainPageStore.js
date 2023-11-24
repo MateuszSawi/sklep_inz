@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useMatch } from 'react-router-dom';
 
-import Login from './Login/Login';
-import Register from './Login/Register';
-import ResetPassword from './Login/ResetPassword';
-import ResetSetNewPassword from './Login/ResetSetNewPassword'
-import ChangePassword from './Login/ChangePassword';
+import Login from './Login/AllAuth/Login/Login';
+import Register from './Login/AllAuth/Register/Register';
+import ResetPassword from './Login/AllAuth/ResetPassword/ResetPassword';
+import ResetSetNewPassword from './Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword'
+import ChangePassword from './Login/AllAuth/ChangePassword/ChangePassword';
+import LoginsMainPage from './Login/LoginsMainPage';
 
 import HeaderStore from './HeaderStore/HeaderStore';
 import StoreStartPage from './StoreStartPage/StoreStartPage';
@@ -14,12 +15,9 @@ import SingleProductMain from './SingleProductPage/SingleProductMain';
 
 function MainPageStore() {
 
-  // let { path } = useMatch();
   const [category, setCategory] = useState('');
   const [subcategory, setSubcategory] = useState('');
   const [singleProduct, setSingleProduct] = useState('');
-
-  // const [categoryPath, setCategoryPath] = useState('');
 
   return (
     <div>      
@@ -63,11 +61,11 @@ function MainPageStore() {
           setSingleProduct={setSingleProduct}
         />} />
 
-        <Route path="logowanie" element={<Login />} />
-        <Route path="rejestracja" element={<Register />} />
-        <Route path="reset-hasła" element={<ResetPassword />} />
-        <Route path="zmiana-hasła" element={<ChangePassword />} />
-        <Route path="reset-nowe-hasło" element={<ResetSetNewPassword />} />
+        <Route path="/logowanie" element={<LoginsMainPage />} />
+        <Route path="/rejestracja" element={<Register />} />
+        <Route path="/resetuj-hasło" element={<ResetSetNewPassword />} />
+        <Route path="/reset-hasła" element={<ResetPassword />} />
+        <Route path="/zmiana-hasła" element={<ChangePassword />} />
       </Routes>
     </div>
   );

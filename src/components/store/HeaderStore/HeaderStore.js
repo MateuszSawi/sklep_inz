@@ -1,11 +1,18 @@
 import React from 'react';
 import styles from './HeaderStore.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
-// import logo from './logo.png';
+import LoginsMainPage from '../Login/LoginsMainPage';
 
 function HeaderStore() {
+
+  const navigate = useNavigate();
+
+  const handleLinkClick = (category, title) => {
+    navigate(`/sklep/logowanie`);
+  };
+
   return (
     <header className={styles.header}>
       {/* <div className={styles.header__left}>
@@ -30,7 +37,9 @@ function HeaderStore() {
       <div className={styles.header_right}>
         <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} />
         <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-        <FontAwesomeIcon icon={faUser} className={styles.icon} />
+        <div onClick={() => handleLinkClick()}>
+          <FontAwesomeIcon icon={faUser} className={styles.icon} />
+        </div>
       </div>
     </header>
   );
@@ -38,32 +47,3 @@ function HeaderStore() {
 
 export default HeaderStore;
 
-
-      {/* <Link to="/sklep/logowanie">
-        <div>
-          <span>Logowanie</span>
-          <span></span>
-        </div>
-      </Link>
-
-      <Link to="/sklep/rejestracja">
-        <div>
-          <span>rejestracja</span>
-          <span></span>
-        </div>
-      </Link>
-
-      <Link to="/sklep/reset-hasła">
-        <div>
-          <span>reset hasła</span>
-          <span></span>
-        </div>
-      </Link>
-
-      <Link to="/sklep/zmiana-hasła">
-        <div>
-          <span>zmiana hasła</span>
-          <span></span>
-        </div>
-      </Link>
-    </div> */}

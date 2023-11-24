@@ -11,7 +11,6 @@ function ResetPassword() {
       })
       .then(response => {
         console.log(response.data);
-        // Możesz tu dodać informację dla użytkownika, że e-mail został wysłany
       })
       .catch(error => {
         console.error("Błąd podczas próby resetowania hasła:", error);
