@@ -1,14 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import styles from './ResetSetNewPassword.module.scss';
+import { useParams , useNavigate } from 'react-router-dom';
 
 function ResetSetNewPassword() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [pass1, setPass1] = useState('');
+  const [pass2, setPass2] = useState('');
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const [confirmation, setConfirmation] = useState('');
 
-  const onSubmit = (data) => {
-    axios.post('http://localhost:8000/auth/activate/10/cebc5f1f-b987-415a-8b8c-78596933b5e9/', {
-      newpassword1: data.username,
-      newpassword2: data.password
+  let { userId, token } = useParams();
+
+  const validatePassword = (password) => {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    return re.test(password);
+  };
+
+  const passwordsMatch = (pass1, pass2) => {
+    return pass1 === pass2;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!validatePassword(pass1) || !passwordsMatch(pass1, pass2)) {
+      setError('Błędne dane');
+    } else { // Register successful
+      setError('');
+      RegisterApi(pass1, pass2);
+    }
+  };
+
+  const RegisterApi = (data) => {
+    axios.post(`http://localhost:8000/auth/activate/${userId}/${token}/`, {
+      newpassword1: pass1,
+      newpassword2: pass2
     },
     {
       withCredentials: true,
@@ -17,30 +44,54 @@ function ResetSetNewPassword() {
       }
     })
     .then(response => {
-        console.log(response.data);
-        localStorage.setItem('token', response.data.key); // zapisanie tokena do localStorage
+      setMessage("");
+      setConfirmation(response.data.message);
     })
     .catch(error => {
-        console.error("Błąd logowania:", error);
+      console.error("Błąd logowania:", error);
+      setMessage(error.response.data.message);
     });
   };
 
   return (
-    <div>
-      <h2>Logowanie GTHSGAS</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-              <label>Użytkownik:</label>
-              <input name="username" {...register("username", { required: "To pole jest wymagane" })} />
-              {errors.username && <span>{errors.username.message}</span>}
+    <div className={styles.container}>
+      <div>
+        <h2>Wpisz nowe hasło</h2>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.wrapper}>
+            <label>Hasło:</label>
+            <input 
+              type="password" 
+              value={pass1} 
+              onChange={(e) => setPass1(e.target.value)} 
+            />
+
+            <label>Powtórz hasło:</label>
+            <input 
+              type="password" 
+              value={pass2} 
+              onChange={(e) => setPass2(e.target.value)} 
+            />
           </div>
-          <div>
-              <label>Hasło:</label>
-              <input type="password" name="password" {...register("password", { required: "To pole jest wymagane" })} />
-              {errors.password && <span>{errors.password.message}</span>}
-          </div>
-          <button type="submit">Zaloguj się</button>
-      </form>
+          <button type="submit">Zmień hasło</button>
+        </form>
+        <div className={styles.errorWrapper}>
+          {error && <div className={styles.error}>{error}</div>}
+          {message !== '' && <div className={styles.error}>{message}</div>}
+          {confirmation !== '' && <div className={styles.confirmation}>{confirmation}</div>}
+        </div>
+      </div>
+      <div className={styles.passRequirements}>
+        <ul>
+          <li>Hasło musi składać się z minimum 8 znaków i musi zawierać:</li>
+          <ul>
+            <li>minimum 8 znaków</li>
+            <li>przynajmniej jedną mała literę</li>
+            <li>przynajmniej jedną dużą literę</li>
+            <li>przynajmniej jedną cyfrę</li>
+          </ul>
+        </ul>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import styles from './Login.module.scss';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -32,6 +33,8 @@ function Login() {
 
   // --------------------------------- API ---------------------------------
 
+  const navigate = useNavigate();
+  
   const LoginApi = (email, password) => {
     axios.post('http://localhost:8000/auth/login/', {
         email: email,
@@ -50,13 +53,14 @@ function Login() {
     })
     .catch(error => {
         console.error("Błąd logowania:", error);
-        setMessage("Błędne dane logowania")
+        // setMessage("Błędne dane logowania")
+        setMessage(error.response.data.message);
     });
   };
 
   return (
     <div className={styles.container}>
-      <h2>Zaloguj się</h2>
+      <h2>Logowanie</h2>
       <form onSubmit={handleSubmit}>
           <div className={styles.wrapper}>
             <label>Email:</label>

@@ -197,10 +197,18 @@ function SingleProductMain() {
               </div>
       
               {product.quantity > 0 &&
-                <p className={styles.quantity}>✔️ Na magazynie {product.quantity} {by_length_unit}</p>
+                <p className={styles.quantity}>✔️ Na magazynie 
+                  {/* {product.quantity} {by_length_unit} */}
+                </p>
               } 
               {product.quantity === 0 &&
-                <p className={styles.quantity}>❌ Niedostępne</p>
+                <a href="tel:+48 89 523 91 52" className={styles.phone}>
+                  <p className={styles.quantity}>
+                    <img src="/store/phone_little_dark.png" alt="cart" className={styles.icon}/>
+                    {/* ❌  */}
+                    Zapytaj o produkt
+                  </p>
+                </a>
               } 
 
               <div className={styles.cartQuantity}>

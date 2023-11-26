@@ -5,15 +5,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  // margin: 0px;
 }
-
-// .wrapper {
-//   // width: 80vw;
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-// }
 
 .wrapper {
   margin: 100px 10vw 0px 10vw;
@@ -28,7 +20,7 @@
 }
 
 .wrapperStretchedForCategories {
-  margin: 100px 10vw 0px 10vw;
+  margin: 50px 10vw 0px 10vw;
 
   @media (max-width: 1395px) {
     margin: 100px 2vw 0px 2vw;

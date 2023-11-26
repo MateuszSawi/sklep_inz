@@ -69,11 +69,14 @@ function Products(props) {
             <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}>
               {product.quantity > 0 ? (
                 <>
-                  <img src="/store/cart.png" alt="Moja Ikona" className={styles.icon}/>
+                  <img src="/store/cart.png" alt="cart" className={styles.icon}/>
                   <p>Dodaj do koszyka</p>
                 </>
               ) : (
-                <p>Niedostępne</p>
+                <>
+                  <img src="/store/phone_little.png" alt="phone" className={styles.icon}/>
+                  <p>Zapytaj o produkt</p>
+                </>
               )}
             </button>
           </div>

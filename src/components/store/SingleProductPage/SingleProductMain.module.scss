@@ -198,6 +198,21 @@
   margin: 100px 0;
 }
 
+.phone {
+  cursor: pointer;
+  color: $color_dark;
+  text-decoration: underline;
+  text-decoration-color: $color_dark;
+
+  &:active {
+    color: $color_dark;
+    text-decoration-color: $color_dark;
+  }
+
+  &:hover {
+    text-decoration-color: $color_dark;
+  }
+}
 
 .modal {
   position: fixed;
@@ -227,4 +242,10 @@
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.icon {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 5px;
 }

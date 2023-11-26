@@ -4,8 +4,6 @@ import styles from './StoreStartPageDescription.module.scss'
 function StoreStartPageDescription() {
   return (
     <div className={styles.wrapper}>
-      <h1>Sklep Internetowy</h1>
-
       <p>
         RENOX to firma specjalizująca się w obsłudze ciężkich maszyn budowlanych od 1992 roku. 
         Oferujemy kompleksową obsługę, dostarczając wysokiej jakości części, 

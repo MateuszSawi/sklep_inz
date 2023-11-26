@@ -8,14 +8,15 @@ import StoreStartPageInfo from './StoreStartPageInfo/StoreStartPageInfo';
 import StoreStartPagePopularProducts from './StoreStartPagePopularProducts/StoreStartPagePopularProducts';
 import StoreStartPageLogos from './StoreStartPageLogos/StoreStartPageLogos';
 import StoreStartPageNewsletter from './StoreStartPageNewsletter/StoreStartPageNewsletter';
+import StoreStartPageTitle from './StoreStartPageTitle/StoreStartPageTitle';
 
 function StoreStartPage(props) {
   return (
     <div className={styles.container}>
-      
+
       <div className={styles.wrapper}>
-        <StoreStartPageDescription />
-      </div>      
+        <StoreStartPageTitle />
+      </div>     
 
       <div className={styles.wrapperStretchedForCategories}>
         <StoreStartPageCategories 
@@ -27,11 +28,9 @@ function StoreStartPage(props) {
         />
       </div>
 
-      <StoreStartPageInfo />
-
       <div className={styles.wrapper}>
         <StoreStartPageDescription />
-      </div>
+      </div> 
 
       <StoreStartPagePopularProducts />
 
@@ -42,6 +41,8 @@ function StoreStartPage(props) {
       <div className={styles.wrapper}>
         <StoreStartPageNewsletter />
       </div>
+
+      <StoreStartPageInfo />
     
     </div>
   );

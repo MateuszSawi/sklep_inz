@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useMatch } from 'react-router-dom';
 
-import Login from './Login/AllAuth/Login/Login';
+// import Login from './Login/AllAuth/Login/Login';
 import Register from './Login/AllAuth/Register/Register';
+// import RegisterSuccessfull from './Login/AllAuth/Register/RegisterSuccessfull/RegisterSuccessfull';
 import ResetPassword from './Login/AllAuth/ResetPassword/ResetPassword';
-import ResetSetNewPassword from './Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword'
+// import ResetSetNewPassword from './Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword'
 import ChangePassword from './Login/AllAuth/ChangePassword/ChangePassword';
 import LoginsMainPage from './Login/LoginsMainPage';
 
@@ -63,8 +64,9 @@ function MainPageStore() {
 
         <Route path="/logowanie" element={<LoginsMainPage />} />
         <Route path="/rejestracja" element={<Register />} />
-        <Route path="/resetuj-hasło" element={<ResetSetNewPassword />} />
-        <Route path="/reset-hasła" element={<ResetPassword />} />
+        {/* <Route path="/auth/activate/:userId/:token" element={<RegisterSuccessfull />} /> */}
+        <Route path="/resetuj-hasło" element={<ResetPassword />} />
+        {/* <Route path="/reset-hasła" element={<ResetSetNewPassword />} /> */}
         <Route path="/zmiana-hasła" element={<ChangePassword />} />
       </Routes>
     </div>

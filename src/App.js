@@ -18,6 +18,10 @@ import Cookies from './components/policies/Cookies/Cookies';
 import FooterRenox from './components/footerlogos/FooterRenox/FooterRenox';
 import FooterCometweb from './components/footerlogos/FooterCometweb/FooterCometweb';
 
+import RegisterSuccessfull from './components/store/Login/AllAuth/Register/RegisterSuccessfull/RegisterSuccessfull';
+import AfterRegister from './components/store/Login/AllAuth/Register/AfterRegister/AfterRegister';
+import ResetSetNewPassword from './components/store/Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword';
+
 function App() {
   return (
     <div className='container'>
@@ -31,6 +35,10 @@ function App() {
         <Route path="/kontakt" element={<Contact />} />
 
         <Route path="/sklep/*" element={<MainPageStore />} />
+
+        <Route path="/zarejestrowano" element={<AfterRegister />} />
+        <Route path="/auth/activate/:userId/:token" element={<RegisterSuccessfull />} />
+        <Route path="/auth/password_reset/:userId/:token" element={<ResetSetNewPassword />} />
         
         <Route path="/polityka-prywatności" element={<Privacy />} />
         <Route path="/polityka-cookies" element={<Cookies />} />
