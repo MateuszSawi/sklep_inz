@@ -80,17 +80,34 @@ function SingleProductMain() {
     brandImage = '/website/MainPage/logos/jcg.jpg';
   }
 
+  // ----------------- quantity -----------------
+
   const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
-    if (quantity < product.quantity){
-      setQuantity(quantity + 1);
-    }
+    // if (quantity < product.quantity){              // warunek niepozwalający na dodanie wiecej niz max produktow w magazynie
+      if (quantity < 9999){
+        setQuantity(quantity + 1);
+      }
+    // }
   };
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+    }
+  };
+
+  const handleQuantityChange = (e) => {
+    let newQuantity = parseInt(e.target.value, 10);
+    if (isNaN(newQuantity) || newQuantity < 1) {
+      setQuantity(1);
+    // } else if (newQuantity > product.quantity) {   // warunek niepozwalający na dodanie wiecej niz max produktow w magazynie
+      // setQuantity(product.quantity);
+    } else if (newQuantity > 9999) {
+      setQuantity(9999);
+    } else {
+      setQuantity(newQuantity);
     }
   };
 
@@ -104,17 +121,17 @@ function SingleProductMain() {
 
   //
 
-  function getQuantityUnit(quantity) {
-    if (quantity === 1) {
-      return 'sztuka';
-    } else if (quantity > 1 && quantity < 5 || (quantity % 10 > 1 && quantity % 10 < 5 && (quantity % 100 < 10 || quantity % 100 > 20))) {
-      return 'sztuki';
-    } else {
-      return 'sztuk';
-    }
-  }
+  // function getQuantityUnit(quantity) {
+  //   if (quantity === 1) {
+  //     return 'sztuka';
+  //   } else if (quantity > 1 && quantity < 5 || (quantity % 10 > 1 && quantity % 10 < 5 && (quantity % 100 < 10 || quantity % 100 > 20))) {
+  //     return 'sztuki';
+  //   } else {
+  //     return 'sztuk';
+  //   }
+  // }
 
-  let by_length_unit = product.by_length ? 'cm' : getQuantityUnit(product.quantity);
+  // let by_length_unit = product.by_length ? 'cm' : getQuantityUnit(product.quantity);
 
   return (
     <div className={styles.mainWrapper} >     
@@ -213,7 +230,14 @@ function SingleProductMain() {
 
               <div className={styles.cartQuantity}>
                 <button onClick={decreaseQuantity}><p>-</p></button>
-                  <p>{quantity}</p>
+                <input 
+                  className={styles.quantityInput}
+                  type="number" 
+                  value={quantity} 
+                  onChange={handleQuantityChange} 
+                  min="1" 
+                  max={product.quantity} 
+                />
                 <button onClick={increaseQuantity}><p>+</p></button>
                 {!product.by_length && 
                   <p>ilość</p>
@@ -226,6 +250,14 @@ function SingleProductMain() {
 
               <AddToCartButton
                 product_id={product.product_id}
+                quantity={quantity}
+                product_name={product.product_name}
+                price_netto={product.price_netto}
+                price_brutto={product.price_brutto}
+                by_length={product.by_length}
+                // maxQuantity={product.quantity}
+                category={category}
+                subcategory={subcategory}
               />
 
               <div className={styles.underline}></div>

@@ -5,7 +5,7 @@ function MainSection() {
   return (
     <div className={styles.container} 
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL + '/website/MainPage/2.jpg'})`,
+        backgroundImage: `url(${process.env.PUBLIC_URL + '/website/MainPage/33.jpg'})`,
       }}
     >
       <h1 className={styles.title}>Buduj z Pewnością - Maszyny i Części do Maszyn Budowlanych</h1>

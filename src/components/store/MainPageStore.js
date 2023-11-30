@@ -9,6 +9,8 @@ import ResetPassword from './Login/AllAuth/ResetPassword/ResetPassword';
 import ChangePassword from './Login/AllAuth/ChangePassword/ChangePassword';
 import LoginsMainPage from './Login/LoginsMainPage';
 
+import Cart from './Cart/Cart';
+
 import HeaderStore from './HeaderStore/HeaderStore';
 import StoreStartPage from './StoreStartPage/StoreStartPage';
 import StoreProductsPage from './StoreProductsPage/StoreProductsPage';
@@ -62,11 +64,11 @@ function MainPageStore() {
           setSingleProduct={setSingleProduct}
         />} />
 
+        <Route path="/koszyk" element={<Cart />} />
+
         <Route path="/logowanie" element={<LoginsMainPage />} />
         <Route path="/rejestracja" element={<Register />} />
-        {/* <Route path="/auth/activate/:userId/:token" element={<RegisterSuccessfull />} /> */}
         <Route path="/resetuj-hasło" element={<ResetPassword />} />
-        {/* <Route path="/reset-hasła" element={<ResetSetNewPassword />} /> */}
         <Route path="/zmiana-hasła" element={<ChangePassword />} />
       </Routes>
     </div>

@@ -194,6 +194,26 @@
   }
 }
 
+.quantityInput {
+  font-size: 0.9em;
+  padding: 5px 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  width: 60px; // Dostosuj szerokość według potrzeb
+  text-align: center;
+
+  /* Usunięcie strzałek w inputach typu number */
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 .restInfo {
   margin: 100px 0;
 }

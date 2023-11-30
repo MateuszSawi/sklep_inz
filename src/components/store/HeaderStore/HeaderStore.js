@@ -9,8 +9,12 @@ function HeaderStore() {
 
   const navigate = useNavigate();
 
-  const handleLinkClick = (category, title) => {
+  const handleLinkClickUser = (category, title) => {
     navigate(`/sklep/logowanie`);
+  };
+
+  const handleLinkClickCart = (category, title) => {
+    navigate(`/sklep/koszyk`);
   };
 
   return (
@@ -35,9 +39,11 @@ function HeaderStore() {
         </div>
       </div>
       <div className={styles.header_right}>
+        <div onClick={() => handleLinkClickCart()}>
         <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} />
+        </div>
         <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-        <div onClick={() => handleLinkClick()}>
+        <div onClick={() => handleLinkClickUser()}>
           <FontAwesomeIcon icon={faUser} className={styles.icon} />
         </div>
       </div>
