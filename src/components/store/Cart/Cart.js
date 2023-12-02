@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Cart.module.scss';
 import { Link, useNavigate, useParams  } from 'react-router-dom';
 import axios from 'axios';
+import OrderButton from './OrderButton/OrderButton'
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -85,44 +86,57 @@ function Cart() {
     <div className={styles.cart}>
       <h2>Twój koszyk</h2>
       {cartItems.length === 0 ? <p>Koszyk jest pusty.</p> : (
-        <ul className={styles.cartList}>
+        <div className={styles.cartList}>
           {cartItems.map(item => (
-            <li key={item.product_id} className={styles.cartItem}>
-              <h3 onClick={() => navigateTOProduct(item.product_id, item.subcategory, item.category)}>{item.product_name}</h3>
-              <div className={styles.cartQuantity}>
-                <button
-                  onClick={() => handleDecreaseQuantity(item.product_id)}
-                  disabled={item.quantity <= 1}
-                >-</button>
-                <input 
-                  type="number"
-                  value={item.quantity}
-                  onChange={(e) => handleQuantityChange(item.product_id, e.target.value, item.maxQuantity)}
-                  min="1"
-                  max={item.maxQuantity}
-                  className={styles.quantityInput}
-                />
-                <button
-                  onClick={() => handleIncreaseQuantity(item.product_id, item.maxQuantity)}
-                  disabled={item.quantity >= item.maxQuantity}
-                >+</button>
-                {item.by_length ? <p>cm</p> : <p>ilość</p>}
+            <div key={item.product_id} className={styles.cartItem}>
+              <div className={styles.titleWrapper}>
+                <h3 onClick={() => navigateTOProduct(item.product_id, item.subcategory, item.category)}>{item.product_name}</h3>
               </div>
-              <p>Cena netto: {calculatePrice(item.price_netto, item.quantity)} zł</p>
-              <p>Cena brutto: {calculatePrice(item.price_brutto, item.quantity)} zł</p>
-              <button onClick={() => handleRemoveItem(item.product_id)} className={styles.removeItem}>
-                  🗑️
-                </button>
-            </li>
-            
+
+              <div className={styles.infoWrapper}>
+                <div className={styles.infoWrapperImg}>
+                  <img src={item.primary_link} alt="Product" className={styles.image} />
+                  <p>Numer katalogowy: {item.product_id} </p>
+                </div>
+
+                <div className={styles.innerInfoWrapper}>
+                    <p>Cena netto: {calculatePrice(item.price_netto, item.quantity)} zł</p>
+                    <p>Cena brutto: {calculatePrice(item.price_brutto, item.quantity)} zł</p>
+
+                    <div className={styles.cartQuantity}>
+                      <button
+                        onClick={() => handleDecreaseQuantity(item.product_id)}
+                        disabled={item.quantity <= 1}
+                      >-</button>
+                      <input 
+                        type="number"
+                        value={item.quantity}
+                        onChange={(e) => handleQuantityChange(item.product_id, e.target.value, item.maxQuantity)}
+                        min="1"
+                        max={item.maxQuantity}
+                        className={styles.quantityInput}
+                      />
+                      <button
+                        onClick={() => handleIncreaseQuantity(item.product_id, item.maxQuantity)}
+                        disabled={item.quantity >= item.maxQuantity}
+                      >+</button>
+                      <p>ilość</p>
+                    </div>
+                    <button onClick={() => handleRemoveItem(item.product_id)} className={styles.removeItem}>
+                      Usuń z koszyka
+                    </button>
+                </div>
+              </div>
+            </div>            
           ))}
-        </ul>
+        </div>
         
       )}
       <div className={styles.totalPrice}>
-            <h3>Łączna suma netto: {calculateTotalNetto()} zł</h3>
-            <h3>Łączna suma brutto: {calculateTotalBrutto()} zł</h3>
-          </div>
+        <p>Łączna suma netto: {calculateTotalNetto()} zł</p>
+        <p>Łączna suma brutto: {calculateTotalBrutto()} zł</p>
+        <OrderButton />
+      </div>
     </div>
   );
 }

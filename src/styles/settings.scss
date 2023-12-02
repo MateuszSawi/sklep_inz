@@ -12,9 +12,11 @@ $color_light_shadow: #eee;
 $color_button_hover: #555;
 $color_dark_II: #333;
 $color_light_green: rgb(45, 172, 45);
+$color_button_favourite_green: rgba(12, 110, 12, 0.753);
 $color_green: green;
 $color_darker_green: rgb(0, 104, 0);
 $color_red: red;
+$color_red_dark: rgb(150, 0, 0);
 $color_logins_inputs: #9696963a;
 $color_logins_inputs_focused: #96969650;
 
@@ -29,6 +31,7 @@ $font-size-base: 16px;
 $font-weight-bold: bold;
 
 $font_price: 500 42px/50px 'Roboto', Arial, sans-serif;
+$font_price_small_px: 500 32px/40px 'Roboto', Arial, sans-serif;
 $font_price_desc: 500 21px/25px 'Roboto', Arial, sans-serif;
 $font_button_specyfication: 500 21px/26px 'Roboto', Arial, sans-serif;
 

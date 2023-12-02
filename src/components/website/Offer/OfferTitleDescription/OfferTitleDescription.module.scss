@@ -8,5 +8,11 @@
 
   p {
     margin-bottom: 100px;
+
+    text-align: justify;
+
+    @media (max-width: 580px) {
+      text-align: left;
+    }
   }
 }

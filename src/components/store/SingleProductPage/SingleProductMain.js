@@ -3,9 +3,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import TextEdit from './TextEdit';
 import styles from './SingleProductMain.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import StoreProductsPath from '../StoreProductsPage/StoreProductsPath/StoreProductsPath';
 import AddToCartButton from './AddToCartButton/AddToCartButton';
+import AddToFavourite from './AddToFavourite/AddToFavourite';
 
 function SingleProductMain() {
 
@@ -146,9 +149,9 @@ function SingleProductMain() {
 
         <div className={styles.mainInfo} >
           <div className={styles.imagesWrapper} >
-          <div onClick={() => openModal(mainImage)}>
-            <img src={mainImage} alt="Product" className={styles.mainImage} />
-          </div>
+            <div onClick={() => openModal(mainImage)}>
+              <img src={mainImage} alt="Product" className={styles.mainImage} />
+            </div>
 
             <div className={styles.smallImages} >
               <img src={product.primary_link} 
@@ -173,46 +176,41 @@ function SingleProductMain() {
           <div className={styles.shortDesc}>
             <p>Numer katalogowy: {product.product_id} </p>
             <p>{product.product_description_short}</p>
-
             {product.brand_name &&
               <img src={process.env.PUBLIC_URL + brandImage}  
                 alt="Brand" className={styles.brandImage} 
               />
             }
-
             {product.brand_name &&
               <p>Firma: {product.brand_name} </p>
             }
-
             {product.reference_number &&
               <p>Numer referencji: {product.reference_number} </p>
             }
-
             <img className={styles.renox}
               src={process.env.PUBLIC_URL + '/website/MainPage/logos/logo_web.png'} 
               alt="Renox logo" 
             />
-
             <div onClick={scrollToMyElement} className={styles.scroll}>
               <h3>Przejdź do pełnej specyfikacji </h3> &nbsp;
               <span>↓</span>
             </div>
-
-            
+            <AddToFavourite  
+              category={category}
+              subcategory={subcategory}
+              product={product}
+            />
           </div>
-
           <div>
             <div className={styles.priceWrapper} >
               <div className={styles.price}>
                 <h1>{product.price_netto}</h1>
                 <h3>zł netto</h3>
               </div>
-
               <div className={styles.price}>
                 <h1>{product.price_brutto}</h1>
                 <h3>zł brutto</h3>
               </div>
-      
               {product.quantity > 0 &&
                 <p className={styles.quantity}>✔️ Na magazynie 
                   {/* {product.quantity} {by_length_unit} */}
@@ -226,8 +224,7 @@ function SingleProductMain() {
                     Zapytaj o produkt
                   </p>
                 </a>
-              } 
-
+              }
               <div className={styles.cartQuantity}>
                 <button onClick={decreaseQuantity}><p>-</p></button>
                 <input 
@@ -245,9 +242,109 @@ function SingleProductMain() {
                 {product.by_length && 
                   <p>cm</p>
                 }
-                
               </div>
+              {product.quantity > 0 &&
+                <AddToCartButton
+                  product_id={product.product_id}
+                  quantity={quantity}
+                  product_name={product.product_name}
+                  price_netto={product.price_netto}
+                  price_brutto={product.price_brutto}
+                  by_length={product.by_length}
+                  // maxQuantity={product.quantity}
+                  category={category}
+                  subcategory={subcategory}
+                  primary_link={product.primary_link}
+                />
+              } 
+              {product.quantity === 0 &&
+                <div >
+                  <button className={styles.buttonNoProducts}><h3>DO KOSZYKA</h3></button>
+                </div>
+              }
+              <div className={styles.underline}></div>
+            </div>
+          </div>
+        </div>
 
+        <div className={styles.shortDescSmallPx}>
+          <p>Numer katalogowy: {product.product_id} </p>
+          <p>{product.product_description_short}</p>
+
+          {product.brand_name &&
+            <img src={process.env.PUBLIC_URL + brandImage}  
+              alt="Brand" className={styles.brandImage} 
+            />
+          }
+
+          {product.brand_name &&
+            <p>Firma: {product.brand_name} </p>
+          }
+
+          {product.reference_number &&
+            <p>Numer referencji: {product.reference_number} </p>
+          }
+
+          <img className={styles.renox}
+            src={process.env.PUBLIC_URL + '/website/MainPage/logos/logo_web.png'} 
+            alt="Renox logo" 
+          />
+
+          <div onClick={scrollToMyElement} className={styles.scroll}>
+            <h3>Przejdź do pełnej specyfikacji </h3> &nbsp;
+            <span>↓</span>
+          </div>
+
+          <AddToFavourite  
+            category={category}
+            subcategory={subcategory}
+            product={product}
+          />
+        </div>
+
+        <div>
+          <div className={styles.priceWrapperSmallPx} >
+            <div className={styles.price}>
+              <h1>{product.price_netto}</h1>
+              <h3>zł netto</h3>
+            </div>
+            <div className={styles.price}>
+              <h1>{product.price_brutto}</h1>
+              <h3>zł brutto</h3>
+            </div>
+            {product.quantity > 0 &&
+              <p className={styles.quantity}>✔️ Na magazynie 
+                {/* {product.quantity} {by_length_unit} */}
+              </p>
+            } 
+            {product.quantity === 0 &&
+              <a href="tel:+48 89 523 91 52" className={styles.phone}>
+                <p className={styles.quantity}>
+                  <img src="/store/phone_little_dark.png" alt="cart" className={styles.icon}/>
+                  {/* ❌  */}
+                  Zapytaj o produkt
+                </p>
+              </a>
+            }
+            <div className={styles.cartQuantity}>
+              <button onClick={decreaseQuantity}><p>-</p></button>
+              <input 
+                className={styles.quantityInput}
+                type="number" 
+                value={quantity} 
+                onChange={handleQuantityChange} 
+                min="1" 
+                max={product.quantity} 
+              />
+              <button onClick={increaseQuantity}><p>+</p></button>
+              {!product.by_length && 
+                <p>ilość</p>
+              }
+              {product.by_length && 
+                <p>cm</p>
+              }
+            </div>
+            {product.quantity > 0 &&
               <AddToCartButton
                 product_id={product.product_id}
                 quantity={quantity}
@@ -258,10 +355,14 @@ function SingleProductMain() {
                 // maxQuantity={product.quantity}
                 category={category}
                 subcategory={subcategory}
+                primary_link={product.primary_link}
               />
-
-              <div className={styles.underline}></div>
-            </div>
+            } 
+            {product.quantity === 0 &&
+              <div >
+                <button className={styles.buttonNoProducts}><h3>DO KOSZYKA</h3></button>
+              </div>
+            }
           </div>
         </div>
 

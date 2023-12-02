@@ -17,6 +17,10 @@ function HeaderStore() {
     navigate(`/sklep/koszyk`);
   };
 
+  const handleLinkClickFavorite = (category, title) => {
+    navigate(`/sklep/ulubione`);
+  };
+
   return (
     <header className={styles.header}>
       {/* <div className={styles.header__left}>
@@ -40,9 +44,13 @@ function HeaderStore() {
       </div>
       <div className={styles.header_right}>
         <div onClick={() => handleLinkClickCart()}>
-        <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} />
+          <FontAwesomeIcon icon={faShoppingCart} className={styles.icon} />
         </div>
-        <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+
+        <div onClick={() => handleLinkClickFavorite()}>
+          <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+        </div>
+        
         <div onClick={() => handleLinkClickUser()}>
           <FontAwesomeIcon icon={faUser} className={styles.icon} />
         </div>

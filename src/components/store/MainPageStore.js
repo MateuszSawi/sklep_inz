@@ -10,6 +10,7 @@ import ChangePassword from './Login/AllAuth/ChangePassword/ChangePassword';
 import LoginsMainPage from './Login/LoginsMainPage';
 
 import Cart from './Cart/Cart';
+import Favorite from './Favorite/Favorite';
 
 import HeaderStore from './HeaderStore/HeaderStore';
 import StoreStartPage from './StoreStartPage/StoreStartPage';
@@ -65,6 +66,7 @@ function MainPageStore() {
         />} />
 
         <Route path="/koszyk" element={<Cart />} />
+        <Route path="/ulubione" element={<Favorite />} />
 
         <Route path="/logowanie" element={<LoginsMainPage />} />
         <Route path="/rejestracja" element={<Register />} />

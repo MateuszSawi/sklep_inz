@@ -6,10 +6,14 @@ import OfferTitleDescription from './OfferTitleDescription/OfferTitleDescription
 
 function Offer() {
   return (
-    <div className={styles.wrapper}>
-      <OfferTitleDescription />
-      <OfferCards />
-    </div>
+    <>
+      <div className={styles.wrapperDescription}>
+        <OfferTitleDescription />
+      </div>
+      <div className={styles.wrapperCards}>
+        <OfferCards />
+      </div>
+    </>
   );
 }
 

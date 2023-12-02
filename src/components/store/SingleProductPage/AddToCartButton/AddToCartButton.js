@@ -4,7 +4,7 @@ import styles from './AddToCartButton.module.scss';
 function AddToCartButton(props) {
 
   const handleAddToCart = () => {
-    const { product_id, quantity, product_name, price_netto, price_brutto, by_length, category, subcategory } = props;
+    const { product_id, quantity, product_name, price_netto, price_brutto, by_length, category, subcategory, primary_link } = props;
 
     // Pobranie aktualnej listy produktów z localStorage
     const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -27,9 +27,10 @@ function AddToCartButton(props) {
         product_name,
         price_netto,
         price_brutto,
-        by_length,
         category,
-        subcategory
+        subcategory,
+        primary_link,
+        // by_length
       };
       currentCart.push(newProduct);
     }

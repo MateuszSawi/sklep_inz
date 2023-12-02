@@ -1,0 +1,34 @@
+@import '../../../../styles/settings.scss';
+
+.addToFavourite {  
+
+  button {
+    padding: 0px 0px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 180px;
+
+    font-size: 16px; // Wielkość tekstu
+    cursor: pointer; // Kursor zmienia się na wskaźnik
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); // Cień pudełkowy
+    transition: all 0.3s ease;
+    background-color: $color_lightest_gray;
+
+    &:hover {
+      background-color: $color_lighter_gray; // Ciemniejszy niebieski przy najechaniu myszą
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Większy cień przy najechaniu myszą
+    }
+  }
+
+  p {
+    color: $color_dark;
+    font: $font_subcategories;
+  }
+
+  .iconHeart {
+    margin-right: 5px;
+  }
+}

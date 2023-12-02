@@ -1,11 +1,9 @@
 @import '../../../styles/settings.scss';
 
-.wrapper {
+.wrapperDescription {
   margin: 100px 10vw 150px 10vw;
-}
 
-@media (max-width: 480px) {
-  .wrapper {
-    margin: 100px 2vw 0px 2vw;
+  @media (max-width: 580px) {
+    margin: 100px 3vw 0px 3vw;
   }
 }

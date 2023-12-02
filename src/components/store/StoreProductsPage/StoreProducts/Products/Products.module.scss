@@ -11,29 +11,29 @@
     grid-template-columns: repeat(7, 1fr);
   }
 
-  @media screen and (max-width: 2500px) {
+  @media screen and (max-width: 2550px) {
     grid-template-columns: repeat(6, 1fr);
   }
 
-  @media screen and (max-width: 2050px) {
+  @media screen and (max-width: 2100px) {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @media screen and (max-width: 1800px) {
+  @media screen and (max-width: 1850px) {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @media screen and (max-width: 1600px) {
+  @media screen and (max-width: 1650px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1250px) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .card {
-  width: 250px;
+  width: 280px;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 10px;
@@ -127,11 +127,12 @@
     margin-top: 10px;
     padding: 10px;
     border: none;
+    height: 45px;
 
     border-radius: 5px; // Zaokrąglone rogi
     font-size: 16px; // Wielkość tekstu
     cursor: pointer; // Kursor zmienia się na wskaźnik
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Cień pudełkowy
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Cień pudełkowy
     transition: all 0.3s ease;
   }
 }
@@ -144,6 +145,7 @@
 .buttonAvailable {
   background-color: $color_green;
   color: $color_white;
+  z-index: 999;
 
   i {
     margin-right: 5px; // Dodaj margines, jeśli używasz ikonki
@@ -151,12 +153,12 @@
 
   &:hover {
     background-color: $color_darker_green; // Ciemniejszy niebieski przy najechaniu myszą
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); // Większy cień przy najechaniu myszą
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); // Większy cień przy najechaniu myszą
   }
 
   &:active {
     background-color: $color_darker_green; // Jeszcze ciemniejszy niebieski przy kliknięciu
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Mniejszy cień przy wciśnięciu
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); // Mniejszy cień przy wciśnięciu
   }
 }
 
@@ -166,7 +168,35 @@
 
   &:hover {
     background-color: $color_gray_darker; // Ciemniejszy niebieski przy najechaniu myszą
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); // Większy cień przy najechaniu myszą
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); // Większy cień przy najechaniu myszą
+  }
+}
+
+.addToFavourite {
+  // background-color: $color_darker_green;\
+  margin-left: 10px;
+  
+
+  button {
+    padding: 10px 12px;
+    height: 45px;
+
+    border-radius: 5px; // Zaokrąglone rogi
+    font-size: 16px; // Wielkość tekstu
+    cursor: pointer; // Kursor zmienia się na wskaźnik
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); // Cień pudełkowy
+    transition: all 0.3s ease;
+    background-color: $color_lightest_gray;
+
+    &:hover {
+      background-color: $color_lighter_gray; // Ciemniejszy niebieski przy najechaniu myszą
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Większy cień przy najechaniu myszą
+    }
+  }
+
+  p {
+    color: $color_dark;
+    font: $font_subcategories;
   }
 }
 
@@ -174,4 +204,15 @@
   width: 16px !important;
   height: 16px !important;
   margin-right: 5px;
+}
+
+.iconHeart {
+  color: $color_gray_darker;
+}
+
+.buttonsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
