@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useMatch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import styles from './MainPageStore.module.scss'
 
 // import Login from './Login/AllAuth/Login/Login';
 import Register from './Login/AllAuth/Register/Register';

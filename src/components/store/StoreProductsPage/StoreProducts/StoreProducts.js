@@ -4,7 +4,7 @@ import styles from './StoreProducts.module.scss';
 import categoriesData from '../categories';
 import { FaChevronDown } from 'react-icons/fa';
 import axios from 'axios';
-
+import { apiK, apiP } from '../../../../apiConfig';
 
 import Products from './Products/Products';
 
@@ -47,7 +47,7 @@ function StoreProducts(props) {
       page_number: 1
     };
 
-    axios.post("http://127.0.0.1:8000/products/product_list/", { 
+    axios.post(`${apiP}/products/product_list/`, { 
       params: params
     })
     .then(response => {
@@ -71,7 +71,7 @@ function StoreProducts(props) {
       page_number: 1
     };
 
-    axios.post("http://127.0.0.1:8000/products/product_list/", { 
+    axios.post(`${apiP}/products/product_list/`, { 
       params: params
     })
     .then(response => {

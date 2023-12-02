@@ -4,14 +4,34 @@ import styles from './AddToFavourite.module.scss';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddToFavourite(props) {
+
+  const toastId = React.useRef(null);
+
+  const notify = () => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast("Dodano do ulubionych!", {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000,
+        toastId: toastId.current
+      });
+    } else {
+      toast.update(toastId.current, {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000
+      });
+    }
+  };
 
   let category = props.category;
   let subcategory = props.subcategory;
 
   const handleAddToFavourites = (event) => {
     event.stopPropagation();
+    notify();
   
     const { product_id, price_netto, price_brutto, product_name, primary_link, quantity } = props.product;
   

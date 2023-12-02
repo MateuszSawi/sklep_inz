@@ -4,10 +4,45 @@ import styles from './Products.module.scss';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Products(props) {
 
   const { category, subcategory, singleProduct } = useParams();
+
+  const generateToastIdFavourite = (prefix, productId) => `${prefix}-${productId}`;
+  const generateToastIdCart = (prefix, productId) => `${prefix}-${productId}`;
+
+  const notifyFavourite = () => {
+    if (!toast.isActive(generateToastIdFavourite.current)) {
+      generateToastIdFavourite.current = toast("Dodano do ulubionych!", {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000,
+        toastId: generateToastIdFavourite.current
+      });
+    } else {
+      toast.update(generateToastIdFavourite.current, {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000
+      });
+    }
+  };
+
+  const notifyCart = () => {
+    if (!toast.isActive(generateToastIdCart.current)) {
+      generateToastIdCart.current = toast("Dodano do koszyka!", {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000,
+        toastId: generateToastIdCart.current
+      });
+    } else {
+      toast.update(generateToastIdCart.current, {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000
+      });
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -51,11 +86,17 @@ function Products(props) {
       currentCart.push(newProduct);
     }
     
+    notifyCart(product.product_id);
     localStorage.setItem('cart', JSON.stringify(currentCart));
   };
 
+  // const handleAddToCartNoProduct = (event) => {
+  //   event.stopPropagation();
+  // };
+
   const handleAddToFavourites = (event, product) => {
     event.stopPropagation();
+    notifyFavourite(product.product_id);
   
     const { product_id, price_netto, price_brutto, product_name, primary_link, quantity } = product;
   
@@ -109,21 +150,21 @@ function Products(props) {
             <p className={styles.productPrice}>Cena brutto: {product.price_brutto} zł</p>
             <div className={styles.buttonsWrapper}>
               <div>
-                <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}
-                  onClick={(event) => handleAddToCart(event, product)}
-                >
                   {product.quantity > 0 ? (
-                    <>
+                    <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}
+                      onClick={(event) => handleAddToCart(event, product)}
+                    >
                       <img src="/store/cart.png" alt="cart" className={styles.icon}/>
                       <p>Dodaj do koszyka</p>
-                    </>
+                    </button>
                   ) : (
-                    <>
+                    <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}
+                      // onClick={(event) => handleAddToCartNoProduct(event)}
+                    >
                       <img src="/store/phone_little.png" alt="phone" className={styles.icon}/>
                       <p>Zapytaj o produkt</p>
-                    </>
+                    </button>
                   )}
-                </button>
               </div>
 
               <div className={styles.addToFavourite}>

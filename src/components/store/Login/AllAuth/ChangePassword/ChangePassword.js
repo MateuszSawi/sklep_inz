@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { apiK, apiP } from '../../../../../apiConfig';
 
 function ChangePassword() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -8,7 +9,7 @@ function ChangePassword() {
     const onSubmit = (data) => {
       // Jeśli używasz ciasteczek, axios automatycznie je dołączy do zapytania
 
-      axios.post('http://localhost:8000/accounts/password/change/', {
+      axios.post(`${apiK}/accounts/password/change/`, {
           old_password: data.oldPassword,
           new_password1: data.newPassword1,
           new_password2: data.newPassword2

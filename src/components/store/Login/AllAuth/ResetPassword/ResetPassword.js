@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import styles from './ResetPassword.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { apiK, apiP } from '../../../../../apiConfig';
 
 function ResetPassword() {
     // const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,7 +19,7 @@ function ResetPassword() {
     };
 
     const RegisterApi = (email) => {
-      axios.post('http://localhost:8000/auth/password_reset/', {
+      axios.post(`${apiK}/auth/password_reset/`, {
         email: email
       })
       .then(response => {

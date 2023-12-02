@@ -5,6 +5,7 @@ import TextEdit from './TextEdit';
 import styles from './SingleProductMain.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { apiK, apiP } from '../../../apiConfig';
 
 import StoreProductsPath from '../StoreProductsPage/StoreProductsPath/StoreProductsPath';
 import AddToCartButton from './AddToCartButton/AddToCartButton';
@@ -27,7 +28,7 @@ function SingleProductMain() {
   }, [product.primary_link]);
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/products/get_product/", { 
+    axios.get(`${apiP}/products/get_product/`, { 
       params: {
         product_id : singleProduct
       }

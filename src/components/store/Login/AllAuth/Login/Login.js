@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import styles from './Login.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { apiK, apiP } from '../../../../../apiConfig';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -36,7 +37,7 @@ function Login() {
   const navigate = useNavigate();
   
   const LoginApi = (email, password) => {
-    axios.post('http://localhost:8000/auth/login/', {
+    axios.post(`${apiK}/auth/login/`, {
         email: email,
         password: password
     },

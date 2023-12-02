@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import styles from './ResetSetNewPassword.module.scss';
 import { useParams , useNavigate } from 'react-router-dom';
+import { apiK, apiP } from '../../../../../apiConfig';
 
 function ResetSetNewPassword() {
   const [pass1, setPass1] = useState('');
@@ -33,7 +34,7 @@ function ResetSetNewPassword() {
   };
 
   const RegisterApi = (data) => {
-    axios.post(`http://localhost:8000/auth/activate/${userId}/${token}/`, {
+    axios.post(`${apiK}/auth/activate/${userId}/${token}/`, {
       newpassword1: pass1,
       newpassword2: pass2
     },

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Register.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { apiK, apiP } from '../../../../../apiConfig';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -46,7 +47,7 @@ const Register = () => {
   const navigate = useNavigate();
   
   const RegisterApi = (email, pass1, name, surname) => {
-    axios.post('http://localhost:8000/auth/register/', {
+    axios.post(`${apiK}/auth/register/`, {
       name: name,
       surname: surname,
       email: email,

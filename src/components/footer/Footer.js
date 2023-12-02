@@ -65,7 +65,7 @@ function Footer() {
           <div className={styles.link}>
             <div className={styles.box}>
               <p className={styles.footerColumn} 
-                onClick={e => {handleCopyToClipboard('cometweb.kontakt@gmail.com')}}
+                onClick={e => {handleCopyToClipboard('renox@renox.pl')}}
                 style={{ cursor: 'pointer' }}>
                 <FaEnvelope/> renox@renox.pl <ToastContainer />
               </p>

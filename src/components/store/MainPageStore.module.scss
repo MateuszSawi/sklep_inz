@@ -1,0 +1,14 @@
+@import '../../styles/settings.scss';
+
+.custom-progress-bar {
+  background: $color_green !important;
+}
+
+:root {
+  --toastify-color-progress-light: $color_green;
+  --toastify-color-progress-dark: $color_green;
+  --toastify-color-progress-info: $color_green;
+  --toastify-color-progress-success: $color_green;
+  --toastify-color-progress-warning: $color_green;
+  --toastify-color-progress-error: $color_green;
+}

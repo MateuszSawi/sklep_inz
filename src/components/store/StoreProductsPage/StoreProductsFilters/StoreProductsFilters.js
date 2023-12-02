@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useMatch } from 'react-router-dom';
 import styles from './StoreProductsFilters.module.scss';
 import axios from 'axios';
+import { apiK, apiP } from '../../../../apiConfig';
 
 function StoreProductsFilters() {
 
   // useEffect(() => {
-  //   axios.post("http://127.0.0.1:8000/products/filters/", { 
+  //   axios.post(`${apiP}/products/filters/`, { 
   //     params: {
         
 

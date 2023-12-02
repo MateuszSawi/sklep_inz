@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams  } from 'react-router-dom';
 import styles from './StoreProductsPath.module.scss';
 import axios from 'axios';
+import { apiK, apiP } from '../../../../apiConfig';
 
 function StoreProductsPath(props) {
 
@@ -19,7 +20,7 @@ function StoreProductsPath(props) {
       page_number: 1
     };
 
-    axios.post("/products/product_list/", { 
+    axios.post(`${apiP}/products/product_list/`, { 
       params: params
     })
     .then(response => {
@@ -41,7 +42,7 @@ function StoreProductsPath(props) {
       page_number: 1
     };
 
-    axios.post("http://127.0.0.1:8000/products/product_list/", { 
+    axios.post(`${apiP}/products/product_list/`, { 
       params: params
     })
     .then(response => {

@@ -1,9 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './AddToCartButton.module.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddToCartButton(props) {
 
+  const toastId = React.useRef(null); // Używamy useRef, aby zachować stały identyfikator powiadomienia
+
+  const notify = () => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast("Dodano do koszyka!", {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000,
+        toastId: toastId.current
+      });
+    } else {
+      toast.update(toastId.current, {
+        progressStyle: { backgroundColor: 'green' },
+        autoClose: 1000
+      });
+    }
+  };
+
   const handleAddToCart = () => {
+    notify();
     const { product_id, quantity, product_name, price_netto, price_brutto, by_length, category, subcategory, primary_link } = props;
 
     // Pobranie aktualnej listy produktów z localStorage
