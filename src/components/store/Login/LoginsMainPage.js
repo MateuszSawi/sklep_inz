@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './LoginsMainPage.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import Login from './AllAuth/Login/Login';
+import axios from 'axios';
+import { apiK, apiP } from '../../../apiConfig';
 
 function LoginsMainPage(props) {
 
@@ -13,6 +15,36 @@ function LoginsMainPage(props) {
 
   const redirectToResetNewPassword = () => {
     navigate(`/sklep/resetuj-hasło`);
+  };
+
+  //
+
+  useEffect(() => {
+    handleCheckSession();
+  }, []);
+
+  const handleCheckSession = () => {
+    // event.preventDefault();
+    axios.get(`${apiK}/auth/checksession`, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        // console.log(response.data.authorities)
+
+        props.setAuthorities(response.data.authorities);
+
+        // if (response.data.isLoggedIn) {
+        //   navigate('/calendar');
+        // } else {
+        //   navigate('/');
+        // }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

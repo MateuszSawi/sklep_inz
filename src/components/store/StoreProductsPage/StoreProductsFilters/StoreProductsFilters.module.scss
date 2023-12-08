@@ -1,4 +1,4 @@
-
+@import '../../../../styles/settings.scss';
 
 .container {
   margin: 50px 100px;
@@ -10,4 +10,34 @@
   p {
     color: red;
   }
+}
+
+.productListing {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  // padding: 20px;
+
+  margin: 50px 100px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // margin-bottom: 20px;
+}
+
+.dropdown {
+  padding: 10px 15px;
+  margin: 0 10px;
+  border-radius: 0;
+  border: 1px solid $color_lighter_gray;
+  color: $color_gray_darker;
+  font: $font_categories;
+}
+
+.pagination {
+  // Define styles for your pagination component
 }

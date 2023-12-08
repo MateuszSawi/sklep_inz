@@ -24,6 +24,7 @@ $color-text-light: #7a7a7a;
 $color-border: #e0e0e0;
 $color-footer: #2a2a2a;
 $color-footer-text: #bdbdbd;
+$color_background_gray: #f6f6f6;
 
 // Czcionki
 $font-family-base: 'Arial', sans-serif;
@@ -46,6 +47,8 @@ $box-shadow-strong: 0px 10px 20px rgba(0, 0, 0, 0.2);
 $box_shadow_input: 3px 4px 8px rgba(0, 0, 0, 0.3);
 $box_shadow_input_focused: 3px 4px 8px rgba(0, 0, 0, 0.4);
 $box_shadow_input_focused_green: 3px 4px 8px green;
+$box_shadow_input_delivery: 1px 1px 4px rgba(0, 0, 0, 0.1);
+$box_shadow_input_delivery_focused: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
 $box_shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
 $box_shadow_hover: 2px 4px 5px rgba(0, 0, 0, 0.4);

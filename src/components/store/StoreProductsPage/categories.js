@@ -1,12 +1,30 @@
 const categoriesData = {
-  Zeby_adaptery: [
-    'Caterpillar',
-    'ESCO Ultralok',
-    'ESCO SuperV',
-    'Doosan',
-    'Komatsu',
+  Lemiesze: [
+    'Na wymiar',
+    'Na wymiar z otworami',
+    'Do spycharek',
+    'Do koparek',
+    'Do ładowarek',
     'Do koparko-ładowarek',
-    'Inne'
+    'Śruby lemiesza'
+  ],
+  Tuleje: [
+    'Tuleje na wymiar',
+    'Tuleje do CAT',
+    'Tuleje do DOOSAN',
+    'Tuleje do KOMATSU',
+    'Tuleje do VOLVO',
+    'Tuleje do Innych',
+    'Podkładki - Dystanse'
+  ],
+  Sworznie: [
+    'Sworznie na wymiar',
+    'Sworznie chromowane',
+    'Sworznie do CAT',
+    'Sworznie do DOOSAN',
+    'Sworznie do KOMATSU',
+    'Sworznie do VOLVO',
+    'Sworznie do Innych'
   ],
   Gasienice_do_minikoparek: [
     'Gąsienice do minikoparek',
@@ -30,22 +48,6 @@ const categoriesData = {
     'Koła napinające',
     'Rolki napinające'
   ],
-  Lemiesze: [
-    'Na wymiar',
-    'Na wymiar z otworami',
-    'Do spycharek',
-    'Do koparek',
-    'Do ładowarek',
-    'Do koparko-ładowarek',
-    'Śruby lemiesza'
-  ],
-  Sprezyny_napinacze: [
-    'do JCB',
-    'do KOMATSU',
-    'do VOLVO',
-    'do DOOSAN',
-    'do CASE'
-  ],
   Podwozia: [
     'Łańcuch gąsienicy',
     'Koła napędowe',
@@ -56,23 +58,24 @@ const categoriesData = {
     'Śruby',
     'Nakrętki'
   ],
-  Sworznie: [
-    'Sworznie na wymiar',
-    'Sworznie chromowane',
-    'Sworznie do CAT',
-    'Sworznie do DOOSAN',
-    'Sworznie do KOMATSU',
-    'Sworznie do VOLVO',
-    'Sworznie do Innych'
+  Sruby_i_nakretki: [
+    
   ],
-  Tuleje: [
-    'Tuleje na wymiar',
-    'Tuleje do CAT',
-    'Tuleje do DOOSAN',
-    'Tuleje do KOMATSU',
-    'Tuleje do VOLVO',
-    'Tuleje do Innych',
-    'Podkładki - Dystanse'
+  Zeby_adaptery: [
+    'Caterpillar',
+    'ESCO Ultralok',
+    'ESCO SuperV',
+    'Doosan',
+    'Komatsu',
+    'Do koparko-ładowarek',
+    'Inne'
+  ],
+  Sprezyny_napinacze: [
+    'do JCB',
+    'do KOMATSU',
+    'do VOLVO',
+    'do DOOSAN',
+    'do CASE'
   ],
   Uszczelnienia: [
     'Uszczelnienia na wymiar',
@@ -82,6 +85,13 @@ const categoriesData = {
     'Uszczelnienia do VOLVO',
     'Uszczelnienia do innych'
   ],
+  Czesci_zamienne: [
+    'CAT',
+    'JCB',
+    'KOMATSU',
+    'VOLVO',
+    'Łączniki'
+  ],
   Czesci_do_kruszarek_i_przesiewaczy: [
     'Sczęki',
     'Stożki',
@@ -90,22 +100,16 @@ const categoriesData = {
     'Sita',
     'Inne'
   ],
-  Maszyny_uzywane: [
-    
-  ],
-  Czesci_zamienne: [
-    'CAT',
-    'JCB',
-    'KOMATSU',
-    'VOLVO',
-    'Łączniki'
-  ],
   Lyzki_przesiewajace: [
     'PRZESIEWAJĄCE',
     'KRUSZĄCE'
   ],
-
-
+  Lyzki_kruszace: [
+    
+  ],
+  Maszyny_uzywane: [
+    
+  ],
 };
 
 export default categoriesData;

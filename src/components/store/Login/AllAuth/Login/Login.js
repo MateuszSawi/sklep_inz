@@ -25,8 +25,7 @@ function Login() {
     event.preventDefault();
     if (!validateEmail(email) || !validatePassword(password)) {
       setError('Błędne dane logowania');
-    } 
-    else { // Login successful
+    } else { // Login successful
       setError('');
       LoginApi(email, password);
     }
@@ -48,14 +47,17 @@ function Login() {
       }
     })
     .then(response => {
-        console.log(response.data);
-        setMessage("")
-        localStorage.setItem('token', response.data.key); // zapisanie tokena do localStorage
+      console.log(response.data);
+      setMessage("")
+      localStorage.setItem('token', response.data.key); // zapisanie tokena do localStorage
+
+
+      // jesli response to zalogowany ~krasny
     })
     .catch(error => {
-        console.error("Błąd logowania:", error);
-        // setMessage("Błędne dane logowania")
-        setMessage(error.response.data.message);
+      console.error("Błąd logowania:", error);
+      // setMessage("Błędne dane logowania")
+      setMessage(error.response.data.message);
     });
   };
 

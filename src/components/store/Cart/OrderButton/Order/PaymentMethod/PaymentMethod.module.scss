@@ -1,0 +1,11 @@
+@import '../../../../../../styles/settings.scss';
+
+.paymentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    accent-color: $color_dark;
+  }
+}

@@ -1,0 +1,81 @@
+@import '../../../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  // align-items: center;
+  justify-content: space-around;
+  // gap: 20px; 
+  background-color: $color_background_gray;
+  padding-top: 80px;
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: $color_dark;
+    color: $color_white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: $box_shadow;
+
+    &:hover {
+      background-color: $color_black;
+      box-shadow: $box_shadow_hover;
+    }
+  }
+
+  h2 {
+    margin: 10px 0;
+  }
+}
+
+.errorWrapper {
+  min-height: 20px;
+}
+
+.wrapper {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  margin-bottom: 0px;
+
+  input {
+    padding: 10px;
+    border: none;
+    // border-radius: 0px;
+    font-size: 16px;
+    box-shadow: $box_shadow_input_delivery;
+    width: 280px;
+    // background-color: $color_logins_inputs;
+    text-align: left;
+    margin-bottom: 20px;
+
+    &:focus {
+      outline: none;
+      border: none;
+      box-shadow: $box_shadow_input_delivery_focused;
+      // background-color: $box_shadow_input_delivery_focused;
+    }
+  }
+
+  textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: $box_shadow_input;
+    width: 280px;
+    height: 120px;
+    background-color: $color_logins_inputs;
+    text-align: left;
+    margin-bottom: 20px;
+
+    &:focus {
+      outline: none;
+      border: none;
+      box-shadow: $box_shadow_input_focused;
+      background-color: $color_logins_inputs_focused;
+    }
+  }
+}

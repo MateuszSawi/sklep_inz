@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Cart.module.scss';
 import { Link, useNavigate, useParams  } from 'react-router-dom';
 import axios from 'axios';
-import OrderButton from './OrderButton/OrderButton'
+import OrderButtonFromCart from './OrderButton/OrderButtonFromCart'
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -135,7 +135,7 @@ function Cart() {
       <div className={styles.totalPrice}>
         <p>Łączna suma netto: {calculateTotalNetto()} zł</p>
         <p>Łączna suma brutto: {calculateTotalBrutto()} zł</p>
-        <OrderButton />
+        <OrderButtonFromCart />
       </div>
     </div>
   );

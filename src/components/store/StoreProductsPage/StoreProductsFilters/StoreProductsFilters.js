@@ -6,35 +6,70 @@ import { apiK, apiP } from '../../../../apiConfig';
 
 function StoreProductsFilters() {
 
-  // useEffect(() => {
-  //   axios.post(`${apiP}/products/filters/`, { 
-  //     params: {
-        
+  const [sortBy, setSortBy] = useState('popularity');
+  const [productsPerPage, setProductsPerPage] = useState(30);
 
+  useEffect(() => {
+    const numericProductsPerPage = Number(productsPerPage);
 
+    axios.post(`${apiP}/products/filters/`, { 
+      params: {
+        sort: sortBy,
+        page_size: numericProductsPerPage
+      }
+    })
+    .then(response => {
+      console.log(response.data.products);
 
-  //     }
-  //   })
-  //   .then(response => {
-  //     console.log(response.data.products);
-      
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
-  // }, []);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, [sortBy, productsPerPage]);
+
+  const handleSortChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
+  const handleProductsPerPageChange = (event) => {
+    setProductsPerPage(Number(event.target.value));
+  };
+
+  console.log(sortBy, '|',  productsPerPage)
 
   return (
-    <div className={styles.container}>      
+    <div className={styles.productListing}>
+      <div className={styles.controls}>
+        <select
+          value={sortBy}
+          onChange={handleSortChange}
+          className={styles.dropdown}
+        >
+          <option value="available">Popularność</option>
+          <option value="price_asc">Cena rosnąco</option>
+          <option value="price_desc">Cena malejąco</option>
+          <option value="A-Z">Nazwa A-Z</option>
+          <option value="Z-A">Nazwa Z-A</option>
+        </select>
+        <select
+          value={productsPerPage}
+          onChange={handleProductsPerPageChange}
+          className={styles.dropdown}
+        >
+          <option value="20">20 produktów</option>
+          <option value="30">30 produktów</option>
+          <option value="40">40 produktów</option>
+        </select>
 
-      <img 
-        src={process.env.PUBLIC_URL + '/inprogress.png'} 
-        alt="Renox logo" 
-      />
-      <p>Filtry produktów nie są jeszcze gotowe</p>
+      </div>
+
+      <div className={styles.pagination}>
+        <p>sdsds</p>
+      </div>
     </div>
   );
-}
+};
+
 
 export default StoreProductsFilters;
 

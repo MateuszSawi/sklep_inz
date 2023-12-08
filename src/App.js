@@ -22,7 +22,16 @@ import RegisterSuccessfull from './components/store/Login/AllAuth/Register/Regis
 import AfterRegister from './components/store/Login/AllAuth/Register/AfterRegister/AfterRegister';
 import ResetSetNewPassword from './components/store/Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword';
 
+import Order from './components/store/Cart/OrderButton/Order/Order';
+import Loading from './components/store/Cart/OrderButton/Order/Loading/Loading';
+import Payment from './components/store/Cart/OrderButton/Order/Loading/Payment/Payment';
+
 function App() {
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+
+  console.log(selectedPaymentMethod)
+
   return (
     <div className='container'>
       <Header />
@@ -42,6 +51,19 @@ function App() {
         
         <Route path="/polityka-prywatności" element={<Privacy />} />
         <Route path="/polityka-cookies" element={<Cookies />} />
+
+        <Route path="/zamówienie" element={<Order 
+          setSelectedPaymentMethod={setSelectedPaymentMethod}
+          selectedPaymentMethod={selectedPaymentMethod}
+        />} />
+
+        <Route path="/przetwarzanie" element={<Loading 
+          selectedPaymentMethod={selectedPaymentMethod}
+        />} />
+
+        <Route path="/płatność" element={<Payment 
+        />} />
+        
       </Routes>
 
       <Footer />
