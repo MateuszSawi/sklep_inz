@@ -82,6 +82,17 @@ function StoreStartPageCategories(props) {
 
   const handleLinkClick = (category, title) => {
     props.setCategory(category);
+
+    if (sessionStorage.getItem('sortBy') === null) {
+      sessionStorage.setItem('sortBy', 'alphabetic_asc');
+    }
+    
+    if (sessionStorage.getItem('productsPerPage') === null) {
+      sessionStorage.setItem('productsPerPage', 30);
+    }
+    
+    sessionStorage.setItem('pageNumber', 1);
+
     navigate(`/sklep/${category}`);
   };
 

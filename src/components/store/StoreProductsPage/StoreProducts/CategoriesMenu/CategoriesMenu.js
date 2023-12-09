@@ -36,12 +36,15 @@ function CategoriesMenu(props) {
   const navigate = useNavigate();
 
   const handleLinkClick = (subcategory, categoryParam) => {
+    props.setIsLoading(true);
+
     props.setSubcategory(subcategory);
 
     const params = {
       category: categoryParam, 
       subcategory: category === subcategory ? '' : subcategory,
-      page_size: 30,
+      sort_option: sessionStorage.getItem('sortBy'),
+      page_size: sessionStorage.getItem('productsPerPage'),
       page_number: 1
     };
 
@@ -54,6 +57,9 @@ function CategoriesMenu(props) {
     })
     .catch(error => {
       console.error(error);
+    })
+    .finally(() => {
+      props.setIsLoading(false); // Ustaw ładowanie na false po zakończeniu żądania
     });
 
     navigate(`/sklep/${category}/${subcategory}`);

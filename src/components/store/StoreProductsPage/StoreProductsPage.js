@@ -9,6 +9,13 @@ import StoreStartPageInfo from './StoreStartPageInfo/StoreStartPageInfo';
 function StoreProductsPage(props) {
 
   const [products, setProducts] = useState([]);
+  const [sortBy, setSortBy] = useState('alphabetic_asc');
+  const [productsPerPage, setProductsPerPage] = useState(30);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const [totalPages, setTotalPages] = useState(1);
+
+  //total_pages
 
   return (
     <div>      
@@ -17,11 +24,30 @@ function StoreProductsPage(props) {
         setProducts={setProducts}
       />
 
-      <StoreProductsFilters />
+      <StoreProductsFilters 
+        sortBy={sortBy} 
+        setSortBy={setSortBy}
+
+        totalPages={totalPages}
+        setTotalPages={setTotalPages}
+
+        productsPerPage={productsPerPage} 
+        setProductsPerPage={setProductsPerPage}
+
+        pageNumber={pageNumber} 
+        setPageNumber={setPageNumber}
+      />
 
       <StoreProducts 
         products={products} 
         setProducts={setProducts}
+
+        sortBy={sortBy}
+
+        productsPerPage={productsPerPage}
+
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
         
         subcategory={props.subcategory} 
         setSubcategory={props.setSubcategory}  

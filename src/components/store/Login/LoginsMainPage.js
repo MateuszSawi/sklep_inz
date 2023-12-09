@@ -32,15 +32,13 @@ function LoginsMainPage(props) {
       }
     })
       .then((response) => {
-        // console.log(response.data.authorities)
+        console.log(response.data)
 
-        props.setAuthorities(response.data.authorities);
+        // props.setAuthorities(response.data.authorities);
 
-        // if (response.data.isLoggedIn) {
-        //   navigate('/calendar');
-        // } else {
-        //   navigate('/');
-        // }
+        if (response.data.isLoggedIn) {
+          navigate('/moje-konto');
+        }
       })
       .catch((error) => {
         console.error(error);

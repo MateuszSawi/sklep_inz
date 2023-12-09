@@ -26,6 +26,8 @@ import Order from './components/store/Cart/OrderButton/Order/Order';
 import Loading from './components/store/Cart/OrderButton/Order/Loading/Loading';
 import Payment from './components/store/Cart/OrderButton/Order/Loading/Payment/Payment';
 
+import MyAccount from './components/MyAccount/MyAccount';
+
 function App() {
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
@@ -61,8 +63,9 @@ function App() {
           selectedPaymentMethod={selectedPaymentMethod}
         />} />
 
-        <Route path="/płatność" element={<Payment 
-        />} />
+        <Route path="/płatność" element={<Payment />} />
+
+        <Route path="/moje-konto" element={<MyAccount />} />
         
       </Routes>
 

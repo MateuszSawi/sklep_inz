@@ -125,58 +125,68 @@ function Products(props) {
   };
 
   return (
-    <div className={styles.cardsWrapper}>
-      {props.products.map(product => 
-        product.product_name && product.price_netto && product.price_brutto &&
-
-        <div key={product.product_id} className={styles.card} onClick={() => handleLinkClick(product.product_id)}>
-          <div className={styles.cardBody}>
-            <h5 className={styles.productTitle}>{product.product_name}</h5>
-          </div>
-
-          <div className={styles.imageContainer}>
-            <img src="/website/logo/logo_renox_transparent.png" alt="Watermark" className={styles.watermark} />
-            
-            {product.primary_link ? (
-              <img src={product.primary_link} alt={product.product_name} className={styles.productImage} />
-            ) : (
-              <img src="/inprogress.png" alt="Domyślny obraz" className={styles.productImage} />
-            )}
-          </div>
-
-          <div className={styles.cardBody}>
-            {/* <h5 className={styles.productTitle}>{product.product_name}</h5> */}
-            <p className={styles.productPrice}>Cena netto: {product.price_netto} zł</p>
-            <p className={styles.productPrice}>Cena brutto: {product.price_brutto} zł</p>
-            <div className={styles.buttonsWrapper}>
-              <div>
-                  {product.quantity > 0 ? (
-                    <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}
-                      onClick={(event) => handleAddToCart(event, product)}
-                    >
-                      <img src="/store/cart.png" alt="cart" className={styles.icon}/>
-                      <p>Dodaj do koszyka</p>
-                    </button>
-                  ) : (
-                    <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}
-                      // onClick={(event) => handleAddToCartNoProduct(event)}
-                    >
-                      <img src="/store/phone_little.png" alt="phone" className={styles.icon}/>
-                      <p>Zapytaj o produkt</p>
-                    </button>
-                  )}
-              </div>
-
-              <div className={styles.addToFavourite}>
-                <button onClick={(event) => handleAddToFavourites(event, product)}>
-                  <FontAwesomeIcon icon={faHeart} className={styles.iconHeart} />
-                </button>
-              </div>
-            </div>
+    <>
+      {props.isLoading && (
+        <div className={styles.loadingWrapper}>
+          <div className={styles.loadingScreen}>
+            <div className={styles.loader}></div>
           </div>
         </div>
       )}
-    </div>
+
+      <div className={styles.cardsWrapper}>
+        {!props.isLoading && props.products.map(product => 
+          product.product_name && product.price_netto && product.price_brutto &&
+
+          <div key={product.product_id} className={styles.card} onClick={() => handleLinkClick(product.product_id)}>
+            <div className={styles.cardBody}>
+              <h5 className={styles.productTitle}>{product.product_name}</h5>
+            </div>
+
+            <div className={styles.imageContainer}>
+              <img src="/website/logo/logo_renox_transparent.png" alt="Watermark" className={styles.watermark} />
+              
+              {product.primary_link ? (
+                <img src={product.primary_link} alt={product.product_name} className={styles.productImage} />
+              ) : (
+                <img src="/inprogress.png" alt="Domyślny obraz" className={styles.productImage} />
+              )}
+            </div>
+
+            <div className={styles.cardBody}>
+              {/* <h5 className={styles.productTitle}>{product.product_name}</h5> */}
+              <p className={styles.productPrice}>Cena netto: {product.price_netto} zł</p>
+              <p className={styles.productPrice}>Cena brutto: {product.price_brutto} zł</p>
+              <div className={styles.buttonsWrapper}>
+                <div>
+                    {product.quantity > 0 ? (
+                      <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}
+                        onClick={(event) => handleAddToCart(event, product)}
+                      >
+                        <img src="/store/cart.png" alt="cart" className={styles.icon}/>
+                        <p>Dodaj do koszyka</p>
+                      </button>
+                    ) : (
+                      <button className={product.quantity > 0 ? styles.buttonAvailable : styles.buttonUnavailable}
+                        // onClick={(event) => handleAddToCartNoProduct(event)}
+                      >
+                        <img src="/store/phone_little.png" alt="phone" className={styles.icon}/>
+                        <p>Zapytaj o produkt</p>
+                      </button>
+                    )}
+                </div>
+
+                <div className={styles.addToFavourite}>
+                  <button onClick={(event) => handleAddToFavourites(event, product)}>
+                    <FontAwesomeIcon icon={faHeart} className={styles.iconHeart} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
