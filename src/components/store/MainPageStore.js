@@ -78,7 +78,7 @@ function MainPageStore() {
         <Route path="/resetuj-hasło" element={<ResetPassword />} />
         <Route path="/zmiana-hasła" element={<ChangePassword />} />
 
-        <Route path="/moje-konto" element={<MyAccountRoutes />} />
+        <Route path="/moje-konto/*" element={<MyAccountRoutes />} />
       </Routes>
     </div>
   );

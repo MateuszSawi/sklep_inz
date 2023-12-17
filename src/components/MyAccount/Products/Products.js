@@ -12,6 +12,21 @@ function Products() {
 
   }
 
+  // useEffect(() => {
+  //   axios.get(`${apiK}/staff/browseallusers`, {page: 1}, {
+  //     withCredentials: true,
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then((response) => {
+      
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+  // }, []);
+
   return (
     <>
       Products

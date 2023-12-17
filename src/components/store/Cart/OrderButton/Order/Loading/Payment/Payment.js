@@ -126,7 +126,7 @@ function Payment({ clientSecret, selectedPaymentMethod, emailP24 }) {
   const navigate = useNavigate();
 
   const handleReturnClick = () => {
-    navigate('/');
+    navigate('/sklep/');
   };
 
   return (

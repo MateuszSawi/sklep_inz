@@ -9,7 +9,7 @@ function LogOut() {
   const navigate = useNavigate();
 
   const logOut = () => {
-    axios.post(`${apiK}/auth/logout`, {
+    axios.post(`${apiK}/auth/logout`, {}, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ function LogOut() {
     })
     .then((response) => {
       console.log(response.data)
-      // navigate('/');
+      navigate('/');
     })
     .catch((error) => {
       console.error(error);

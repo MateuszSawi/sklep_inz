@@ -12,6 +12,25 @@ function AllOrders() {
 
   }
 
+  useEffect(() => {      // wyszukiwanie konkretnego użytkownika + wszysktich jesli email = '' --- wartosc jednego usera musi isc z inputa , jesli wszystkich to ''
+    axios.post(`${apiK}/staff/getallorders`, {
+      email: '',
+      page: 1
+    }, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response.data.users);
+      // setUsers(response.data.users)
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }, []);
+
   return (
     <>
       AllOrders

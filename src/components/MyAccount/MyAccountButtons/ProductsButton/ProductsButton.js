@@ -9,7 +9,8 @@ function ProductsButton(props) {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    props.setTab('products')
+    // props.setTab('products')
+    navigate(`/sklep/moje-konto/produkty`);
   }
 
   return (

@@ -4,13 +4,13 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../MyAccountButtons.module.scss';
 
-function OrdersButton(props) {
+function MyAccountButton(props) {
 
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    // props.setTab('orders')
-    navigate(`/sklep/moje-konto/wszystkie-zamówienia`);
+    // props.setTab('')
+    navigate(`/sklep/moje-konto/`);
   }
 
   return (
@@ -19,11 +19,11 @@ function OrdersButton(props) {
       onClick={() => {
       clickHandler();
     }}>
-      Zamówienia
+      Moje konto
     </button>
   );
 }
 
-export default OrdersButton;
+export default MyAccountButton;
 
 

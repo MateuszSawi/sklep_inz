@@ -9,6 +9,7 @@ import LogOut from './LogOut/LogOut'
 import OrdersButton from './OrdersButton/OrdersButton'
 import ProductsButton from './ProductsButton/ProductsButton'
 import UsersButton from './UsersButton/UsersButton'
+import MyAccountButton from './MyAccountButton/MyAccountButton'
 
 function MyAccountButtons(props) {
 
@@ -16,6 +17,11 @@ function MyAccountButtons(props) {
 
   return (
     <div className={styles.container} >
+
+      <MyAccountButton 
+        setTab={props.setTab} 
+      />
+
       <OrdersButton 
         setTab={props.setTab} 
       />

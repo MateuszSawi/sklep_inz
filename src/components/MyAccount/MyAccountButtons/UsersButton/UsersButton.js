@@ -9,7 +9,8 @@ function UsersButton(props) {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    props.setTab('users')
+    // props.setTab('users')
+    navigate(`/sklep/moje-konto/wszyscy-użytkownicy`);
   }
 
   return (
