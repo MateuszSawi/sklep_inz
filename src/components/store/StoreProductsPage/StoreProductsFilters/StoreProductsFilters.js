@@ -7,11 +7,8 @@ import { apiK, apiP } from '../../../../apiConfig';
 function StoreProductsFilters(props) {
 
   const [sort, setSort] = useState(sessionStorage.getItem('sortBy'));
-  const [productsPerPage, setProductsPerPage] = useState(sessionStorage.getItem('productsPerPage'));
-  const [pageNumber, setPageNumber] = useState(sessionStorage.getItem('pageNumber'));
-
-  // console.log('sortowanie po :', sort)
-  // console.log('ilosc produktow na str:', productsPerPage)
+  const [productsPerPage, setProductsPerPage] = useState(Number(sessionStorage.getItem('productsPerPage')));
+  const [pageNumber, setPageNumber] = useState(Number(sessionStorage.getItem('pageNumber')));
 
   const handleSortChange = (event) => {
     props.setSortBy(event.target.value);
@@ -43,11 +40,7 @@ function StoreProductsFilters(props) {
   };
 
   const handleClickArrow = () => {
-
     let incrementPage = Number(pageNumber + 1);
-
-    console.log(typeof(pageNumber), pageNumber)
-    console.log(typeof(sessionStorage.getItem('totalPages')), sessionStorage.getItem('totalPages'))
 
     if (Number(pageNumber) !== Number(sessionStorage.getItem('totalPages'))) {
       props.setProductsPerPage(Number(incrementPage));
@@ -63,7 +56,7 @@ function StoreProductsFilters(props) {
         <select
           value={sort}
           onChange={handleSortChange}
-          className={styles.dropdown}
+          className={styles.dropdownFirst}
         >
           <option value="alphabetic_asc">Nazwa A-Z</option>
           <option value="alphabetic_desc">Nazwa Z-A</option>

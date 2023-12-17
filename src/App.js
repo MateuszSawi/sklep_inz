@@ -26,13 +26,14 @@ import Order from './components/store/Cart/OrderButton/Order/Order';
 import Loading from './components/store/Cart/OrderButton/Order/Loading/Loading';
 import Payment from './components/store/Cart/OrderButton/Order/Loading/Payment/Payment';
 
-import MyAccount from './components/MyAccount/MyAccount';
-
 function App() {
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+  const [orderDataToSend, setOrderDataToSend] = useState({});
 
-  console.log(selectedPaymentMethod)
+  const [emailP24, setEmailP24] = useState('');
+
+  // console.log(selectedPaymentMethod)
 
   return (
     <div className='container'>
@@ -57,15 +58,25 @@ function App() {
         <Route path="/zamówienie" element={<Order 
           setSelectedPaymentMethod={setSelectedPaymentMethod}
           selectedPaymentMethod={selectedPaymentMethod}
+
+          setOrderDataToSend={setOrderDataToSend}
+          orderDataToSend={orderDataToSend}
+
+          setEmailP24={setEmailP24}
         />} />
 
         <Route path="/przetwarzanie" element={<Loading 
           selectedPaymentMethod={selectedPaymentMethod}
+
+          setOrderDataToSend={setOrderDataToSend}
+          orderDataToSend={orderDataToSend}
+
+          emailP24={emailP24}
         />} />
 
-        <Route path="/płatność" element={<Payment />} />
-
-        <Route path="/moje-konto" element={<MyAccount />} />
+        <Route path="/płatność" element={<Payment 
+          orderDataToSend={orderDataToSend}
+        />} />
         
       </Routes>
 

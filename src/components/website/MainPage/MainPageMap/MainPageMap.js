@@ -14,7 +14,7 @@ function MainPageMap() {
   const olsztynCoordinates = [53.808052367799235, 20.40344464232809];
 
   return (
-    <MapContainer center={olsztynCoordinates} zoom={16} style={{ width: "100%", height: "400px" }}>
+    <MapContainer center={olsztynCoordinates} zoom={16} style={{ width: "100%", height: "400px", marginBottom: "100px" }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

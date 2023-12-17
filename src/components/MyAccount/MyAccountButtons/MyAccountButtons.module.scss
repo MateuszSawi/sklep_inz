@@ -1,0 +1,32 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  // flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 100px;
+}
+
+.button {
+  background-color: $color_background_gray;
+  border: 1px solid #dddddd;
+  // color: #333333;
+  margin: 10px;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  min-width: 32px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $box_shadow_input_delivery;
+
+  &:hover {
+    background-color: $color_lighter_gray;
+  }
+}

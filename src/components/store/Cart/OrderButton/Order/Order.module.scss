@@ -7,7 +7,20 @@
   justify-content: space-around;
   // gap: 20px; 
   background-color: $color_background_gray;
-  padding-top: 80px;
+  padding: 80px 0 120px 0;
+
+  @media (max-width: 1300px) {
+    
+    .cartSummaryInnerWrapper {
+      display: none;
+    }
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   button {
     padding: 10px 20px;
@@ -27,6 +40,18 @@
 
   h2 {
     margin: 10px 0;
+  }
+}
+
+.cartSummaryWrapper {
+  display: none;
+
+  @media (max-width: 1300px) {
+    display: flex;
+    justify-content: center;
+    background-color: $color_background_gray;
+    padding-bottom: 120px;
+    
   }
 }
 
@@ -64,18 +89,30 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    box-shadow: $box_shadow_input;
+    box-shadow: $box_shadow_input_delivery;
     width: 280px;
     height: 120px;
-    background-color: $color_logins_inputs;
+    // background-color: $color_logins_inputs;
     text-align: left;
     margin-bottom: 20px;
 
     &:focus {
       outline: none;
       border: none;
-      box-shadow: $box_shadow_input_focused;
-      background-color: $color_logins_inputs_focused;
+      box-shadow: $box_shadow_input_delivery_focused;
+      // background-color: $color_logins_inputs_focused;
+      resize: vertical;
     }
+  }
+}
+
+.logInWrapper {
+  display: flex;
+  flex-direction: row;
+
+
+  .logIn {
+    text-decoration: underline;
+    cursor: pointer;
   }
 }

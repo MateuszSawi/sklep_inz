@@ -43,12 +43,15 @@ function CartSummary() {
               <div className={styles.infoWrapper}>
                 <div className={styles.infoWrapperImg}>
                   <img src={item.primary_link} alt="Product" className={styles.image} />
-                  <p>Numer katalogowy: {item.product_id} </p>
+                  <div className={styles.infoWrapperInfo}>
+                    <p>Numer katalogowy: {item.product_id} </p>
+                    <p>Ilość: {item.quantity} </p>
+                  </div>
                 </div>
 
                 <div className={styles.innerInfoWrapper}>
-                    <p>Cena netto: {calculatePrice(item.price_netto, item.quantity)} zł</p>
-                    <p>Cena brutto: {calculatePrice(item.price_brutto, item.quantity)} zł</p>
+                  <p>Cena netto: {calculatePrice(item.price_netto, item.quantity)} zł</p>
+                  <p>Cena brutto: {calculatePrice(item.price_brutto, item.quantity)} zł</p>
                 </div>
               </div>
             </div>            

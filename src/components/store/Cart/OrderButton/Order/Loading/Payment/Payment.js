@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import styles from './Payment.module.scss';
+import { Link, useNavigate, useParams  } from 'react-router-dom';
 
-function Payment({ clientSecret, selectedPaymentMethod }) {
+function Payment({ clientSecret, selectedPaymentMethod, emailP24 }) {
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [blikCode, setBlikCode] = useState('');
+  const [showReturnButton, setShowReturnButton] = useState(false);
 
   console.log(clientSecret, selectedPaymentMethod)
 
@@ -32,33 +35,35 @@ function Payment({ clientSecret, selectedPaymentMethod }) {
       });
     } // ... (inne części komponentu)
 
-    // else if (selectedPaymentMethod === 'p24') {
-    //   const p24MethodResult = await stripe.createPaymentMethod({
-    //     type: 'p24',
-    //     billing_details: {
-    //       email: "email@example.com",
-    //     },
-    //   });
+    else if (selectedPaymentMethod === 'p24') {
+      const p24MethodResult = await stripe.createPaymentMethod({
+        type: 'p24',
+        billing_details: {
+          email: emailP24,
+        },
+      });
     
-    //   if (p24MethodResult.error) {
-    //     setMessage(`Błąd utworzenia metody płatności: ${p24MethodResult.error.message}`);
-    //     setIsProcessing(false);
-    //     return;
-    //   }
+      if (p24MethodResult.error) {
+        setMessage(`Błąd utworzenia metody płatności: ${p24MethodResult.error.message}`);
+        setIsProcessing(false);
+        return;
+      }
     
-    //   const { error, paymentIntent } = await stripe.confirmP24Payment(clientSecret, {
-    //     payment_method: p24MethodResult.paymentMethod.id,
-    //     return_url: 'http://localhost:3000/sklep/', // Dodaj tutaj odpowiedni URL powrotny
-    //   });
+      const { error, paymentIntent } = await stripe.confirmP24Payment(clientSecret, {
+        payment_method: p24MethodResult.paymentMethod.id,
+        return_url: 'http://localhost:3000/sklep/', // Dodaj tutaj odpowiedni URL powrotny
+      });
     
-    //   if (error) {
-    //     setMessage(`Błąd płatności: ${error.message}`);
-    //     setIsProcessing(false);
-    //   } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-    //     setMessage('Płatność zakończona sukcesem.');
-    //     // Tutaj możesz wykonać dodatkowe akcje, np. przekierować użytkownika lub zaktualizować stan aplikacji
-    //   }
-    // }
+      if (error) {
+        setMessage(`Błąd płatności: ${error.message}`);
+        setIsProcessing(false);
+        setShowReturnButton(false)
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+        setMessage('Płatność zakończona sukcesem.');
+        // Tutaj możesz wykonać dodatkowe akcje, np. przekierować użytkownika lub zaktualizować stan aplikacji
+        setShowReturnButton(true)
+      }
+    }
     
     // ... (dalsze części komponentu)
      else if (selectedPaymentMethod === 'blik') {
@@ -77,10 +82,12 @@ function Payment({ clientSecret, selectedPaymentMethod }) {
         console.log(error.message);
         setMessage(`Błąd płatności: ${error.message}`);
         setIsProcessing(false);
+        setShowReturnButton(false)
         return;
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         setMessage('Płatność zakończona sukcesem.');
         // Tutaj możesz wykonać dodatkowe akcje, np. przekierować użytkownika lub zaktualizować stan aplikacji
+        setShowReturnButton(true)
       }
     }
     
@@ -96,34 +103,46 @@ function Payment({ clientSecret, selectedPaymentMethod }) {
   const renderPaymentMethodInput = () => {
     switch (selectedPaymentMethod) {
       case 'card':
-        return <CardElement />;
+        return <CardElement className={styles.stripeInput} />;
       case 'blik':
         return (
-          <>
-            <input
-              type="text"
-              value={blikCode}
-              onChange={(e) => setBlikCode(e.target.value)}
-              placeholder="Wpisz kod Blik"
-            />
-          </>
+          <input
+            type="text"
+            value={blikCode}
+            onChange={(e) => setBlikCode(e.target.value)}
+            placeholder="Wpisz kod Blik"
+            maxLength="6"
+            className={styles.inputField}
+          />
         );
       case 'p24':
         // Tu można dodać input dla Przelewy24
-        return <div>Formularz dla Przelewy24</div>;
+        return <div className={styles.inputField}>Przejdź do Przelewy24</div>;
       default:
         return null;
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleReturnClick = () => {
+    navigate('/');
+  };
+
   return (
-    <form onSubmit={handlePaymentSubmit}>
-      {renderPaymentMethodInput()}
-      <button type="submit" disabled={isProcessing}>
-        {isProcessing ? 'Przetwarzanie...' : 'Zapłać'}
-      </button>
-      {message && <div>{message}</div>}
-    </form>
+    <div className={styles.formContainer}>
+      <h2 className={styles.formTitle}>Płatność</h2>
+      <form onSubmit={handlePaymentSubmit}>
+        {renderPaymentMethodInput()}
+        <button type="submit" disabled={isProcessing || (selectedPaymentMethod === 'blik' && blikCode.length !== 6)} className={styles.button}>
+          {isProcessing ? 'Przetwarzanie...' : 'Zapłać'}
+        </button>
+        
+        {message && <div className={styles.message}>{message}</div>}
+
+        {showReturnButton && <button onClick={handleReturnClick} className={styles.button}>Powrót do sklepu</button>}
+      </form>
+    </div>
   );
 }
 

@@ -13,6 +13,7 @@ const Loading = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [stripeApiKey, setStripeApiKey] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
+  const [paymentIntentId, setPaymentIntentId] = useState(null);
 
   // const navigate = useNavigate();
 
@@ -37,6 +38,17 @@ const Loading = (props) => {
         "products": products
       });
       setClientSecret(secretResponse.data.client_secret);
+      setPaymentIntentId(secretResponse.data.payment_intent_id);
+
+      props.setOrderDataToSend({
+        ...props.orderDataToSend, 
+
+        stripeIntentId: paymentIntentId
+      });
+
+      const makeOrder = await axios.post(`${apiK}/staff/makeorder`,  
+        props.orderDataToSend
+      );
 
     } catch (error) {
       console.error('Błąd:', error);
@@ -64,6 +76,7 @@ const Loading = (props) => {
         <Payment 
           clientSecret={clientSecret} 
           selectedPaymentMethod={props.selectedPaymentMethod}
+          emailP24={props.emailP24}
         />
       </Elements>
     );

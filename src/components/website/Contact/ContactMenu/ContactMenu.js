@@ -8,7 +8,7 @@ function ContactMenu() {
   const czesci_zamienne = (
     <div className={styles.innerWrapper}>
       <div>
-        <p><strong>Dolnośląskie, Pomorskie, Śląskie, Świętokrzyskie, Opolskie</strong></p>
+        <p><strong>Dolnośląskie, Pomorskie, Śląskie, Opolskie</strong></p>
         <p>Specjalista ds. handlowych</p>
         <p><strong>Piotr Wodzyński</strong></p>
         <p>tel. <strong>+48 601 832 213</strong></p>
@@ -28,21 +28,21 @@ function ContactMenu() {
       <div className={styles.redUnderline}></div>
 
       <div>
-        <p><strong>Zachodnio-Pomorskie, Lubuskie, Podlaskie, Warmińsko-Mazurskie, Łódzkie</strong></p>
+        <p><strong>Warmińko-Mazurskie, Podlaskie, Łódzkie</strong></p>
         <p>Specjalista ds. sprzedaży</p>
-        <p><strong>Piotr Wywigacz</strong></p>
+        <p><strong>Damian Malinowski</strong></p>
         <p>tel. <strong>+48 665 808 063</strong></p>
-        <p>e-mail: <strong>piotr.wywigacz@renox.pl</strong></p>
+        <p>e-mail: <strong>damian.m@renox.pl</strong></p>
       </div>
 
       <div className={styles.redUnderline}></div>
 
       <div>
-        <p><strong>Mazowieckie, Lubelskie, Kujawsko-Pomorskie</strong></p>
+        <p><strong>Mazowieckie, Kujawsko-Pomorskie</strong></p>
         <p>Specjalista ds. handlowych</p>
-        <p><strong>Radosław Leźnicki</strong></p>
-        <p>tel. <strong>+48 603 592 176</strong></p>
-        <p>e-mail: <strong>radek.l@renox.pl</strong></p>
+        <p><strong>Adrian Jabłoński</strong></p>
+        <p>tel. <strong>+48 693 808 043</strong></p>
+        <p>e-mail: <strong>adrian.j@renox.pl</strong></p>
       </div>
     </div>
   );
@@ -60,9 +60,9 @@ function ContactMenu() {
 
       <div>
         <p>Specjalista ds. sprzedaży</p>
-        <p><strong>Piotr Wywigacz</strong></p>
-        <p>tel. <strong>+48 665 808 063</strong></p>
-        <p>e-mail: <strong>piotr.wywigacz@renox.pl</strong></p>
+        <p><strong>Rafał Wielechowski</strong></p>
+        <p>tel. <strong>+48 601 840 377</strong></p>
+        <p>e-mail: <strong>rafal.w@renox.pl</strong></p>
       </div>
     </div>
   );
@@ -70,6 +70,7 @@ function ContactMenu() {
   const przesiewacze_i_kruszarki = (
     <div className={styles.innerWrapper}>
       <div>
+        <p>Specjalista ds. sprzedaży</p>
         <p><strong>Rafał Wielechowski</strong></p>
         <p>tel. <strong>+48 601 840 377</strong></p>
         <p>e-mail: <strong>rafal.w@renox.pl</strong></p>
@@ -88,6 +89,7 @@ function ContactMenu() {
 
   const lyzki_przesiewajaco_kruszace = (
     <div className={styles.innerWrapper}>
+      <p>Specjalista ds. sprzedaży</p>
       <p><strong>Rafał Wielechowski</strong></p>
       <p>tel. <strong>+48 601 840 377</strong></p>
       <p>e-mail: <strong>rafal.w@renox.pl</strong></p>

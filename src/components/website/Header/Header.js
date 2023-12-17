@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 
+import Langs from './Langs/Langs';
+
 function Header() {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,6 +54,8 @@ function Header() {
             <span className={styles.underlineWhite}></span>
           </div>
         </Link>
+
+        <Langs />
       </div>
 
       <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>

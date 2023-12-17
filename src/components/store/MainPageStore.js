@@ -20,6 +20,8 @@ import StoreStartPage from './StoreStartPage/StoreStartPage';
 import StoreProductsPage from './StoreProductsPage/StoreProductsPage';
 import SingleProductMain from './SingleProductPage/SingleProductMain';
 
+import MyAccountRoutes from '../MyAccount/MyAccountRoutes';
+
 function MainPageStore() {
 
   const [category, setCategory] = useState('');
@@ -75,6 +77,8 @@ function MainPageStore() {
         <Route path="/rejestracja" element={<Register />} />
         <Route path="/resetuj-hasło" element={<ResetPassword />} />
         <Route path="/zmiana-hasła" element={<ChangePassword />} />
+
+        <Route path="/moje-konto" element={<MyAccountRoutes />} />
       </Routes>
     </div>
   );

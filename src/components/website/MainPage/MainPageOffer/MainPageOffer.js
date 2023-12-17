@@ -44,9 +44,9 @@ function MainPageOffer() {
             </div>
 
             <div className={styles.c}>
-              <div className={styles.e}>
+              {/* <div className={styles.e}>
                 <img alt="icon" src={process.env.PUBLIC_URL + '/icons/' + item.cardImgId + '.png'} />
-              </div>
+              </div> */}
               <p>
                 {item.desc}
               </p>

@@ -9,10 +9,30 @@ function PaymentMethod(props) {
     props.setSelectedPaymentMethod(event.target.value);
   };
 
+  const orderData = props.orderData;
+
   const navigate = useNavigate();
 
-  const navigateHandler = () => {
-    navigate(`/przetwarzanie`);
+  const navigateHandler = (e) => {
+    e.preventDefault();
+
+    if (
+      orderData.email.trim() === ''      ||
+      orderData.name.trim() === ''       ||
+      orderData.surname.trim() === ''    ||
+      orderData.adress.trim() === ''     ||
+      orderData.city.trim() === ''       ||
+      orderData.postCode.trim() === ''   ||
+      orderData.country.trim() === ''    ||
+      orderData.phoneNr.trim() === ''    ||
+      props.selectedPaymentMethod === ''
+    ) {
+      props.setWarning(true)
+    } else {
+      props.setEmailP24(orderData.email)
+      props.setWarning(false)
+      navigate(`/przetwarzanie`);
+    }
   }
 
   return (
@@ -25,7 +45,7 @@ function PaymentMethod(props) {
           checked={props.selectedPaymentMethod === 'blik'}
           onChange={handlePaymentMethodChange}
         />
-        BLIK
+        &nbsp;BLIK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </label>
 
       <label>
@@ -35,7 +55,7 @@ function PaymentMethod(props) {
           checked={props.selectedPaymentMethod === 'card'}
           onChange={handlePaymentMethodChange}
         />
-        Karta
+        &nbsp;Karta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </label>
 
       <label>
@@ -45,9 +65,14 @@ function PaymentMethod(props) {
           checked={props.selectedPaymentMethod === 'p24'}
           onChange={handlePaymentMethodChange}
         />
-        Przelewy24
+        &nbsp;Przelewy24
       </label>
+
       <button type="submit" onClick={navigateHandler}>Złóż zamówienie</button>
+
+      {props.warning &&
+        <p>Wypełnij dane do zamówienia</p>
+      }
     </div>
   );
 }

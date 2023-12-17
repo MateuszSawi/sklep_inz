@@ -83,13 +83,15 @@ function StoreStartPageCategories(props) {
   const handleLinkClick = (category, title) => {
     props.setCategory(category);
 
-    if (sessionStorage.getItem('sortBy') === null) {
+    // if (sessionStorage.getItem('sortBy') === null) {
       sessionStorage.setItem('sortBy', 'alphabetic_asc');
-    }
+
+    // }
     
-    if (sessionStorage.getItem('productsPerPage') === null) {
+    // if (sessionStorage.getItem('productsPerPage') === null) {
       sessionStorage.setItem('productsPerPage', 30);
-    }
+      // console.log('XXXXXXXXXXX')
+    // }
     
     sessionStorage.setItem('pageNumber', 1);
 

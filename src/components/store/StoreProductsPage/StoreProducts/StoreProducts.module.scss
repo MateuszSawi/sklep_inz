@@ -30,6 +30,36 @@
   @media screen and (max-width: 1100px) {
     margin: 0 50px;
   }
+
+  @media screen and (max-width: 990px) {
+    margin: 0 10px;
+  }
+
+  @media screen and (max-width: 900px) {
+    // margin: 0 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+}
+
+.categoriesMenuMobileWrapper {
+  display: none;
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    // align-items: center;
+    // justify-content: center;
+  }
+}
+
+.categoriesMenuWrapper {
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 }
 
 .storeProducts {

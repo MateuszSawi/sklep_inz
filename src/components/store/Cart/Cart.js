@@ -135,7 +135,9 @@ function Cart() {
       <div className={styles.totalPrice}>
         <p>Łączna suma netto: {calculateTotalNetto()} zł</p>
         <p>Łączna suma brutto: {calculateTotalBrutto()} zł</p>
-        <OrderButtonFromCart />
+        <OrderButtonFromCart 
+          cartItems = {cartItems}
+        />
       </div>
     </div>
   );

@@ -19,6 +19,8 @@ function LoginsMainPage(props) {
 
   //
 
+  const [loginButtonClick, setLoginButtonClick] = useState(true);
+
   useEffect(() => {
     handleCheckSession();
   }, []);
@@ -34,10 +36,8 @@ function LoginsMainPage(props) {
       .then((response) => {
         console.log(response.data)
 
-        // props.setAuthorities(response.data.authorities);
-
         if (response.data.isLoggedIn) {
-          navigate('/moje-konto');
+          navigate('/sklep/moje-konto');
         }
       })
       .catch((error) => {
