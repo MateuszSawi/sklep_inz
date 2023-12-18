@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { apiK, apiP } from '../../../apiConfig';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-// import styles from '../MyAccountButtons.module.scss';
+import styles from '../MyAccount.module.scss';
 
 function AllOrders() {
+
+  const [user, setUser] = useState('');
+  const [orders, setOrders] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -12,10 +18,12 @@ function AllOrders() {
 
   }
 
-  useEffect(() => {      // wyszukiwanie konkretnego użytkownika + wszysktich jesli email = '' --- wartosc jednego usera musi isc z inputa , jesli wszystkich to ''
+  useEffect(() => {      // wyszukiwanie konkretnego użytkownika + wszysktich jesli email = '' --- wartosc jednego uzytk. musi isc z inputa , jesli wszystkich to ''
+    setIsLoading(true);
+
     axios.post(`${apiK}/staff/getallorders`, {
-      email: '',
-      page: 1
+      email: user,
+      page: currentPage
     }, {
       withCredentials: true,
       headers: {
@@ -23,18 +31,115 @@ function AllOrders() {
       }
     })
     .then((response) => {
-      console.log(response.data.users);
-      // setUsers(response.data.users)
+      console.log(response.data);
+      setOrders(response.data.orders)
+      setTotalPages(response.data.total_pages)
     })
     .catch((error) => {
       console.error(error);
+    })
+    .finally(() => {
+      setIsLoading(false); // Zakończenie ładowania
     });
-  }, []);
+  }, [currentPage, user]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPagination = () => {
+    let pages = [];
+    let startPage, endPage;
+    if (totalPages <= 5) {
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      if (currentPage <= 3) {
+        startPage = 1;
+        endPage = 5;
+      } else if (currentPage + 2 >= totalPages) {
+        startPage = totalPages - 4;
+        endPage = totalPages;
+      } else {
+        startPage = currentPage - 2;
+        endPage = currentPage + 2;
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <button 
+          className={styles.buttonPagination}
+          key={i} 
+          onClick={() => handlePageChange(i)} 
+          disabled={currentPage === i}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pages;
+  };
+
+  const handleChange = (event) => {
+    setUser(event.target.value);
+  };
 
   return (
-    <>
-      AllOrders
-    </>
+    <div className={styles.container}>
+      <input 
+        type="text" 
+        value={user} 
+        onChange={handleChange} 
+        placeholder="E-mail użytkownika" 
+      />
+
+      {orders && isLoading ? 
+        <div className={styles.loadingWrapper}>
+          <div className={styles.loadingScreen}>
+            <div className={styles.loader}></div>
+          </div>
+        </div> 
+        :
+        orders.map((order) => {
+
+          let dateOfOrder = order.created_at.slice(0, -14);
+
+          let products = order.products;
+
+          return (
+          <div key={order.id} className={styles.wrapper}>
+            <p>E-mail: {order.email}</p>
+            <p>Data złożenia zamówienia: {dateOfOrder}</p>
+            <p>Imię i nawisko: {order.name} {order.surname}</p>
+            <p>Adres wysyłki: {order.address_to_send}</p>
+            <p>Adres do faktury: {order.address_for_invoice}</p>
+            <p>Firma: {order.company}</p>
+            <p>NIP: {order.nip}</p>
+            <p>Nr. tel.:{order.phone_number}</p>
+            <p>Cena brutto: {order.price_brutto}</p>
+            <p>Cena netto: {order.price_netto}</p>
+            <p>Uwagi: {order.comment}</p>
+            <p>Metoda płatności: {order.payment_method}</p>
+            <p>Dostawa: {order.shippingMethod}</p>
+            <p>Status zamówienia: {order.status}</p>
+            <ul>
+              {products.map((product) => (
+                <li>
+                  <p>{product.product_name} x {product.amount}</p>
+                  <p>Nr. ref.: {product.reference_number}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          )
+        })
+      }
+
+      <div className={styles.paginationWrapper}>
+        {renderPagination()}
+      </div>
+    </div>
   );
 }
 

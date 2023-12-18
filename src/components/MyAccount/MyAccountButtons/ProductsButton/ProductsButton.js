@@ -19,7 +19,7 @@ function ProductsButton(props) {
       onClick={() => {
       clickHandler();
     }}>
-      Produkty
+      Dodaj nowy produkt
     </button>
   );
 }
