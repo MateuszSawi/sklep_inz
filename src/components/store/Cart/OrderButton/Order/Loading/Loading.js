@@ -40,15 +40,22 @@ const Loading = (props) => {
       setClientSecret(secretResponse.data.client_secret);
       setPaymentIntentId(secretResponse.data.payment_intent_id);
 
-      props.setOrderDataToSend({
-        ...props.orderDataToSend, 
+      const paymentIntentId = secretResponse.data.payment_intent_id;
 
+      // props.setOrderDataToSend({
+      //   ...props.orderDataToSend, 
+
+      //   stripeIntentId: secretResponse.data.payment_intent_id
+      // });
+
+      // console.log(secretResponse.data.payment_intent_id)
+      // console.log(paymentIntentId)
+      // console.log(props.orderDataToSend)
+
+      const makeOrder = await axios.post(`${apiK}/staff/makeorder`, {
+        ...props.orderDataToSend,
         stripeIntentId: paymentIntentId
       });
-
-      const makeOrder = await axios.post(`${apiK}/staff/makeorder`,  
-        props.orderDataToSend
-      );
 
     } catch (error) {
       console.error('Błąd:', error);
