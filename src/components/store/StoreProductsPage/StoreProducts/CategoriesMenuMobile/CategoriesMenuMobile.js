@@ -79,8 +79,6 @@ function CategoriesMenuMobile(props) {
     navigate(`/sklep/${category}/${subcategory}`);
   };
 
-  console.log(isMenuOpen)
-
   return (
     <div className={styles.container}>
       <div className={styles.hamburgerMenu} onClick={toggleMenu}>

@@ -32,7 +32,7 @@ function StoreStartPage(props) {
         <StoreStartPageDescription />
       </div> 
 
-      <StoreStartPagePopularProducts />
+      {/* <StoreStartPagePopularProducts /> */}
 
       <div className={styles.wrapperStretchedForLittlePx}>
         <StoreStartPageLogos />

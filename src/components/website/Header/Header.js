@@ -8,6 +8,8 @@ function Header() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const lang = localStorage.getItem('lang') || 'pl';
+
   return (
     <div className={styles.header}>
       <Link to="/" className={styles.reset_link}>
@@ -26,7 +28,15 @@ function Header() {
       <div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
         <Link to="/serwis" className={styles.reset_link}>
           <div className={styles.box}>
-            <span>Serwis</span>
+            {lang === 'pl' &&
+              <span>Serwis</span>
+            }
+            {lang === 'ua' &&
+              <span>Сервіс</span>
+            }
+            {lang === 'en' &&
+              <span>Service</span>
+            }
             <span className={styles.underlineWhite}></span>
           </div>
         </Link>
@@ -38,19 +48,43 @@ function Header() {
         </Link> */}
         <Link to="/oferta" className={styles.reset_link}>
           <div className={styles.box}>
-            <span>Oferta</span>
+            {lang === 'pl' &&
+              <span>Oferta</span>
+            }
+            {lang === 'ua' &&
+              <span>Пропозиція</span>
+            }
+            {lang === 'en' &&
+              <span>Offer</span>
+            }
             <span className={styles.underlineWhite}></span>
           </div>
         </Link>
         <Link to="/kontakt" className={styles.reset_link}>
           <div className={styles.box}>
-            <span>Kontakt</span>
+            {lang === 'pl' &&
+              <span>Kontakt</span>
+            }
+            {lang === 'ua' &&
+              <span>контакт</span>
+            }
+            {lang === 'en' &&
+              <span>Contact</span>
+            }
             <span className={styles.underlineWhite}></span>
           </div>
         </Link>
         <Link to="/sklep/" className={styles.reset_link_store}>
           <div className={styles.box}>
-            <span><strong>Sklep internetowy</strong></span>
+            {lang === 'pl' &&
+              <span><strong>Sklep internetowy</strong></span>
+            }
+            {lang === 'ua' &&
+              <span><strong>Інтернет-магазин</strong></span>
+            }
+            {lang === 'en' &&
+              <span><strong>Online shop</strong></span>
+            }
             <span className={styles.underlineWhite}></span>
           </div>
         </Link>

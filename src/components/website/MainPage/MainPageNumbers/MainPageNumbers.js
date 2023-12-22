@@ -42,18 +42,44 @@ function MainPageNumbers() {
     return () => clearInterval(interval);
   }, [yearsOnTheMarket, isVisible, years, clients, sales]);
 
+  const lang = localStorage.getItem('lang') || 'pl';
+
   return (
     <div className={styles.stats_section} ref={sectionRef}>
       <div>
-        <h2>Lata rynku</h2>
+        {lang === 'pl' &&
+          <h2>Lata na rynku</h2>
+        }
+        {lang === 'ua' &&
+          <h2>Роки на ринку</h2>
+        }
+        {lang === 'en' &&
+          <h2>Years on the market</h2>
+        }
         <p>{years}</p>
       </div>
       <div>
-        <h2>Zadowoleni klienci</h2>
+        {lang === 'pl' &&
+          <h2>Zadowoleni klienci</h2>
+        }
+        {lang === 'ua' &&
+          <h2>Задоволені клієнти</h2>
+        }
+        {lang === 'en' &&
+          <h2>Satisfied customers</h2>
+        }
         <p>{clients}+</p>
       </div>
       <div>
-        <h2>Sprzedaże</h2>
+        {lang === 'pl' &&
+          <h2>Sprzedaże</h2>
+        }
+        {lang === 'ua' &&
+          <h2>Продажі</h2>
+        }
+        {lang === 'en' &&
+          <h2>Sales</h2>
+        }
         <p>{sales}+</p>
       </div>
     </div>

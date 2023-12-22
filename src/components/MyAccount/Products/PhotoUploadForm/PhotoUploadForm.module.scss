@@ -1,0 +1,17 @@
+@import '../../../../styles/settings.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+
+  input {
+    width: 400px;
+    margin: 10px 0 15px 0;
+  }
+
+  .p {
+    color: $color_gray_darkest;
+    text-align: left;
+  }
+}

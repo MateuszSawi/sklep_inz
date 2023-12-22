@@ -12,6 +12,13 @@ function ResetSetNewPassword() {
   const [message, setMessage] = useState('');
   const [confirmation, setConfirmation] = useState('');
 
+  const lang = localStorage.getItem('lang') || 'pl';
+
+  let infoMessage;
+  if (lang === 'pl') {infoMessage = 'Błędne dane'}
+  else if (lang === 'en') {infoMessage = 'Wrong data'}
+  else if (lang === 'ua') {infoMessage = 'Невірні дані'}
+
   let { userId, token } = useParams();
 
   const validatePassword = (password) => {
@@ -23,10 +30,12 @@ function ResetSetNewPassword() {
     return pass1 === pass2;
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!validatePassword(pass1) || !passwordsMatch(pass1, pass2)) {
-      setError('Błędne dane');
+      setError(infoMessage);
     } else { // Register successful
       setError('');
       RegisterApi(pass1, pass2);
@@ -34,7 +43,7 @@ function ResetSetNewPassword() {
   };
 
   const RegisterApi = (data) => {
-    axios.post(`${apiK}/auth/activate/${userId}/${token}/`, {
+    axios.post(`${apiK}/auth/password_reset/${userId}/${token}/`, {
       newpassword1: pass1,
       newpassword2: pass2
     },

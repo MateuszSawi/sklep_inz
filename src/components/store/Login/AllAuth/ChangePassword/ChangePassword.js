@@ -21,8 +21,6 @@ function ChangePassword() {
           }
       })
       .then(response => {
-          console.log(response.data);
-          // Można dodać informację dla użytkownika o pomyślnej zmianie hasła
       })
       .catch(error => {
           console.error("Błąd podczas zmiany hasła:", error);

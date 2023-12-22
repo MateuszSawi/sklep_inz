@@ -34,8 +34,6 @@ function LoginsMainPage(props) {
       }
     })
       .then((response) => {
-        console.log(response.data)
-
         if (response.data.isLoggedIn) {
           navigate('/sklep/moje-konto');
         }

@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../MyAccount.module.scss';
 
+import ChangeStatus from './ChangeStatus/ChangeStatus'
+
 function AllOrders() {
 
   const [user, setUser] = useState('');
@@ -11,19 +13,19 @@ function AllOrders() {
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState('Opłacone')
 
-  const navigate = useNavigate();
-
-  const clickHandler = () => {
-
-  }
+  const handleSortChange = (event) => {
+    setStatus(event.target.value);
+  };
 
   useEffect(() => {      // wyszukiwanie konkretnego użytkownika + wszysktich jesli email = '' --- wartosc jednego uzytk. musi isc z inputa , jesli wszystkich to ''
     setIsLoading(true);
 
     axios.post(`${apiK}/staff/getallorders`, {
       email: user,
-      page: currentPage
+      page: currentPage,
+      status: status
     }, {
       withCredentials: true,
       headers: {
@@ -41,7 +43,7 @@ function AllOrders() {
     .finally(() => {
       setIsLoading(false); // Zakończenie ładowania
     });
-  }, [currentPage, user]);
+  }, [currentPage, user, status]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -85,6 +87,32 @@ function AllOrders() {
     setUser(event.target.value);
   };
 
+  const refreshOrders = () => {
+    axios.post(`${apiK}/staff/getallorders`, {
+      email: user,
+      page: currentPage,
+      status: status
+    }, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      setOrders(response.data.orders);
+      setTotalPages(response.data.total_pages);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  };
+
+  useEffect(() => {
+    refreshOrders();
+  }, [currentPage, user, status]);
+
+
+
   return (
     <div className={styles.container}>
       <input 
@@ -93,6 +121,18 @@ function AllOrders() {
         onChange={handleChange} 
         placeholder="E-mail użytkownika" 
       />
+
+      <select
+        value={status}
+        onChange={handleSortChange}
+        className={styles.dropdownFirst}
+      >
+        <option value="Wysłane">Wysłane</option>
+        <option value="Opłacone">Opłacone</option>
+        <option value="Przetwarzanie płatnosci">Przetwarzanie płatnosci</option>
+        <option value="Oczekuje na płatność">Oczekuje na płatność</option>
+        <option value="Anulowane">Anulowane</option>
+      </select>
 
       {orders && isLoading ? 
         <div className={styles.loadingWrapper}>
@@ -106,6 +146,7 @@ function AllOrders() {
           let dateOfOrder = order.created_at.slice(0, -14);
 
           let products = order.products;
+          // console.log(order)
 
           return (
           <div key={order.id} className={styles.wrapper}>
@@ -131,6 +172,10 @@ function AllOrders() {
                 </li>
               ))}
             </ul>
+
+            {order.status === 'Opłacone' &&
+              <ChangeStatus id={order.id} onStatusChange={refreshOrders} />
+            }
           </div>
           )
         })

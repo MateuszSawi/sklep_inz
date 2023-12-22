@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { apiK, apiP } from '../../../../apiConfig';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from '../MyAccountButtons.module.scss';
+import styles from './ChangeRole.module.scss';
 
-function LogOut() {
+function Admin(props) {
 
-  const navigate = useNavigate();
-
-  const logOut = () => {
-    axios.post(`${apiK}/auth/logout`, {}, {
+  const setRole = () => {
+    axios.post(`${apiK}/staff/givesuperuser`, {email: props.email}, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json'
       }
     })
     .then((response) => {
-      navigate('/');
+      if (props.userRefresh) {
+        props.userRefresh();
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -24,16 +24,12 @@ function LogOut() {
   }
 
   return (
-    <button 
-      className={styles.button} 
-      onClick={() => {
-      logOut();
-    }}>
-      Wyloguj
-    </button>
+    <button onClick={() => {
+      setRole();
+    }} className={styles.buttonRole}>Ustaw jako admina</button>
   );
 }
 
-export default LogOut;
+export default Admin;
 
 

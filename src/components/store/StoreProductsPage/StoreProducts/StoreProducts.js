@@ -25,7 +25,7 @@ function StoreProducts(props) {
       page_number: sessionStorage.getItem('pageNumber')
     };
 
-    axios.post(`${apiP}/products/product_list/`, { 
+    axios.post(`${apiP}/products/product_list/`, {
       params: params
     })
     .then(response => {

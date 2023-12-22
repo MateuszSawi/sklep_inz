@@ -43,10 +43,30 @@ function Favorite() {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   };
 
+  const lang = localStorage.getItem('lang') || 'pl';
+
+  let emptyList;
+  if (lang === 'pl') {emptyList = 'Lista ulubionych jest pusta.'}
+  else if (lang === 'ua') {emptyList = 'Список обраних порожній.'}
+  else if (lang === 'en') {emptyList = 'The favorites list is empty.'}
+
+  let deleteFromFavourite;
+  if (lang === 'pl') {deleteFromFavourite = 'Usuń z ulubionych'}
+  else if (lang === 'ua') {deleteFromFavourite = 'Видалити з вибраного'}
+  else if (lang === 'en') {deleteFromFavourite = 'Remove from favorites'}
+
   return (
     <div className={styles.favorite}>
-      <h2>Ulubione:</h2>
-      {favoriteItems.length === 0 ? <p>Lista ulubionych jest pusta.</p> : (
+      {lang === 'pl' &&
+        <h2>Ulubione:</h2>
+      }
+      {lang === 'ua' &&
+        <h2>улюблений:</h2>
+      }
+      {lang === 'en' &&
+        <h2>Favorite:</h2>
+      }
+      {favoriteItems.length === 0 ? <p>{emptyList}</p> : (
         <div className={styles.favoriteList}>
           {favoriteItems.map(item => (
             <div key={item.product_id} className={styles.favoriteItem}>
@@ -62,27 +82,67 @@ function Favorite() {
               <div className={styles.infoWrapper}>
                 <div className={styles.infoWrapperImg}>
                   <img src={item.primary_link} alt="Product" className={styles.image} />
-                  <p>Numer katalogowy: {item.product_id} </p>
+                  {lang === 'pl' &&
+                    <p>Numer katalogowy: {item.product_id} </p>
+                  }
+                  {lang === 'ua' &&
+                    <p>Каталожний номер: {item.product_id} </p>
+                  }
+                  {lang === 'en' &&
+                    <p>Catalog number: {item.product_id} </p>
+                  }
                 </div>
 
                 <div className={styles.innerInfoWrapper}>
-                  <p>Cena netto: {item.price_netto} zł</p>
-                  <p>Cena brutto: {item.price_brutto} zł</p>
+                  {lang === 'pl' &&
+                    <>
+                      <p>Cena netto: {item.price_netto} zł</p>
+                      <p>Cena brutto: {item.price_brutto} zł</p>
+                    </>
+                  }
+                  {lang === 'ua' &&
+                    <>
+                      <p>Ціна нетто:: {item.price_netto} грн</p>
+                      <p>ціна брутто: {item.price_brutto} грн</p>
+                    </>
+                  }
+                  {lang === 'en' &&
+                    <>
+                      <p>Net price: {item.price_netto} zł</p>
+                      <p>Gross price: {item.price_brutto} zł</p>
+                    </>
+                  }
 
                   {item.quantity > 0 ? (
                     <button onClick={() => handleAddToCartFromFavourites(item)} className={styles.addToCartButton}>
-                      <p>Dodaj do koszyka</p>
+                      {lang === 'pl' &&
+                        <p>Dodaj do koszyka</p>
+                      }
+                      {lang === 'ua' &&
+                        <p>додати в кошик</p>
+                      }
+                      {lang === 'en' &&
+                        <p>Add to cart</p>
+                      }
                     </button>
                   ) : (
                     <button onClick={() => handleAddToCartFromFavourites(item)} className={styles.askForProductButton}>
                       <a href="tel:+48 89 523 91 52" className={styles.phone}>
-                        <p>Zapytaj o produkt</p>
+                        {lang === 'pl' &&
+                          <p>Zapytaj o produkt</p>
+                        }
+                        {lang === 'ua' &&
+                          <p>Запитайте про товар</p>
+                        }
+                        {lang === 'en' &&
+                          <p>Ask about the product</p>
+                        }
                       </a>
                     </button>
                   )}
                   
                   <button onClick={() => handleRemoveItem(item.product_id)} className={styles.removeItem}>
-                    Usuń z ulubionych
+                    {deleteFromFavourite}
                   </button>
                 </div>
               </div>

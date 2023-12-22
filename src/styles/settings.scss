@@ -6,6 +6,7 @@ $color_lighter_gray: #9696967c;
 $color_lightest_gray: #96969656;
 $color_gray: #969696;
 $color_gray_darker: #7c7c7c;
+$color_gray_darkest: #696969;
 $color_button_shadow: rgba(3, 3, 3, 0.4);
 $color_gray_hover_store_header: #7a7a7a;
 $color_light_shadow: #eee;
@@ -39,9 +40,10 @@ $font_button_specyfication: 500 21px/26px 'Roboto', Arial, sans-serif;
 
 $font_categories: 500 17px/23px 'Roboto', Arial, sans-serif;
 $font_subcategories: 500 14px/21px 'Roboto', Arial, sans-serif;
+$font_small: 300 12px/16px 'Roboto', Arial, sans-serif;
 
 // Cienie
-$box-shadow-light: 0px 4px 6px rgba(0, 0, 0, 0.1);
+$box-shadow-light: 2px 4px 6px rgba(0, 0, 0, 0.4);
 $box-shadow-medium: 0px 6px 12px rgba(0, 0, 0, 0.15);
 $box-shadow-strong: 0px 10px 20px rgba(0, 0, 0, 0.2);
 

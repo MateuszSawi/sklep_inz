@@ -34,8 +34,8 @@ const Loading = (props) => {
       setStripeApiKey(keyResponse.data.stripePublicKey);
 
       const secretResponse = await axios.post(`${apiK}/payment/buycart`, {
-        "email": "ssz05378@zslsz.com",
-        "products": products
+        email: props.orderDataToSend.email,
+        products: products
       });
       setClientSecret(secretResponse.data.client_secret);
       setPaymentIntentId(secretResponse.data.payment_intent_id);
@@ -43,13 +43,12 @@ const Loading = (props) => {
       const paymentIntentId = secretResponse.data.payment_intent_id;
 
       // props.setOrderDataToSend({
-      //   ...props.orderDataToSend, 
 
       //   stripeIntentId: secretResponse.data.payment_intent_id
       // });
 
       // console.log(secretResponse.data.payment_intent_id)
-      // console.log(paymentIntentId)
+      // console.log('props.orderDataToSend: ', props.orderDataToSend)
       // console.log(props.orderDataToSend)
 
       const makeOrder = await axios.post(`${apiK}/staff/makeorder`, {

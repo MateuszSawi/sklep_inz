@@ -13,6 +13,19 @@ import MyAccountButton from './MyAccountButton/MyAccountButton'
 
 function MyAccountButtons(props) {
 
+  axios.get(`${apiK}/auth/checksession`, {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((response) => {
+      console.log(response.data)
+
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
 
   return (

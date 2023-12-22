@@ -11,6 +11,9 @@ import StoreProductsPath from '../StoreProductsPage/StoreProductsPath/StoreProdu
 import AddToCartButton from './AddToCartButton/AddToCartButton';
 import AddToFavourite from './AddToFavourite/AddToFavourite';
 
+import DeleteProduct from './DeleteProduct/DeleteProduct';
+import EditProduct from './EditProduct/EditProduct';
+
 function SingleProductMain() {
 
   const { category, subcategory, singleProduct } = useParams();
@@ -34,16 +37,12 @@ function SingleProductMain() {
       }
     })
     .then(response => {
-      // console.log(response.data.product);
       setProduct(response.data.product);
 
-      
       if (response.data.product.other_links) {
         const arrayFromInput = response.data.product.other_links.split('\n');
         setImagesLinksArray(arrayFromInput);
       }
-
-      console.log(imagesLinksArray)
     })
     .catch(error => {
       console.error(error);
@@ -125,17 +124,25 @@ function SingleProductMain() {
 
   //
 
-  // function getQuantityUnit(quantity) {
-  //   if (quantity === 1) {
-  //     return 'sztuka';
-  //   } else if (quantity > 1 && quantity < 5 || (quantity % 10 > 1 && quantity % 10 < 5 && (quantity % 100 < 10 || quantity % 100 > 20))) {
-  //     return 'sztuki';
-  //   } else {
-  //     return 'sztuk';
-  //   }
-  // }
+  const [authorities, setAuthorities] = useState('');
 
-  // let by_length_unit = product.by_length ? 'cm' : getQuantityUnit(product.quantity);
+  useEffect(() => {
+    axios.get(`${apiK}/auth/checksession`, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      setAuthorities(response.data.authorities)
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+    console.log(authorities)
+  }, []);
+
 
   return (
     <div className={styles.mainWrapper} >     
@@ -175,7 +182,7 @@ function SingleProductMain() {
           </div>
 
           <div className={styles.shortDesc}>
-            <p>Numer katalogowy: {product.product_id} </p>
+            <p>Numer produktu: {product.product_id} </p>
             <p>{product.product_description_short}</p>
             {product.brand_name &&
               <img src={process.env.PUBLIC_URL + brandImage}  
@@ -370,7 +377,14 @@ function SingleProductMain() {
         <div className={styles.restInfo} ref={myElementRef}>
           <div dangerouslySetInnerHTML={{ __html: product.product_description_html }} />
         </div>
-      </div>    
+      </div>   
+
+      {(authorities === 'superus' || authorities === 'staff') &&
+        <>
+          <DeleteProduct product_id={product.product_id} />
+          <EditProduct />
+        </>
+      }
     </div>
   );
 }

@@ -18,18 +18,55 @@ function MainPageNewsletter() {
     });
   };
 
+  const lang = localStorage.getItem('lang') || 'pl';
+
   return (
     <div className={styles.newsletter_container}>
       <div className={styles.title_container}>
-        <h1>Zapisz się na nasz Newsletter</h1>
+        {lang === 'pl' &&
+          <h1>Zapisz się na nasz Newsletter</h1>
+        }
+        {lang === 'ua' &&
+          <h1>Підпишіться на нашу розсилку</h1>
+        }
+        {lang === 'en' &&
+          <h1>Subscribe to our Newsletter</h1>
+        }
       </div>
-      <input 
-        type="email"
-        placeholder="Wprowadź swój email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button>ZAPISZ SIĘ</button>
+      {lang === 'pl' &&
+        <input 
+          type="email"
+          placeholder="Wprowadź swój email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      }
+      {lang === 'ua' &&
+        <input 
+          type="email"
+          placeholder="Введіть адресу електронної пошти"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      }
+      {lang === 'en' &&
+        <input 
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      }
+
+      {lang === 'pl' &&
+        <button>ZAPISZ SIĘ</button>
+      }
+      {lang === 'ua' &&
+        <button>ЗАРЕЄСТРУЙТЕСЯ</button>
+      }
+      {lang === 'en' &&
+        <button>SIGN UP</button>
+      }
     </div>
   );
 }

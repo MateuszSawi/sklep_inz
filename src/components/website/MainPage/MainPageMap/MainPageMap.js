@@ -13,6 +13,8 @@ L.Icon.Default.mergeOptions({
 function MainPageMap() {
   const olsztynCoordinates = [53.808052367799235, 20.40344464232809];
 
+  const lang = localStorage.getItem('lang') || 'pl';
+
   return (
     <MapContainer center={olsztynCoordinates} zoom={16} style={{ width: "100%", height: "400px", marginBottom: "100px" }}>
       <TileLayer
@@ -21,7 +23,15 @@ function MainPageMap() {
       />
       <Marker position={olsztynCoordinates}>
         <Popup>
-          Sokola 4, 11-041 Olsztyn
+          {lang === 'pl' &&
+            <>Sokola 4, 11-041 Olsztyn</>
+          }
+          {lang === 'ua' &&
+            <>Сокола 4, 11-041 Ольштин</>
+          }
+          {lang === 'en' &&
+            <>Sokola 4, 11-041 Olsztyn</>
+          }
         </Popup>
       </Marker>
     </MapContainer>

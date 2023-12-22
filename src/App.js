@@ -33,7 +33,6 @@ function App() {
 
   const [emailP24, setEmailP24] = useState('');
 
-  // console.log(selectedPaymentMethod)
 
   return (
     <div className='container'>
@@ -49,8 +48,8 @@ function App() {
         <Route path="/sklep/*" element={<MainPageStore />} />
 
         <Route path="/zarejestrowano" element={<AfterRegister />} />
-        <Route path="/auth/activate/:userId/:token" element={<RegisterSuccessfull />} />
-        <Route path="/auth/password_reset/:userId/:token" element={<ResetSetNewPassword />} />
+        <Route path="/activate/:userId/:token" element={<RegisterSuccessfull />} />
+        <Route path="/password_reset/:userId/:token" element={<ResetSetNewPassword />} />
         
         <Route path="/polityka-prywatności" element={<Privacy />} />
         <Route path="/polityka-cookies" element={<Cookies />} />

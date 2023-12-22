@@ -11,6 +11,13 @@ function Login() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
+  const lang = localStorage.getItem('lang') || 'pl';
+
+  let infoMessage;
+  if (lang === 'pl') {infoMessage = 'Błędne dane'}
+  else if (lang === 'en') {infoMessage = 'Wrong data'}
+  else if (lang === 'ua') {infoMessage = 'Невірні дані'}
+
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return re.test(email);
@@ -24,7 +31,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!validateEmail(email) || !validatePassword(password)) {
-      setError('Błędne dane logowania');
+      setError(infoMessage);
     } else { // Login successful
       setError('');
       LoginApi(email, password);
@@ -47,17 +54,16 @@ function Login() {
       }
     })
     .then(response => {
-      console.log(response.data);
       setMessage("")
       localStorage.setItem('token', response.data.key); // zapisanie tokena do localStorage
-
-
+      navigate('/sklep/moje-konto');
       // jesli response to zalogowany ~krasny
     })
     .catch(error => {
-      console.error("Błąd logowania:", error);
+      console.error(error);
       // setMessage("Błędne dane logowania")
-      setMessage(error.response.data.message);
+      const errorMessage = error.response.data[`message_${lang}`];
+      setMessage(errorMessage)
     });
   };
 

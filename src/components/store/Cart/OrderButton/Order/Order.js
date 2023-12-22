@@ -21,6 +21,7 @@ function Order(props) {
     nip: '',
     adress: '',
     additionalAdress: '',
+    addressForInvoice: '',
     city: '',
     postCode: '',
     country: 'Polska',
@@ -42,7 +43,7 @@ function Order(props) {
       }
     })
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
 
         // props.setAuthorities(response.data.authorities);
 
@@ -70,7 +71,7 @@ function Order(props) {
       email: orderData.email,
       products: products,
       addressToSend: `${orderData.adress}, ${orderData.additionalAdress}, ${orderData.city}, ${orderData.postCode}, ${orderData.country}`,
-      addressForInvoice: '', // do faktury
+      addressForInvoice: orderData.addressForInvoice, // do faktury
       phoneNumber: orderData.phoneNr,
       name: orderData.name,
       surname: orderData.surname,
@@ -82,8 +83,6 @@ function Order(props) {
       price_pl: price_pl,
       stripeIntentId: ''
     });
-
-    console.log(props.orderDataToSend)
   }, [orderData]);
 
   //
@@ -122,7 +121,6 @@ function Order(props) {
       setOrderData({ ...orderData, [e.target.name]: e.target.value });
     }
   };
-
 
   //
 
@@ -190,6 +188,10 @@ function Order(props) {
           <div className={styles.wrapper}>
               <label htmlFor="additionalAdress">Uzupełnienie adresu</label>
               <input type="text" name="additionalAdress" id="additionalAdress" value={orderData.additionalAdress} onChange={handleChange} />
+          </div>
+          <div className={styles.wrapper}>
+              <label htmlFor="adressForInvoice">Adres zamieszkania</label>
+              <input type="text" name="adress" id="adress" value={orderData.addressForInvoice} onChange={handleChange} />
           </div>
           <div className={styles.wrapper}>
               <label htmlFor="city">Miasto*</label>

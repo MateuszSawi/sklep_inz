@@ -5,7 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../MyAccount.module.scss';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
-import ChangeRole from './ChangeRole/ChangeRole'
+import Staff from './ChangeRole/Staff'
+import Admin from './ChangeRole/Admin'
+import DeleteRoles from './ChangeRole/DeleteRoles'
 
 function Users() {
 
@@ -28,7 +30,6 @@ function Users() {
       }
     })
     .then((response) => {
-      console.log(response.data);
       setUsersData(response.data.users)
       setTotalPages(response.data.total_pages)
     })
@@ -82,6 +83,30 @@ function Users() {
     setUser(event.target.value);
   };
 
+  const userRefresh = () => {
+    axios.post(`${apiK}/staff/browseallusers`, {
+      email: user,
+      page: currentPage
+    }, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      // console.log(response.data);
+      setUsersData(response.data.users)
+      setTotalPages(response.data.total_pages)
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  }
+
+  useEffect(() => {
+    userRefresh();
+  }, [currentPage, user]);
+
   return (
     <div className={styles.container}>
       <input 
@@ -99,7 +124,7 @@ function Users() {
         </div>
       }
 
-      <h3>Moje zamówienia:</h3>
+      <h3>Użytkownicy:</h3>
       {usersData && isLoading ? 
         <div className={styles.loadingWrapper}>
           <div className={styles.loadingScreen}>
@@ -111,21 +136,21 @@ function Users() {
 
           let superUser;
           if (user.is_superuser) {
-            superUser = <FaCheck className={styles.icon} />;
+            superUser = <FaCheck className={styles.icon} />
           } else {
             superUser = <FaTimes className={styles.icon} />
           }
 
           let staff;
           if (user.is_staff) {
-            staff = <FaCheck className={styles.icon} />;
+            staff = <FaCheck className={styles.icon} />
           } else {
             staff = <FaTimes className={styles.icon} />
           }
 
           let isActive;
           if (user.is_active) {
-            isActive = <FaCheck className={styles.icon} />;
+            isActive = <FaCheck className={styles.icon} />
           } else {
             isActive = <FaTimes className={styles.icon} />
           }
@@ -138,15 +163,27 @@ function Users() {
             <p>Pracownik sklepu: {staff}</p>
             <p>Admin {superUser}</p>
 
-            <ChangeRole />
+            {!user.is_staff &&
+              <Staff email={user.email} userRefresh={userRefresh} />
+            }
+
+            {!user.is_superuser &&
+              <Admin email={user.email} userRefresh={userRefresh} />
+            }
+
+            {(user.is_staff || user.is_superuser) &&
+              <DeleteRoles email={user.email} userRefresh={userRefresh} />
+            }
           </div>
           )
         })
       }
 
-      <div className={styles.paginationWrapper}>
-        {renderPagination()}
-      </div>
+      {user === '' &&
+        <div className={styles.paginationWrapper}>
+          {renderPagination()}
+        </div>
+      }
     </div>
   );
 }

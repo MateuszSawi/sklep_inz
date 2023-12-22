@@ -12,14 +12,11 @@ function Payment({ clientSecret, selectedPaymentMethod, emailP24 }) {
   const [blikCode, setBlikCode] = useState('');
   const [showReturnButton, setShowReturnButton] = useState(false);
 
-  console.log(clientSecret, selectedPaymentMethod)
-
   const handlePaymentSubmit = async (event) => {
     event.preventDefault();
     setIsProcessing(true);
 
     if (!stripe || !elements) {
-      console.log('Stripe.js jeszcze się nie załadowało');
       setMessage('Stripe.js nie załadowało się prawidłowo');
       setIsProcessing(false);
       return;
@@ -79,7 +76,6 @@ function Payment({ clientSecret, selectedPaymentMethod, emailP24 }) {
       });
     
       if (error) {
-        console.log(error.message);
         setMessage(`Błąd płatności: ${error.message}`);
         setIsProcessing(false);
         setShowReturnButton(false)
