@@ -1,128 +1,117 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useMatch } from 'react-router-dom';
 import styles from './StoreProductsFilters.module.scss';
 import axios from 'axios';
 import { apiK, apiP } from '../../../../apiConfig';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function StoreProductsFilters(props) {
+  // Zaktualizowane zmienne stanu
+  const [selectedGender, setSelectedGender] = useState(sessionStorage.getItem('gender') || 'ALL');
+  const [itemsPerPage, setItemsPerPage] = useState(Number(sessionStorage.getItem('pageSize')) || 30);
+  const [currentPage, setCurrentPage] = useState(Number(sessionStorage.getItem('pageNumber')) || 1);
+  const [selectedBrand, setSelectedBrand] = useState(sessionStorage.getItem('brand') || '');
+  const [minimumPrice, setMinimumPrice] = useState(Number(sessionStorage.getItem('priceMin')) || 0);
+  const [maximumPrice, setMaximumPrice] = useState(Number(sessionStorage.getItem('priceMax')) || 999);
 
-  const [sort, setSort] = useState(sessionStorage.getItem('sortBy'));
-  const [productsPerPage, setProductsPerPage] = useState(Number(sessionStorage.getItem('productsPerPage')));
-  const [pageNumber, setPageNumber] = useState(Number(sessionStorage.getItem('pageNumber')));
+  const { category } = useParams();
 
-  const handleSortChange = (event) => {
-    props.setSortBy(event.target.value);
-    sessionStorage.setItem('sortBy', event.target.value);
-    setSort(event.target.value)
+  // Obsługa zmiany płci/gender
+  const handleGenderChange = (event) => {
+    setSelectedGender(event.target.value);
+    sessionStorage.setItem('gender', event.target.value);
   };
 
-  const handleProductsPerPageChange = (event) => {
-    props.setProductsPerPage(Number(event.target.value));
-    sessionStorage.setItem('productsPerPage', Number(event.target.value));
-    setProductsPerPage(Number(event.target.value))
+  // Obsługa zmiany liczby produktów na stronę
+  const handleItemsPerPageChange = (event) => {
+    const newValue = Number(event.target.value);
+    setItemsPerPage(newValue);
+    sessionStorage.setItem('pageSize', newValue);
   };
 
-  const handleBlur = () => {
-    props.setProductsPerPage(pageNumber);
-    sessionStorage.setItem('pageNumber', pageNumber);
-    setProductsPerPage(pageNumber)
+  // Obsługa zmiany strony
+  const handlePageChange = (newValue) => {
+    setCurrentPage(newValue);
+    sessionStorage.setItem('pageNumber', newValue);
   };
 
-  const handleChange = (event) => {
-    const value = event.target.value;
-    const onlyNums = value.replace(/[^0-9]/g, '');
-  
-    if (onlyNums) {
-      setPageNumber(Math.min(parseInt(onlyNums, 10), sessionStorage.getItem('totalPages')));
-    } else {
-      setPageNumber('');
-    }
+  // Nowe obsługi filtrów
+  const handleBrandChange = (event) => {
+    setSelectedBrand(event.target.value);
+    sessionStorage.setItem('brand', event.target.value);
   };
 
-  const handleClickArrow = () => {
-    let incrementPage = Number(pageNumber + 1);
+  const handlePriceMinChange = (event) => {
+    setMinimumPrice(event.target.value);
+    sessionStorage.setItem('priceMin', event.target.value);
+  };
 
-    if (Number(pageNumber) !== Number(sessionStorage.getItem('totalPages'))) {
-      props.setProductsPerPage(Number(incrementPage));
-      sessionStorage.setItem('pageNumber', Number(incrementPage));
-      setProductsPerPage(Number(incrementPage))
-      setPageNumber(Number(incrementPage))
-    }
-  }
+  const handlePriceMaxChange = (event) => {
+    setMaximumPrice(event.target.value);
+    sessionStorage.setItem('priceMax', event.target.value);
+  };
+
+  useEffect(() => {
+    props.setIsLoading(true);
+
+    axios.post(`${apiK}/products`, { 
+      pageSize: Number(sessionStorage.getItem('pageSize')) || 30,
+      pageNumber: Number(sessionStorage.getItem('pageNumber')) || 1,
+      filterBasicInfo: {
+        brand: sessionStorage.getItem('brand') || '',
+        gender: sessionStorage.getItem('gender') || 'ALL',
+        category: category,
+        priceMin: Number(sessionStorage.getItem('priceMin')) || 0,
+        priceMax: Number(sessionStorage.getItem('priceMax')) || 999
+      }
+    })
+    .then(response => {
+      props.setProducts(response.data.products);
+
+      sessionStorage.setItem('numberOfPages', response.data.total_pages);
+    })
+    .catch(error => {
+      console.error(error);
+    })
+    .finally(() => {
+      props.setIsLoading(false);
+    });
+
+  }, [selectedGender, itemsPerPage, currentPage, selectedBrand, minimumPrice, maximumPrice]);
 
   return (
     <div className={styles.productListing}>
       <div className={styles.controls}>
-        <select
-          value={sort}
-          onChange={handleSortChange}
-          className={styles.dropdownFirst}
-        >
-          <option value="alphabetic_asc">Nazwa A-Z</option>
-          <option value="alphabetic_desc">Nazwa Z-A</option>
-          <option value="price_asc">Cena rosnąco</option>
-          <option value="price_desc">Cena malejąco</option>
-          <option value="available">Dostępność</option>
+        <select value={selectedGender} onChange={handleGenderChange} className={styles.dropdown}>
+          <option value="ALL">Wszystkie</option>
+          <option value="WOMEN">Kobiety</option>
+          <option value="MEN">Mężczyźni</option>
+          <option value="UNISEX">Unisex</option>
         </select>
-        <select
-          value={productsPerPage}
-          onChange={handleProductsPerPageChange}
-          className={styles.dropdown}
-        >
+        <select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.dropdown}>
           <option value="20">20 produktów</option>
           <option value="30">30 produktów</option>
           <option value="40">40 produktów</option>
         </select>
+        <input type="text" value={selectedBrand} onChange={handleBrandChange} placeholder="Marka" />
+        Cena min:
+        <input type="number" value={minimumPrice} 
+          className={styles.num} onChange={handlePriceMinChange} />
+        Cena max:
+        <input type="number" value={maximumPrice} 
+          className={styles.num} onChange={handlePriceMaxChange} />
       </div>
 
       <div className={styles.pagination}>
-        <input 
-          type="text" 
-          value={pageNumber} 
-          onChange={handleChange} 
-          onBlur={handleBlur} 
-          max={sessionStorage.getItem('totalPages')}
+        <input
+          type="number"
+          value={currentPage}
+          onChange={(e) => handlePageChange(Number(e.target.value))}
+          max={sessionStorage.getItem('currentPage')}
         />
-
-        <p>z &nbsp;{sessionStorage.getItem('totalPages')}</p>
-
-        <img 
-          src={process.env.PUBLIC_URL + '/store/arrowPage.png'} 
-          alt="Renox logo"
-          onClick={handleClickArrow}
-        />
+        <p>z {sessionStorage.getItem('currentPage')}</p>
       </div>
     </div>
   );
 };
 
 export default StoreProductsFilters;
-
-// sortowanie po czyms: {
-//   A-Z 
-//   Z-A
-//   cena malejaco
-//   cena rosnaco
-//   dostepnosc
-// }
-
-// sort:
-// A_Z
-// Z_A
-// price_desc - malejaco
-// price_asc - rosnaco
-// available - to bedzie od najwiekszej ilosci
-
-// -----------------------------------
-
-// ilosc produktow na stronie (30/40/50???)
-
-// page_size:
-// 20
-// 30 - domyślne
-// 40 
-
-// -----------------------------------
-
-// ilość strony - musze dostac liczbe stron
-// page_number

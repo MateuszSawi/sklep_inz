@@ -1,48 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import TextEdit from './TextEdit';
 import styles from './SingleProductMain.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { apiK, apiP } from '../../../apiConfig';
 
-import StoreProductsPath from '../StoreProductsPage/StoreProductsPath/StoreProductsPath';
 import AddToCartButton from './AddToCartButton/AddToCartButton';
 import AddToFavourite from './AddToFavourite/AddToFavourite';
 
-import DeleteProduct from './DeleteProduct/DeleteProduct';
-import EditProduct from './EditProduct/EditProduct';
-
 function SingleProductMain() {
 
-  const { category, subcategory, singleProduct } = useParams();
+  const { category, productCode } = useParams();
 
   const [product, setProduct] = useState([]);
 
-  const [mainImage, setMainImage] = useState('');
-
-  const [imagesLinksArray, setImagesLinksArray] = useState([]);
+  const [mainImage, setMainImage] = useState(product.imageUrls[0]);
 
   useEffect(() => {
-    if (product.primary_link) {
-      setMainImage(product.primary_link);
-    }
-  }, [product.primary_link]);
-
-  useEffect(() => {
-    axios.get(`${apiP}/products/get_product/`, { 
-      params: {
-        product_id : singleProduct
-      }
-    })
+    axios.get(`${apiP}/products/${productCode}`)
     .then(response => {
-      setProduct(response.data.product);
-
-      if (response.data.product.other_links) {
-        const arrayFromInput = response.data.product.other_links.split('\n');
-        setImagesLinksArray(arrayFromInput);
-      }
+      setProduct(response.data.productBasicInfo);
     })
     .catch(error => {
       console.error(error);
@@ -61,27 +39,6 @@ function SingleProductMain() {
     setIsModalOpen(false);
     setSelectedImage(null);
   };
-
-  let brandImage;
-
-  if (product.brand_name === 'ESCO') {
-    brandImage = '/website/MainPage/logos/esco_logo.png';
-  } 
-  else if (product.brand_name === 'CAT') {
-    brandImage = '/website/MainPage/logos/CAT.jpg';
-  } 
-  else if (product.brand_name === 'Doosan') {
-    brandImage = '/website/MainPage/logos/doosan.jpg';
-  } 
-  else if (product.brand_name === 'Komatsu') {
-    brandImage = '/website/MainPage/logos/komatsu.jpg';
-  } 
-  else if (product.brand_name === 'KTR') {
-    brandImage = '/website/MainPage/logos/ktr_logo.jpg';
-  } 
-  else if (product.brand_name === 'JCB') {
-    brandImage = '/website/MainPage/logos/jcg.jpg';
-  }
 
   // ----------------- quantity -----------------
 
@@ -114,44 +71,15 @@ function SingleProductMain() {
     }
   };
 
-  // scroll
-
-  const myElementRef = useRef(null);
-
-  const scrollToMyElement = () => {
-    myElementRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  };
-
-  //
-
-  const [authorities, setAuthorities] = useState('');
-
-  useEffect(() => {
-    axios.get(`${apiK}/auth/checksession`, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((response) => {
-      setAuthorities(response.data.authorities)
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
-    console.log(authorities)
-  }, []);
-
 
   return (
     <div className={styles.mainWrapper} >     
-      <StoreProductsPath /> 
+      {/* <StoreProductsPath />  */}
 
       <div className={styles.wrapper} >
         <div>
           <h1 className={styles.titleWrapper}>
-            {product.product_name}
+            {product.name}
           </h1>
         </div>
 
@@ -162,11 +90,7 @@ function SingleProductMain() {
             </div>
 
             <div className={styles.smallImages} >
-              <img src={product.primary_link} 
-                      onClick={() => setMainImage(product.primary_link)} 
-                      alt="Product" className={styles.mainImage} />
-
-              {imagesLinksArray && imagesLinksArray.length > 0 && imagesLinksArray.map((imageLink, index) => (
+              {product.imageUrls.map((imageLink, index) => (
                 <img src={imageLink} 
                         onClick={() => setMainImage(imageLink)} 
                         alt={`Product ${index}`} className={styles.mainImage} />
@@ -182,57 +106,25 @@ function SingleProductMain() {
           </div>
 
           <div className={styles.shortDesc}>
-            <p>Numer produktu: {product.product_id} </p>
-            <p>{product.product_description_short}</p>
-            {product.brand_name &&
-              <img src={process.env.PUBLIC_URL + brandImage}  
-                alt="Brand" className={styles.brandImage} 
-              />
-            }
-            {product.brand_name &&
-              <p>Firma: {product.brand_name} </p>
-            }
-            {product.reference_number &&
-              <p>Numer referencji: {product.reference_number} </p>
-            }
-            <img className={styles.renox}
-              src={process.env.PUBLIC_URL + '/website/MainPage/logos/logo_web.png'} 
-              alt="Renox logo" 
-            />
-            <div onClick={scrollToMyElement} className={styles.scroll}>
-              <h3>Przejdź do pełnej specyfikacji </h3> &nbsp;
-              <span>↓</span>
-            </div>
+            <p>Numer produktu: {product.productCode} </p>
+            <p>Marka: {product.brand} </p>
+
+            <p>Płeć: {product.gender} </p>
+            <p>Kategoria: {product.category} </p>
+
             <AddToFavourite  
-              category={category}
-              subcategory={subcategory}
-              product={product}
+              products={product} 
             />
           </div>
           <div>
             <div className={styles.priceWrapper} >
               <div className={styles.price}>
-                <h1>{product.price_netto}</h1>
-                <h3>zł netto</h3>
+                <h1>{product.price}</h1>
+                <h3>zł</h3>
               </div>
-              <div className={styles.price}>
-                <h1>{product.price_brutto}</h1>
-                <h3>zł brutto</h3>
-              </div>
-              {product.quantity > 0 &&
-                <p className={styles.quantity}>✔️ Na magazynie 
-                  {/* {product.quantity} {by_length_unit} */}
-                </p>
-              } 
-              {product.quantity === 0 &&
-                <a href="tel:+48 89 523 91 52" className={styles.phone}>
-                  <p className={styles.quantity}>
-                    <img src="/store/phone_little_dark.png" alt="cart" className={styles.icon}/>
-                    {/* ❌  */}
-                    Zapytaj o produkt
-                  </p>
-                </a>
-              }
+              
+              <p className={styles.quantity}>✔️ Na magazynie</p>
+              
               <div className={styles.cartQuantity}>
                 <button onClick={decreaseQuantity}><p>-</p></button>
                 <input 
@@ -244,147 +136,18 @@ function SingleProductMain() {
                   max={product.quantity} 
                 />
                 <button onClick={increaseQuantity}><p>+</p></button>
-                {!product.by_length && 
-                  <p>ilość</p>
-                }
-                {product.by_length && 
-                  <p>cm</p>
-                }
+                <p>ilość</p>
               </div>
-              {product.quantity > 0 &&
-                <AddToCartButton
-                  product_id={product.product_id}
-                  quantity={quantity}
-                  product_name={product.product_name}
-                  price_netto={product.price_netto}
-                  price_brutto={product.price_brutto}
-                  by_length={product.by_length}
-                  // maxQuantity={product.quantity}
-                  category={category}
-                  subcategory={subcategory}
-                  primary_link={product.primary_link}
-                />
-              } 
-              {product.quantity === 0 &&
-                <div >
-                  <button className={styles.buttonNoProducts}><h3>DO KOSZYKA</h3></button>
-                </div>
-              }
+
+              <AddToCartButton
+                products={product} 
+                quantity={quantity}
+              />
               <div className={styles.underline}></div>
             </div>
           </div>
         </div>
-
-        <div className={styles.shortDescSmallPx}>
-          <p>Numer katalogowy: {product.product_id} </p>
-          <p>{product.product_description_short}</p>
-
-          {product.brand_name &&
-            <img src={process.env.PUBLIC_URL + brandImage}  
-              alt="Brand" className={styles.brandImage} 
-            />
-          }
-
-          {product.brand_name &&
-            <p>Firma: {product.brand_name} </p>
-          }
-
-          {product.reference_number &&
-            <p>Numer referencji: {product.reference_number} </p>
-          }
-
-          <img className={styles.renox}
-            src={process.env.PUBLIC_URL + '/website/MainPage/logos/logo_web.png'} 
-            alt="Renox logo" 
-          />
-
-          <div onClick={scrollToMyElement} className={styles.scroll}>
-            <h3>Przejdź do pełnej specyfikacji </h3> &nbsp;
-            <span>↓</span>
-          </div>
-
-          <AddToFavourite  
-            category={category}
-            subcategory={subcategory}
-            product={product}
-          />
-        </div>
-
-        <div>
-          <div className={styles.priceWrapperSmallPx} >
-            <div className={styles.price}>
-              <h1>{product.price_netto}</h1>
-              <h3>zł netto</h3>
-            </div>
-            <div className={styles.price}>
-              <h1>{product.price_brutto}</h1>
-              <h3>zł brutto</h3>
-            </div>
-            {product.quantity > 0 &&
-              <p className={styles.quantity}>✔️ Na magazynie 
-                {/* {product.quantity} {by_length_unit} */}
-              </p>
-            } 
-            {product.quantity === 0 &&
-              <a href="tel:+48 89 523 91 52" className={styles.phone}>
-                <p className={styles.quantity}>
-                  <img src="/store/phone_little_dark.png" alt="cart" className={styles.icon}/>
-                  {/* ❌  */}
-                  Zapytaj o produkt
-                </p>
-              </a>
-            }
-            <div className={styles.cartQuantity}>
-              <button onClick={decreaseQuantity}><p>-</p></button>
-              <input 
-                className={styles.quantityInput}
-                type="number" 
-                value={quantity} 
-                onChange={handleQuantityChange} 
-                min="1" 
-                max={product.quantity} 
-              />
-              <button onClick={increaseQuantity}><p>+</p></button>
-              {!product.by_length && 
-                <p>ilość</p>
-              }
-              {product.by_length && 
-                <p>cm</p>
-              }
-            </div>
-            {product.quantity > 0 &&
-              <AddToCartButton
-                product_id={product.product_id}
-                quantity={quantity}
-                product_name={product.product_name}
-                price_netto={product.price_netto}
-                price_brutto={product.price_brutto}
-                by_length={product.by_length}
-                // maxQuantity={product.quantity}
-                category={category}
-                subcategory={subcategory}
-                primary_link={product.primary_link}
-              />
-            } 
-            {product.quantity === 0 &&
-              <div >
-                <button className={styles.buttonNoProducts}><h3>DO KOSZYKA</h3></button>
-              </div>
-            }
-          </div>
-        </div>
-
-        <div className={styles.restInfo} ref={myElementRef}>
-          <div dangerouslySetInnerHTML={{ __html: product.product_description_html }} />
-        </div>
       </div>   
-
-      {(authorities === 'superus' || authorities === 'staff') &&
-        <>
-          <DeleteProduct product_id={product.product_id} />
-          <EditProduct />
-        </>
-      }
     </div>
   );
 }

@@ -8,76 +8,58 @@ import { apiK, apiP } from '../../../../apiConfig';
 
 import Products from './Products/Products';
 import CategoriesMenu from './CategoriesMenu/CategoriesMenu';
-import CategoriesMenuMobile from './CategoriesMenuMobile/CategoriesMenuMobile';
 
 function StoreProducts(props) {
-  const { category, subcategory } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  const { category } = useParams();
+  // const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    props.setIsLoading(true);
 
-    const params = {
-      category: category, 
-      subcategory: category === subcategory ? '' : subcategory,
-      sort_option: sessionStorage.getItem('sortBy'),
-      page_size: sessionStorage.getItem('productsPerPage'),
-      page_number: sessionStorage.getItem('pageNumber')
-    };
-
-    axios.post(`${apiP}/products/product_list/`, {
-      params: params
+    axios.post(`${apiK}/products`, { 
+      pageSize: Number(sessionStorage.getItem('pageSize')) || 30,
+      pageNumber: Number(sessionStorage.getItem('pageNumber')) || 1,
+      filterBasicInfo: {
+        brand: sessionStorage.getItem('brand') || '',
+        gender: sessionStorage.getItem('gender') || 'ALL',
+        category: category,
+        priceMin: Number(sessionStorage.getItem('priceMin')) || 0,
+        priceMax: Number(sessionStorage.getItem('priceMax')) || 999
+      }
     })
     .then(response => {
       props.setProducts(response.data.products);
 
-      props.setPageNumber(response.data.total_pages)
-      sessionStorage.setItem('totalPages', response.data.total_pages);
+      sessionStorage.setItem('numberOfPages', response.data.total_pages);
     })
     .catch(error => {
       console.error(error);
     })
     .finally(() => {
-      setIsLoading(false); // Ustaw ładowanie na false po zakończeniu żądania
+      props.setIsLoading(false); // Ustaw ładowanie na false po zakończeniu żądania
     });
 
-  }, [category, subcategory, props.sortBy, props.productsPerPage, props.pageNumber, props.pageNumber]);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
+      <div className={styles.categoriesMenuWrapper}>
+        <CategoriesMenu 
+          isLoading={props.isLoading}
+          setIsLoading={props.setIsLoading}
 
-    <div className={styles.categoriesMenuMobileWrapper}>
-      <CategoriesMenuMobile 
-        subcategory={props.subcategory} 
-        setSubcategory={props.setSubcategory}  
-
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-
-        category={props.category} 
-        setCategory={props.setCategory}
-      />
-    </div>
-
-    <div className={styles.categoriesMenuWrapper}>
-      <CategoriesMenu 
-        subcategory={props.subcategory} 
-        setSubcategory={props.setSubcategory}  
-
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-
-        category={props.category} 
-        setCategory={props.setCategory}
-      />
-    </div>
+          products={props.products} 
+          setProducts={props.setProducts}
+        />
+      </div>
 
       <div>
         <Products 
-          category={props.category} 
-          products={props.products}
-
-          isLoading={isLoading}
+          isLoading={props.isLoading}
+          setIsLoading={props.setIsLoading}
+  
+          products={props.products} 
+          setProducts={props.setProducts}
         />
       </div>
     </div>

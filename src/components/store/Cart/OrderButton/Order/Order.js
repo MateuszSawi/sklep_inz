@@ -10,7 +10,6 @@ import CartSummary from './CartSummary/CartSummary';
 
 function Order(props) {
 
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   const [warning, setWarning] = useState(false)
 
   const [orderData, setOrderData] = useState({
@@ -27,75 +26,19 @@ function Order(props) {
     country: 'Polska',
     phoneNr: '',
     comment: '',
-    shippingMethod: 'SCHENKER',
+    shippingMethod: 'kurier',
   });
-
-  useEffect(() => {
-    handleCheckSession();
-  }, []);
-
-  const handleCheckSession = () => {
-    // event.preventDefault();
-    axios.get(`${apiK}/auth/checksession`, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((response) => {
-        // console.log(response.data)
-
-        // props.setAuthorities(response.data.authorities);
-
-        if (response.data.isLoggedIn) {
-          setIsUserLoggedIn(true)
-
-          setOrderData({ 
-            ...orderData, 
-            
-            email: response.data.login,
-            name: response.data.name,
-            surname: response.data.surname,
-          })
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  useEffect(() => {
-    props.setOrderDataToSend({
-      ...props.orderDataToSend, 
-
-      email: orderData.email,
-      products: products,
-      addressToSend: `${orderData.adress}, ${orderData.additionalAdress}, ${orderData.city}, ${orderData.postCode}, ${orderData.country}`,
-      addressForInvoice: orderData.addressForInvoice, // do faktury
-      phoneNumber: orderData.phoneNr,
-      name: orderData.name,
-      surname: orderData.surname,
-      paymentMethod: props.selectedPaymentMethod,
-      company: orderData.company,
-      nip: orderData.nip,
-      comment: orderData.comment,
-      shippingMethod: orderData.shippingMethod,
-      price_pl: price_pl,
-      stripeIntentId: ''
-    });
-  }, [orderData]);
 
   //
 
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       
   const products = cartItems.map(item => ({
-    productID: item.product_id,
+    productCode: item.productCode,
     amount: item.quantity
   }));
 
-  const totalBrutto = cartItems.reduce((sum, item) => sum + (item.price_brutto * item.quantity), 0);
-  const totalNetto = cartItems.reduce((sum, item) => sum + (item.price_netto * item.quantity), 0);
+  const totalBrutto = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   // console.log(cartItems, totalBrutto, totalNetto)
 
@@ -103,7 +46,6 @@ function Order(props) {
 
   const price_pl = [
     {
-      netto: totalNetto,
       brutto: totalBrutto
     }
   ];
@@ -128,7 +70,7 @@ function Order(props) {
 
   const navigateToLoginIn = () => {
     if (!isUserLoggedIn) {
-      navigate(`/sklep/logowanie`);
+      navigate(`/logowanie`);
     }
   }
 
@@ -155,19 +97,10 @@ function Order(props) {
             selectedPaymentMethod={props.selectedPaymentMethod}
 
             orderData={orderData}
+
             setWarning={setWarning}
-
             warning={warning}
-
-            setEmailP24={props.setEmailP24}
           />
-
-          {!isUserLoggedIn &&
-            <div className={styles.logInWrapper}>
-              <p>Zamawiasz jako gość -&nbsp;</p>
-              <p className={styles.logIn} onClick={navigateToLoginIn}>zaloguj się</p>
-            </div>
-          }
 
         </div>
 

@@ -29,7 +29,6 @@ function PaymentMethod(props) {
     ) {
       props.setWarning(true)
     } else {
-      props.setEmailP24(orderData.email)
       props.setWarning(false)
       navigate(`/przetwarzanie`);
     }
@@ -41,31 +40,11 @@ function PaymentMethod(props) {
       <label>
         <input type="radio"
           name="paymentMethod"
-          value="blik"
-          checked={props.selectedPaymentMethod === 'blik'}
+          value="cash"
+          checked={props.selectedPaymentMethod === 'cash'}
           onChange={handlePaymentMethodChange}
         />
-        &nbsp;BLIK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </label>
-
-      <label>
-        <input type="radio"
-          name="paymentMethod"
-          value="card"
-          checked={props.selectedPaymentMethod === 'card'}
-          onChange={handlePaymentMethodChange}
-        />
-        &nbsp;Karta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </label>
-
-      <label>
-        <input type="radio"
-          name="paymentMethod"
-          value="p24"
-          checked={props.selectedPaymentMethod === 'p24'}
-          onChange={handlePaymentMethodChange}
-        />
-        &nbsp;Przelewy24
+        &nbsp;Za pobraniem &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </label>
 
       <button type="submit" onClick={navigateHandler}>Złóż zamówienie</button>

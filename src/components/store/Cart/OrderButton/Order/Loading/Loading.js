@@ -9,17 +9,8 @@ import Payment from './Payment/Payment';
 
 const Loading = (props) => {
 
-  const [isStripeLoading, setIsStripeLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
-  const [stripeApiKey, setStripeApiKey] = useState(null);
-  const [clientSecret, setClientSecret] = useState(null);
-  const [paymentIntentId, setPaymentIntentId] = useState(null);
 
-  // const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchStripeKeyAndClientSecret();
-  }, []);
 
   const fetchStripeKeyAndClientSecret = async () => {
     try {
@@ -42,15 +33,6 @@ const Loading = (props) => {
 
       const paymentIntentId = secretResponse.data.payment_intent_id;
 
-      // props.setOrderDataToSend({
-
-      //   stripeIntentId: secretResponse.data.payment_intent_id
-      // });
-
-      // console.log(secretResponse.data.payment_intent_id)
-      // console.log('props.orderDataToSend: ', props.orderDataToSend)
-      // console.log(props.orderDataToSend)
-
       const makeOrder = await axios.post(`${apiK}/staff/makeorder`, {
         ...props.orderDataToSend,
         stripeIntentId: paymentIntentId
@@ -62,19 +44,6 @@ const Loading = (props) => {
       setIsStripeLoading(false);
     }
   };
-
-  let stripePromise;
-  if (stripeApiKey) {
-    stripePromise = loadStripe(stripeApiKey);
-  }
-
-  if (isStripeLoading) {
-    return (
-      <div className={styles.loadingScreen}>
-        <div className={styles.loader}></div>
-      </div>
-    );
-  }
 
   if (stripePromise && clientSecret) {
     return (

@@ -2,13 +2,6 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
-import Header from './components/website/Header/Header';
-
-import MainPage from './components/website/MainPage/MainPage';
-import Service from './components/website/Service/Service';
-import News from './components/website/News/News';
-import Offer from './components/website/Offer/Offer';
-import Contact from './components/website/Contact/Contact';
 import MainPageStore from './components/store/MainPageStore';
 
 import Footer from './components/footer/Footer';
@@ -16,7 +9,6 @@ import Privacy from './components/policies/Privacy/Privacy';
 import Cookies from './components/policies/Cookies/Cookies';
 
 import FooterRenox from './components/footerlogos/FooterRenox/FooterRenox';
-import FooterCometweb from './components/footerlogos/FooterCometweb/FooterCometweb';
 
 import RegisterSuccessfull from './components/store/Login/AllAuth/Register/RegisterSuccessfull/RegisterSuccessfull';
 import AfterRegister from './components/store/Login/AllAuth/Register/AfterRegister/AfterRegister';
@@ -26,62 +18,53 @@ import Order from './components/store/Cart/OrderButton/Order/Order';
 import Loading from './components/store/Cart/OrderButton/Order/Loading/Loading';
 import Payment from './components/store/Cart/OrderButton/Order/Loading/Payment/Payment';
 
+// import Register from './Login/AllAuth/Register/Register';
+// import RegisterSuccessfull from './Login/AllAuth/Register/RegisterSuccessfull/RegisterSuccessfull';
+// import ResetPassword from './Login/AllAuth/ResetPassword/ResetPassword';
+// import ResetSetNewPassword from './Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword'
+// import ChangePassword from './Login/AllAuth/ChangePassword/ChangePassword';
+// import LoginsMainPage from './Login/LoginsMainPage';
+
+import Cart from './components/store/Cart/Cart';
+import Favorite from './components/store/Favorite/Favorite';
+
+import HeaderStore from './components/store/HeaderStore/HeaderStore';
+import StoreStartPage from './components/store/StoreStartPage/StoreStartPage';
+import StoreProductsPage from './components/store/StoreProductsPage/StoreProductsPage';
+import SingleProductMain from './components/store/SingleProductPage/SingleProductMain';
+
 function App() {
-
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
-  const [orderDataToSend, setOrderDataToSend] = useState({});
-
-  const [emailP24, setEmailP24] = useState('');
-
 
   return (
     <div className='container'>
-      <Header />
+
+      <HeaderStore />
 
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/serwis" element={<Service />} />
-        <Route path="/aktualności" element={<News />} />
-        <Route path="/oferta" element={<Offer />} />
-        <Route path="/kontakt" element={<Contact />} />
+        <Route path="/" element={<StoreStartPage />} />
 
-        <Route path="/sklep/*" element={<MainPageStore />} />
+        <Route path="/:category" element={<StoreProductsPage />} />
+
+        <Route path=":category/:productCode" element={<SingleProductMain />} />
 
         <Route path="/zarejestrowano" element={<AfterRegister />} />
         <Route path="/activate/:userId/:token" element={<RegisterSuccessfull />} />
-        <Route path="/password_reset/:userId/:token" element={<ResetSetNewPassword />} />
-        
-        <Route path="/polityka-prywatności" element={<Privacy />} />
-        <Route path="/polityka-cookies" element={<Cookies />} />
+        <Route path="/password_reset/:userId/:token" element={<ResetSetNewPassword />} />  
 
-        <Route path="/zamówienie" element={<Order 
-          setSelectedPaymentMethod={setSelectedPaymentMethod}
-          selectedPaymentMethod={selectedPaymentMethod}
+        <Route path="/koszyk" element={<Cart />} />
+        <Route path="/ulubione" element={<Favorite />} />
 
-          setOrderDataToSend={setOrderDataToSend}
-          orderDataToSend={orderDataToSend}
+        {/* <Route path="/logowanie" element={<LoginsMainPage />} />
+        <Route path="/rejestracja" element={<Register />} />
+        <Route path="/resetuj-hasło" element={<ResetPassword />} />
+        <Route path="/zmiana-hasła" element={<ChangePassword />} />      */}
 
-          setEmailP24={setEmailP24}
-        />} />
+        <Route path="/zamówienie" element={<Order />} />
 
-        <Route path="/przetwarzanie" element={<Loading 
-          selectedPaymentMethod={selectedPaymentMethod}
-
-          setOrderDataToSend={setOrderDataToSend}
-          orderDataToSend={orderDataToSend}
-
-          emailP24={emailP24}
-        />} />
-
-        <Route path="/płatność" element={<Payment 
-          orderDataToSend={orderDataToSend}
-        />} />
-        
+        <Route path="/przetwarzanie" element={<Loading />} />
       </Routes>
 
       <Footer />
-      {/* <FooterRenox /> */}
-      <FooterCometweb />
 
     </div>
   );

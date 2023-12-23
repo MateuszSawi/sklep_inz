@@ -10,19 +10,29 @@ function HeaderStore() {
   const navigate = useNavigate();
 
   const handleLinkClickUser = (category, title) => {
-    navigate(`/sklep/logowanie`);
+    navigate(`/logowanie`);
   };
 
   const handleLinkClickCart = (category, title) => {
-    navigate(`/sklep/koszyk`);
+    navigate(`/koszyk`);
   };
 
   const handleLinkClickFavorite = (category, title) => {
-    navigate(`/sklep/ulubione`);
+    navigate(`/ulubione`);
+  };
+
+  const handleLinkClickMainPage = (category, title) => {
+    navigate(`/`);
   };
 
   return (
     <header className={styles.header}>
+
+      <img 
+        onClick={() => handleLinkClickMainPage()}
+        src={process.env.PUBLIC_URL + '/website/logo/clothes.png'} 
+        alt={'Renox-logo'} 
+      />
 
       <SearchBar />
 

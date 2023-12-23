@@ -11,6 +11,8 @@ function AddToFavourite(props) {
 
   const toastId = React.useRef(null);
 
+  const { category, productCode } = useParams();
+
   const notify = () => {
     if (!toast.isActive(toastId.current)) {
       toastId.current = toast("Dodano do ulubionych!", {
@@ -26,32 +28,28 @@ function AddToFavourite(props) {
     }
   };
 
-  let category = props.category;
-  let subcategory = props.subcategory;
-
   const handleAddToFavourites = (event) => {
     event.stopPropagation();
     notify();
   
-    const { product_id, price_netto, price_brutto, product_name, primary_link, quantity } = props.product;
+    const { productCode, name, brand, gender, price, imageUrls } = props.product;
   
     // Pobranie aktualnej listy ulubionych z localStorage
     const currentFavourites = JSON.parse(localStorage.getItem('favourite')) || [];
     
     // Sprawdzenie, czy produkt jest już w ulubionych
-    const isProductInFavourites = currentFavourites.some(item => item.product_id === product_id);
+    const isProductInFavourites = currentFavourites.some(item => item.productCode === productCode);
   
     if (!isProductInFavourites) {
       // Dodanie nowego produktu do ulubionych
       const favouriteProduct = {
-        product_id,
-        product_name,
-        price_netto,
-        price_brutto,
-        primary_link,
+        productCode,
+        name,
+        brand,
+        price,
+        gender,
         category,
-        subcategory,
-        quantity
+        imageUrls
       };
       currentFavourites.push(favouriteProduct);
   

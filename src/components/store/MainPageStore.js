@@ -30,9 +30,9 @@ function MainPageStore() {
 
   return (
     <div>      
-      <HeaderStore />
+      {/* <HeaderStore /> */}
       
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<StoreStartPage 
           category={category} 
           setCategory={setCategory} 
@@ -49,16 +49,7 @@ function MainPageStore() {
           setSingleProduct={setSingleProduct}
         />} />
 
-        <Route path="/:category/:subcategory" element={<StoreProductsPage 
-          category={category} 
-          setCategory={setCategory}  
-          
-          subcategory={subcategory} 
-          setSubcategory={setSubcategory}  
-          
-          singleProduct={singleProduct}
-          setSingleProduct={setSingleProduct}
-        />} />
+
 
         <Route path=":category/:subcategory/:singleProduct" element={<SingleProductMain 
           singleProduct={singleProduct}
@@ -79,7 +70,7 @@ function MainPageStore() {
         <Route path="/zmiana-hasła" element={<ChangePassword />} />
 
         <Route path="/moje-konto/*" element={<MyAccountRoutes />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

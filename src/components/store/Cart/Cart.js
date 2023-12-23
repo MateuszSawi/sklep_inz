@@ -12,12 +12,12 @@ function Cart() {
     setCartItems(items);
   }, []);
 
-  const handleQuantityChange = (product_id, newQuantity) => {
+  const handleQuantityChange = (productCode, newQuantity) => {
     newQuantity = parseInt(newQuantity, 10);
     newQuantity = newQuantity > 9999 ? 9999 : newQuantity; // Ograniczenie do 9999
     if (!isNaN(newQuantity) && newQuantity >= 1) {
       const updatedCartItems = cartItems.map(item => {
-        if (item.product_id === product_id) {
+        if (item.productCode === productCode) {
           return { ...item, quantity: newQuantity };
         }
         return item;
@@ -27,9 +27,9 @@ function Cart() {
     }
   };
 
-  const handleIncreaseQuantity = (product_id) => {
+  const handleIncreaseQuantity = (productCode) => {
     const updatedCartItems = cartItems.map(item => {
-      if (item.product_id === product_id) {
+      if (item.productCode === productCode) {
         const newQuantity = item.quantity < 9999 ? item.quantity + 1 : 9999; // Ograniczenie do 9999
         return { ...item, quantity: newQuantity };
       }
@@ -39,9 +39,9 @@ function Cart() {
     localStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
-  const handleDecreaseQuantity = (product_id) => {
+  const handleDecreaseQuantity = (productCode) => {
     const updatedCartItems = cartItems.map(item => {
-      if (item.product_id === product_id && item.quantity > 1) {
+      if (item.productCode === productCode && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 };
       }
       return item;
@@ -54,32 +54,22 @@ function Cart() {
     return (price * quantity).toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
   };
 
-  const handleRemoveItem = (product_id) => {
-    const updatedCartItems = cartItems.filter(item => item.product_id !== product_id);
+  const handleRemoveItem = (productCode) => {
+    const updatedCartItems = cartItems.filter(item => item.productCode !== productCode);
     setCartItems(updatedCartItems);
     localStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
   const calculateTotalNetto = () => {
     return cartItems.reduce((total, item) => {
-      return total + (item.price_netto * item.quantity);
-    }, 0).toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
-  };
-
-  const calculateTotalBrutto = () => {
-    return cartItems.reduce((total, item) => {
-      return total + (item.price_brutto * item.quantity);
+      return total + (item.price * item.quantity);
     }, 0).toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
   };
 
   const navigate = useNavigate();
 
-  const navigateTOProduct = (product_id, subcategory, category) => {
-    if (subcategory) {
-      navigate(`/sklep/${category}/${subcategory}/${product_id}`);
-    } else {
-      navigate(`/sklep/${category}/${category}/${product_id}`);
-    }
+  const navigateTOProduct = (product_id, category) => {
+    navigate(`/${category}/${product_id}`);
   }
 
   return (
@@ -88,41 +78,40 @@ function Cart() {
       {cartItems.length === 0 ? <p>Koszyk jest pusty.</p> : (
         <div className={styles.cartList}>
           {cartItems.map(item => (
-            <div key={item.product_id} className={styles.cartItem}>
+            <div key={item.productCode} className={styles.cartItem}>
               <div className={styles.titleWrapper}>
-                <h3 onClick={() => navigateTOProduct(item.product_id, item.subcategory, item.category)}>{item.product_name}</h3>
+                <h3 onClick={() => navigateTOProduct(item.product_id, item.category)}>{item.name}</h3>
               </div>
 
               <div className={styles.infoWrapper}>
                 <div className={styles.infoWrapperImg}>
-                  <img src={item.primary_link} alt="Product" className={styles.image} />
-                  <p>Numer katalogowy: {item.product_id} </p>
+                  <img src={item.imageUrls[0]} alt="Product" className={styles.image} />
+                  <p>Numer produktu: {item.productCode} </p>
                 </div>
 
                 <div className={styles.innerInfoWrapper}>
                     <p>Cena netto: {calculatePrice(item.price_netto, item.quantity)} zł</p>
-                    <p>Cena brutto: {calculatePrice(item.price_brutto, item.quantity)} zł</p>
 
                     <div className={styles.cartQuantity}>
                       <button
-                        onClick={() => handleDecreaseQuantity(item.product_id)}
+                        onClick={() => handleDecreaseQuantity(item.productCode)}
                         disabled={item.quantity <= 1}
                       >-</button>
                       <input 
                         type="number"
                         value={item.quantity}
-                        onChange={(e) => handleQuantityChange(item.product_id, e.target.value, item.maxQuantity)}
+                        onChange={(e) => handleQuantityChange(item.productCode, e.target.value, item.maxQuantity)}
                         min="1"
                         max={item.maxQuantity}
                         className={styles.quantityInput}
                       />
                       <button
-                        onClick={() => handleIncreaseQuantity(item.product_id, item.maxQuantity)}
+                        onClick={() => handleIncreaseQuantity(item.productCode, item.maxQuantity)}
                         disabled={item.quantity >= item.maxQuantity}
                       >+</button>
                       <p>ilość</p>
                     </div>
-                    <button onClick={() => handleRemoveItem(item.product_id)} className={styles.removeItem}>
+                    <button onClick={() => handleRemoveItem(item.productCode)} className={styles.removeItem}>
                       Usuń z koszyka
                     </button>
                 </div>
@@ -134,7 +123,6 @@ function Cart() {
       )}
       <div className={styles.totalPrice}>
         <p>Łączna suma netto: {calculateTotalNetto()} zł</p>
-        <p>Łączna suma brutto: {calculateTotalBrutto()} zł</p>
         <OrderButtonFromCart 
           cartItems = {cartItems}
         />

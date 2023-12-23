@@ -2,8 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './AddToCartButton.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate, useParams  } from 'react-router-dom';
 
 function AddToCartButton(props) {
+
+  const { category, productCode } = useParams();
+
+  const quantity = props.quantity;
 
   const toastId = React.useRef(null); // Używamy useRef, aby zachować stały identyfikator powiadomienia
 
@@ -24,13 +29,13 @@ function AddToCartButton(props) {
 
   const handleAddToCart = () => {
     notify();
-    const { product_id, quantity, product_name, price_netto, price_brutto, by_length, category, subcategory, primary_link } = props;
+    const { productCode, name, brand, gender, price, imageUrls } = props.product;
 
     // Pobranie aktualnej listy produktów z localStorage
     const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     
     // Znalezienie produktu w koszyku
-    const existingProductIndex = currentCart.findIndex(item => item.product_id === product_id);
+    const existingProductIndex = currentCart.findIndex(item => item.productCode === productCode);
     
     if (existingProductIndex > -1) {
       // Obliczenie nowej ilości, uwzględniając maksymalną ilość 9999
@@ -42,15 +47,14 @@ function AddToCartButton(props) {
       // Jeśli produkt nie istnieje, dodaj go do koszyka z uwzględnieniem maksymalnej ilości 9999
       const newProductQuantity = quantity > 9999 ? 9999 : quantity;
       const newProduct = {
-        product_id,
+        productCode,
         quantity: newProductQuantity,
-        product_name,
-        price_netto,
-        price_brutto,
+        name,
+        brand,
+        gender,
+        price,
+        imageUrls,
         category,
-        subcategory,
-        primary_link,
-        // by_length
       };
       currentCart.push(newProduct);
     }
