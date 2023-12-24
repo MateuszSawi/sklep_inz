@@ -30,7 +30,7 @@ function StoreProducts(props) {
     .then(response => {
       props.setProducts(response.data.products);
 
-      sessionStorage.setItem('numberOfPages', response.data.total_pages);
+      sessionStorage.setItem('numberOfPages', response.data.pageNumber);
     })
     .catch(error => {
       console.error(error);
