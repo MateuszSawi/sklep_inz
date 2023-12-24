@@ -45,7 +45,7 @@ function CategoriesMenu(props) {
       props.setIsLoading(false);
     });
 
-    navigate(`/${category}}`);
+    navigate(`/${category}`);
   };
 
   return (
