@@ -62,6 +62,9 @@ function App() {
         <Route path="/zamówienie" element={<Order />} />
 
         <Route path="/przetwarzanie" element={<Loading />} />
+
+        <Route path="/polityka-prywatności" element={<Privacy />} />
+        <Route path="/polityka-cookies" element={<Cookies />} />
       </Routes>
 
       <Footer />

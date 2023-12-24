@@ -30,7 +30,7 @@ function Footer() {
             <div className={styles.box}>
               <p className={styles.footerColumn} 
                 style={{ cursor: 'default' }}>
-                Przedsiębiorstwo Remontowo-Handlowe „RENOX” Mirosław Wielechowski Sp. J.
+                Cltohes Shop
               </p>
               {/* <span className={styles.underlineWhite}></span> */}
             </div>
@@ -39,9 +39,9 @@ function Footer() {
           <div className={styles.link}>
             <div className={styles.box}>
               <p className={styles.footerColumn} 
-                onClick={e => {handleCopyToClipboard('11-041 Olsztyn, ul. Sokola 4')}}
+                onClick={e => {handleCopyToClipboard('11-111 Gdańsk, ul. Pistacjowa 1')}}
                 style={{ cursor: 'pointer' }}>
-                11-041 Olsztyn, ul. Sokola 4
+                11-111 Gdańsk, ul. Pistacjowa 1
               </p>
               <span className={styles.underlineWhite}></span>
             </div>
@@ -50,9 +50,9 @@ function Footer() {
           <div className={styles.link}>
             <div className={styles.box}>
               <p className={styles.footerColumn}
-                onClick={e => {handleCopyToClipboard('7390203185')}} 
+                onClick={e => {handleCopyToClipboard('1111111111')}} 
                 style={{ cursor: 'pointer' }}>
-                NIP 739-020-31-85
+                NIP 111-111-11-11
               </p>
               <span className={styles.underlineWhite}></span>
             </div>
@@ -65,9 +65,9 @@ function Footer() {
           <div className={styles.link}>
             <div className={styles.box}>
               <p className={styles.footerColumn} 
-                onClick={e => {handleCopyToClipboard('renox@renox.pl')}}
+                onClick={e => {handleCopyToClipboard('contact@clothes.shop')}}
                 style={{ cursor: 'pointer' }}>
-                <FaEnvelope/> renox@renox.pl <ToastContainer />
+                <FaEnvelope/> contact@clothes.shop <ToastContainer />
               </p>
               <span className={styles.underlineWhite}></span>
             </div>
@@ -75,8 +75,8 @@ function Footer() {
 
           <div className={styles.link}>
             <div className={styles.box}>
-              <p className={styles.footerColumn} style={{ cursor: 'pointer' }} onClick={e => {handleCopyToClipboard('89 523 91 52')}}>
-                <FaPhoneAlt/> 89 523-91-52 <ToastContainer />
+              <p className={styles.footerColumn} style={{ cursor: 'pointer' }} onClick={e => {handleCopyToClipboard('111 111 111')}}>
+                <FaPhoneAlt/> 111-111-111 <ToastContainer />
               </p> 
               <span className={styles.underlineWhite}></span>
             </div>
@@ -84,8 +84,8 @@ function Footer() {
 
           <div className={styles.link}>
             <div className={styles.box}>
-              <p className={styles.footerColumn} style={{ cursor: 'pointer' }} onClick={e => {handleCopyToClipboard('89 523 91 53')}}>
-                <FaPhoneAlt/> 89 523-91-53 <ToastContainer />
+              <p className={styles.footerColumn} style={{ cursor: 'pointer' }} onClick={e => {handleCopyToClipboard('222 222 222')}}>
+                <FaPhoneAlt/> 222-222-222 <ToastContainer />
               </p> 
               <span className={styles.underlineWhite}></span>
             </div>
@@ -93,8 +93,8 @@ function Footer() {
 
           <div className={styles.link}>
             <div className={styles.box}>
-              <p className={styles.footerColumn} style={{ cursor: 'pointer' }} onClick={e => {handleCopyToClipboard('89 523 90 82')}}>
-                <FaPhoneAlt/> Fax. 89 523-90-82 <ToastContainer />
+              <p className={styles.footerColumn} style={{ cursor: 'pointer' }} onClick={e => {handleCopyToClipboard('33 333 33 33')}}>
+                <FaPhoneAlt/> Fax. 33 333-33-33 <ToastContainer />
               </p> 
               <span className={styles.underlineWhite}></span>
             </div>
@@ -103,7 +103,7 @@ function Footer() {
           <div className={styles.link}>
             <div className={styles.box}>
               <p className={styles.footerColumn} style={{ cursor: 'pointer' }}>
-                <a href="https://www.facebook.com/renoxPL/" target="_blank" rel="noreferrer"><FaFacebookSquare/> https://www.facebook.com/renoxPL/</a>
+                <a href="https://facebook/clothesShopXX" target="_blank" rel="noreferrer"><FaFacebookSquare/> https://facebook/clothesShopXX</a>
               </p> 
               <span className={styles.underlineWhite}></span>
             </div>
@@ -131,7 +131,8 @@ function Footer() {
 
       <div className={styles.footerLogo}>
         <img 
-          src={process.env.PUBLIC_URL + '/website/logo/renox_logo_white.png'} 
+          className={styles.logo}
+          src={process.env.PUBLIC_URL + '/website/logo/Clothes_white.png'} 
           alt={'Renox-logo'} 
         />
       </div>

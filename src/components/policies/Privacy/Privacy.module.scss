@@ -11,21 +11,7 @@
 
 .header {
   font-size: 2rem;
-  margin-top: 20px;
+  margin: 20px 0 300px 0;
   text-align: center;
-  color: $color_dark;
-}
-
-.subHeader {
-  font-size: 1.5rem;
-  margin-top: 15px;
-  text-decoration: underline;
-  color: $color_dark;
-}
-
-.paragraph {
-  font-size: 1rem;
-  margin-top: 10px;
-  text-align: justify;
   color: $color_dark;
 }
