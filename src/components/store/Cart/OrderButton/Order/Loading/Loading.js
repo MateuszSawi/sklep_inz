@@ -9,53 +9,53 @@ import Payment from './Payment/Payment';
 
 const Loading = (props) => {
 
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
 
 
-  const fetchStripeKeyAndClientSecret = async () => {
-    try {
-      const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  // const fetchStripeKeyAndClientSecret = async () => {
+  //   try {
+  //     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       
-      const products = cartItems.map(item => ({
-        productID: item.product_id,
-        amount: item.quantity
-      }));
+  //     const products = cartItems.map(item => ({
+  //       productID: item.product_id,
+  //       amount: item.quantity
+  //     }));
 
-      const keyResponse = await axios.get(`${apiK}/payment/publicstripekey`);
-      setStripeApiKey(keyResponse.data.stripePublicKey);
+  //     const keyResponse = await axios.get(`${apiK}/payment/publicstripekey`);
+  //     setStripeApiKey(keyResponse.data.stripePublicKey);
 
-      const secretResponse = await axios.post(`${apiK}/payment/buycart`, {
-        email: props.orderDataToSend.email,
-        products: products
-      });
-      setClientSecret(secretResponse.data.client_secret);
-      setPaymentIntentId(secretResponse.data.payment_intent_id);
+  //     const secretResponse = await axios.post(`${apiK}/payment/buycart`, {
+  //       email: props.orderDataToSend.email,
+  //       products: products
+  //     });
+  //     setClientSecret(secretResponse.data.client_secret);
+  //     setPaymentIntentId(secretResponse.data.payment_intent_id);
 
-      const paymentIntentId = secretResponse.data.payment_intent_id;
+  //     const paymentIntentId = secretResponse.data.payment_intent_id;
 
-      const makeOrder = await axios.post(`${apiK}/staff/makeorder`, {
-        ...props.orderDataToSend,
-        stripeIntentId: paymentIntentId
-      });
+  //     const makeOrder = await axios.post(`${apiK}/staff/makeorder`, {
+  //       ...props.orderDataToSend,
+  //       stripeIntentId: paymentIntentId
+  //     });
 
-    } catch (error) {
-      console.error('Błąd:', error);
-    } finally {
-      setIsStripeLoading(false);
-    }
-  };
+  //   } catch (error) {
+  //     console.error('Błąd:', error);
+  //   } finally {
+  //     setIsStripeLoading(false);
+  //   }
+  // };
 
-  if (stripePromise && clientSecret) {
-    return (
-      <Elements stripe={stripePromise}>
-        <Payment 
-          clientSecret={clientSecret} 
-          selectedPaymentMethod={props.selectedPaymentMethod}
-          emailP24={props.emailP24}
-        />
-      </Elements>
-    );
-  }
+  // if (stripePromise && clientSecret) {
+  //   return (
+  //     <Elements stripe={stripePromise}>
+  //       <Payment 
+  //         clientSecret={clientSecret} 
+  //         selectedPaymentMethod={props.selectedPaymentMethod}
+  //         emailP24={props.emailP24}
+  //       />
+  //     </Elements>
+  //   );
+  // }
 
   // Renderowanie alternatywnego UI, gdy Stripe nie jest ładowany i nie jest gotowy
   return <div>Coś poszło nie tak...</div>;

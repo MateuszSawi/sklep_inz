@@ -68,11 +68,11 @@ function Order(props) {
 
   const navigate = useNavigate();
 
-  const navigateToLoginIn = () => {
-    if (!isUserLoggedIn) {
-      navigate(`/logowanie`);
-    }
-  }
+  // const navigateToLoginIn = () => {
+  //   if (!isUserLoggedIn) {
+  //     navigate(`/logowanie`);
+  //   }
+  // }
 
   return (
     <>
