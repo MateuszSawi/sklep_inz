@@ -18,7 +18,8 @@ import Order from './components/store/Cart/OrderButton/Order/Order';
 import Loading from './components/store/Cart/OrderButton/Order/Loading/Loading';
 import Payment from './components/store/Cart/OrderButton/Order/Loading/Payment/Payment';
 
-// import Register from './Login/AllAuth/Register/Register';
+import Register from './components/Login/AllAuth/Register/Register';
+// D:\GIT\Git\projects\forRaper\src\components\Login\AllAuth\Register\Register.js
 // import RegisterSuccessfull from './Login/AllAuth/Register/RegisterSuccessfull/RegisterSuccessfull';
 // import ResetPassword from './Login/AllAuth/ResetPassword/ResetPassword';
 // import ResetSetNewPassword from './Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword'
@@ -54,10 +55,10 @@ function App() {
         <Route path="/koszyk" element={<Cart />} />
         <Route path="/ulubione" element={<Favorite />} />
 
-        {/* <Route path="/logowanie" element={<LoginsMainPage />} />
+        {/* <Route path="/logowanie" element={<LoginsMainPage />} /> */}
         <Route path="/rejestracja" element={<Register />} />
-        <Route path="/resetuj-hasło" element={<ResetPassword />} />
-        <Route path="/zmiana-hasła" element={<ChangePassword />} />      */}
+        {/* <Route path="/resetuj-hasło" element={<ResetPassword />} /> */}
+        {/* <Route path="/zmiana-hasła" element={<ChangePassword />} />      */}
 
         <Route path="/zamówienie" element={<Order />} />
 

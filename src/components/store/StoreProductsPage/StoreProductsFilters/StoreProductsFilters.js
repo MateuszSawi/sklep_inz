@@ -43,39 +43,46 @@ function StoreProductsFilters(props) {
   const handlePriceMinChange = (event) => {
     setMinimumPrice(event.target.value);
     sessionStorage.setItem('priceMin', event.target.value);
+    if (event.target.value === '') {setMinimumPrice(0)}
   };
 
   const handlePriceMaxChange = (event) => {
     setMaximumPrice(event.target.value);
     sessionStorage.setItem('priceMax', event.target.value);
+    if (event.target.value === '') {setMaximumPrice(999)}
   };
 
   useEffect(() => {
     props.setIsLoading(true);
 
-    axios.post(`${apiK}/products`, { 
-      pageSize: Number(sessionStorage.getItem('pageSize')) || 30,
-      pageNumber: Number(sessionStorage.getItem('pageNumber')) || 1,
-      filterBasicInfo: {
-        brand: sessionStorage.getItem('brand') || '',
-        gender: sessionStorage.getItem('gender') || 'ALL',
-        category: category,
-        priceMin: Number(sessionStorage.getItem('priceMin')) || 0,
-        priceMax: Number(sessionStorage.getItem('priceMax')) || 999
-      }
-    })
-    .then(response => {
-      props.setProducts(response.data.products);
+    const delay = 750;
 
-      sessionStorage.setItem('numberOfPages', response.data.total_pages);
-    })
-    .catch(error => {
-      console.error(error);
-    })
-    .finally(() => {
-      props.setIsLoading(false);
-    });
+    const timeoutId = setTimeout(() => {
+      axios.post(`${apiK}/products`, { 
+        pageSize: Number(sessionStorage.getItem('pageSize')) || 30,
+        pageNumber: Number(sessionStorage.getItem('pageNumber')) || 1,
+        filterBasicInfo: {
+          brand: sessionStorage.getItem('brand') || '',
+          gender: sessionStorage.getItem('gender') || 'ALL',
+          category: category,
+          priceMin: Number(sessionStorage.getItem('priceMin')) || 0,
+          priceMax: Number(sessionStorage.getItem('priceMax')) || 999
+        }
+      })
+      .then(response => {
+        props.setProducts(response.data.products);
 
+        sessionStorage.setItem('numberOfPages', response.data.numberOfPages);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => {
+        props.setIsLoading(false);
+      });
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
   }, [selectedGender, itemsPerPage, currentPage, selectedBrand, minimumPrice, maximumPrice]);
 
   return (
@@ -85,7 +92,7 @@ function StoreProductsFilters(props) {
           <option value="ALL">Wszystkie</option>
           <option value="WOMEN">Kobiety</option>
           <option value="MEN">Mężczyźni</option>
-          <option value="UNISEX">Unisex</option>
+          {/* <option value="UNISEX">Unisex</option> */}
         </select>
         <select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.dropdown}>
           <option value="20">20 produktów</option>
@@ -94,21 +101,31 @@ function StoreProductsFilters(props) {
         </select>
         <input type="text" value={selectedBrand} onChange={handleBrandChange} placeholder="Marka" />
         Cena min:
-        <input type="number" value={minimumPrice} 
+        <input 
+          type="number" 
+          value={minimumPrice} 
+          min="1" 
+          max="999" 
           className={styles.num} onChange={handlePriceMinChange} />
         Cena max:
-        <input type="number" value={maximumPrice} 
-          className={styles.num} onChange={handlePriceMaxChange} />
+        <input 
+          type="number" 
+          value={maximumPrice} 
+          min="1" 
+          max="999" 
+          className={styles.num} onChange={handlePriceMaxChange} />zł
       </div>
 
       <div className={styles.pagination}>
         <input
           type="number"
           value={currentPage}
+          max={sessionStorage.getItem('numberOfPages')}
+          min={1}
           onChange={(e) => handlePageChange(Number(e.target.value))}
-          max={sessionStorage.getItem('currentPage')}
+          // max={sessionStorage.getItem('currentPage')}
         />
-        <p>z {sessionStorage.getItem('currentPage')}</p>
+        <p>z {sessionStorage.getItem('numberOfPages')}</p>
       </div>
     </div>
   );

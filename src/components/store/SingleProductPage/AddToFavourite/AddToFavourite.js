@@ -7,11 +7,11 @@ import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function AddToFavourite(props) {
+function AddToFavourite({ productCode, productName, price, mainImage, category }) {
 
   const toastId = React.useRef(null);
 
-  const { category, productCode } = useParams();
+  const { categoryLink, productCodeLink } = useParams();
 
   const notify = () => {
     if (!toast.isActive(toastId.current)) {
@@ -32,7 +32,7 @@ function AddToFavourite(props) {
     event.stopPropagation();
     notify();
   
-    const { productCode, name, brand, gender, price, imageUrls } = props.product;
+    // const { productCode, productName, brand, gender, price, mainImage } = props.product;
   
     // Pobranie aktualnej listy ulubionych z localStorage
     const currentFavourites = JSON.parse(localStorage.getItem('favourite')) || [];
@@ -44,12 +44,10 @@ function AddToFavourite(props) {
       // Dodanie nowego produktu do ulubionych
       const favouriteProduct = {
         productCode,
-        name,
-        brand,
+        productName,
+        mainImage,
         price,
-        gender,
-        category,
-        imageUrls
+        category
       };
       currentFavourites.push(favouriteProduct);
   

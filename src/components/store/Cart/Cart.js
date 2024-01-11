@@ -3,6 +3,7 @@ import styles from './Cart.module.scss';
 import { Link, useNavigate, useParams  } from 'react-router-dom';
 import axios from 'axios';
 import OrderButtonFromCart from './OrderButton/OrderButtonFromCart'
+import categoriesData from '../StoreProductsPage/categories';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -12,9 +13,9 @@ function Cart() {
     setCartItems(items);
   }, []);
 
-  const handleQuantityChange = (productCode, newQuantity) => {
+  const handleQuantityChange = (productCode, newQuantity, amount) => {
     newQuantity = parseInt(newQuantity, 10);
-    newQuantity = newQuantity > 9999 ? 9999 : newQuantity; // Ograniczenie do 9999
+    newQuantity = newQuantity > amount ? amount : newQuantity; // Ograniczenie do 9999
     if (!isNaN(newQuantity) && newQuantity >= 1) {
       const updatedCartItems = cartItems.map(item => {
         if (item.productCode === productCode) {
@@ -27,10 +28,10 @@ function Cart() {
     }
   };
 
-  const handleIncreaseQuantity = (productCode) => {
+  const handleIncreaseQuantity = (productCode, amount) => {
     const updatedCartItems = cartItems.map(item => {
       if (item.productCode === productCode) {
-        const newQuantity = item.quantity < 9999 ? item.quantity + 1 : 9999; // Ograniczenie do 9999
+        const newQuantity = item.quantity < amount ? item.quantity + 1 : amount; // Ograniczenie do 9999
         return { ...item, quantity: newQuantity };
       }
       return item;
@@ -63,7 +64,7 @@ function Cart() {
   const calculateTotalNetto = () => {
     return cartItems.reduce((total, item) => {
       return total + (item.price * item.quantity);
-    }, 0).toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
+    }, 0).toFixed(2);
   };
 
   const navigate = useNavigate();
@@ -77,7 +78,11 @@ function Cart() {
       <h2>Twój koszyk</h2>
       {cartItems.length === 0 ? <p>Koszyk jest pusty.</p> : (
         <div className={styles.cartList}>
-          {cartItems.map(item => (
+          {cartItems.map(item => {
+            const displayCategory = categoriesData.find(cat => cat.category === item.category)?.categoryToDisplay || item.category;
+
+            return (
+          
             <div key={item.productCode} className={styles.cartItem}>
               <div className={styles.titleWrapper}>
                 <h3 onClick={() => navigateTOProduct(item.product_id, item.category)}>{item.name}</h3>
@@ -85,12 +90,15 @@ function Cart() {
 
               <div className={styles.infoWrapper}>
                 <div className={styles.infoWrapperImg}>
-                  <img src={item.imageUrls[0]} alt="Product" className={styles.image} />
-                  <p>Numer produktu: {item.productCode} </p>
+                  <img src={item.mainImage} alt="Product" className={styles.image} />
+                  <div>
+                    <p>Numer produktu: {item.productCode} </p>
+                    <p>Kategoria: {displayCategory} </p>
+                  </div>
                 </div>
 
                 <div className={styles.innerInfoWrapper}>
-                    <p>Cena netto: {calculatePrice(item.price_netto, item.quantity)} zł</p>
+                    <p>Cena netto: {calculatePrice(item.price, item.quantity)} zł</p>
 
                     <div className={styles.cartQuantity}>
                       <button
@@ -100,13 +108,13 @@ function Cart() {
                       <input 
                         type="number"
                         value={item.quantity}
-                        onChange={(e) => handleQuantityChange(item.productCode, e.target.value, item.maxQuantity)}
+                        onChange={(e) => handleQuantityChange(item.productCode, e.target.value, item.amount)}
                         min="1"
-                        max={item.maxQuantity}
+                        max={item.amount}
                         className={styles.quantityInput}
                       />
                       <button
-                        onClick={() => handleIncreaseQuantity(item.productCode, item.maxQuantity)}
+                        onClick={() => handleIncreaseQuantity(item.productCode, item.amount)}
                         disabled={item.quantity >= item.maxQuantity}
                       >+</button>
                       <p>ilość</p>
@@ -117,7 +125,7 @@ function Cart() {
                 </div>
               </div>
             </div>            
-          ))}
+          )})}
         </div>
         
       )}

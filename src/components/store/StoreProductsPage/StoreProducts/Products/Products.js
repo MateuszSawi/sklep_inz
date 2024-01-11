@@ -50,38 +50,38 @@ function Products(props) {
       navigate(`/${category}/${productCode}`);
   };
 
-  const handleAddToCart = (event, product) => {
-    event.stopPropagation();
+  // const handleAddToCart = (event, product) => {
+  //   event.stopPropagation();
   
-    const { productCode, name, price, imageUrls } = product;
-    const maxQuantity = 9999; // Maksymalna ilość produktu
+  //   const { productCode, name, price, imageUrls } = product;
+  //   const maxQuantity = 9999; // Maksymalna ilość produktu
   
-    // Pobranie aktualnej listy produktów z localStorage
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+  //   // Pobranie aktualnej listy produktów z localStorage
+  //   const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     
-    // Znalezienie produktu w koszyku
-    const existingProductIndex = currentCart.findIndex(item => item.productCode === productCode);
+  //   // Znalezienie produktu w koszyku
+  //   const existingProductIndex = currentCart.findIndex(item => item.productCode === productCode);
     
-    if (existingProductIndex > -1) {
-      // Sprawdzenie, czy nie przekracza maksymalnej ilości
-      if (currentCart[existingProductIndex].quantity < maxQuantity) {
-        currentCart[existingProductIndex].quantity += 1;
-      }
-    } else {
-      // Dodanie nowego produktu, jeśli nie istnieje w koszyku
-      const newProduct = {
-        productCode,
-        quantity: 1,
-        name,
-        price,
-        imageUrls
-      };
-      currentCart.push(newProduct);
-    }
+  //   if (existingProductIndex > -1) {
+  //     // Sprawdzenie, czy nie przekracza maksymalnej ilości
+  //     if (currentCart[existingProductIndex].quantity < maxQuantity) {
+  //       currentCart[existingProductIndex].quantity += 1;
+  //     }
+  //   } else {
+  //     // Dodanie nowego produktu, jeśli nie istnieje w koszyku
+  //     const newProduct = {
+  //       productCode,
+  //       quantity: 1,
+  //       name,
+  //       price,
+  //       imageUrls
+  //     };
+  //     currentCart.push(newProduct);
+  //   }
     
-    notifyCart(product.productCode);
-    localStorage.setItem('cart', JSON.stringify(currentCart));
-  };
+  //   notifyCart(product.productCode);
+  //   localStorage.setItem('cart', JSON.stringify(currentCart));
+  // };
 
   const handleAddToFavourites = (event, product) => {
     event.stopPropagation();
@@ -98,9 +98,10 @@ function Products(props) {
     if (!isProductInFavourites) {
       const favouriteProduct = {
         productCode,
-        name,
+        productName: name,
         price,
-        imageUrls
+        mainImage: imageUrls[0],
+        category
       };
       currentFavourites.push(favouriteProduct);
   
@@ -130,14 +131,14 @@ function Products(props) {
             </div>
 
             <div className={styles.cardBody}>
-              <p className={styles.productPrice}>Cena netto: {product.price} zł</p>
+              <p className={styles.productPrice}>Cena: {product.price} zł</p>
               <div className={styles.buttonsWrapper}>
                 <div>
                   <button className={styles.buttonAvailable}
-                    onClick={(event) => handleAddToCart(event, product)}
+                    onClick={(event) => handleLinkClick(product.productCode)}
                   >
-                    <img src="/store/cart.png" alt="cart" className={styles.icon}/>
-                    <p>Dodaj do koszyka</p>
+                    {/* <img src="/store/cart.png" alt="cart" className={styles.icon}/> */}
+                    <p>Zobacz produkt</p>
                   </button>
                 </div>
 
