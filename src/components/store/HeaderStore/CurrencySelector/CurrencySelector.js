@@ -18,6 +18,8 @@ function CurrencySelector() {
     setSelectedCurrency(currency);
     setExchangeRate(rate);
     setIsOpen(false);
+    sessionStorage.setItem('priceMin', 1);
+    sessionStorage.setItem('priceMax', 999);
     
     window.location.reload();
   };

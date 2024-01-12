@@ -5,6 +5,8 @@ import { apiK, apiP } from '../../../../apiConfig';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function StoreProductsFilters(props) {
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
   // Zaktualizowane zmienne stanu
   const [selectedGender, setSelectedGender] = useState(sessionStorage.getItem('gender') || 'ALL');
   const [itemsPerPage, setItemsPerPage] = useState(Number(sessionStorage.getItem('pageSize')) || 30);
@@ -12,9 +14,6 @@ function StoreProductsFilters(props) {
   const [selectedBrand, setSelectedBrand] = useState(sessionStorage.getItem('brand') || '');
   const [minimumPrice, setMinimumPrice] = useState(Number(sessionStorage.getItem('priceMin')) || 0);
   const [maximumPrice, setMaximumPrice] = useState(Number(sessionStorage.getItem('priceMax')) || 999);
-
-  const selectedCurrency = localStorage.getItem('selectedCurrency');
-  const exchangeRate = localStorage.getItem('exchangeRate');
 
   const { category } = useParams();
 
@@ -45,7 +44,7 @@ function StoreProductsFilters(props) {
 
   const handlePriceMinChange = (event) => {
     setMinimumPrice(event.target.value);
-    sessionStorage.setItem('priceMin', event.target.value);
+    sessionStorage.setItem('priceMin', (event.target.value / exchangeRate).toFixed(2));
     if (event.target.value === '') {setMinimumPrice(0)}
   };
 

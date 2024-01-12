@@ -12,6 +12,8 @@ import CategoriesMenu from './CategoriesMenu/CategoriesMenu';
 function StoreProducts(props) {
   const { category } = useParams();
   // const [isLoading, setIsLoading] = useState(false);
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
 
   useEffect(() => {
     props.setIsLoading(true);
@@ -23,7 +25,7 @@ function StoreProducts(props) {
         brand: sessionStorage.getItem('brand') || '',
         gender: sessionStorage.getItem('gender') || 'ALL',
         category: category,
-        priceMin: Number(sessionStorage.getItem('priceMin')) || 0,
+        priceMin: Number((sessionStorage.getItem('priceMin') / exchangeRate).toFixed(2)) || 0,
         priceMax: Number(sessionStorage.getItem('priceMax')) || 999
       }
     })
