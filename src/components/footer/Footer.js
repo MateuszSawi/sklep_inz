@@ -9,15 +9,15 @@ import { Link } from 'react-router-dom';
 function Footer() {
 
   const handleCopyToClipboard = (text) => {
-    copy(text);
+    // copy(text);
     // alert('Skopiowano do schowka: ' + text);
 
-    toast.dismiss();
+    // toast.dismiss();
 
-    toast.success(`Skopiowano do schowka:\n${text}`, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 1000, // Czas wyświetlania w milisekundach (tutaj 2 sekundy)
-    });
+    // toast.success(`Skopiowano do schowka:\n${text}`, {
+    //   position: toast.POSITION.TOP_CENTER,
+    //   autoClose: 1000, // Czas wyświetlania w milisekundach (tutaj 2 sekundy)
+    // });
   };
 
   return (

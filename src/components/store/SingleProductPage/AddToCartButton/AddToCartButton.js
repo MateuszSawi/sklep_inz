@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams  } from 'react-router-dom';
 function AddToCartButton({selectedColour, selectedSize, brand, productName, mainImage, price, quantity, amount, category, productCode}) {
 
   const { categoryLink, productCodeLink } = useParams();
+  const [showWarning, setShowWarning] = useState(false);
 
   // const quantity = props.quantity;
 
@@ -28,10 +29,16 @@ function AddToCartButton({selectedColour, selectedSize, brand, productName, main
   };
 
   const handleAddToCart = () => {
-    notify();
-    // const { productCode, name, brand, gender, price, imageUrls } = props.product;
+    
+    if (!selectedColour || !selectedSize) {
+      setShowWarning(true); // Pokaż ostrzeżenie
+      return; // Zakończ działanie funkcji, aby nie dodawać produktu
+    }
 
-    // Pobranie aktualnej listy produktów z localStorage
+    setShowWarning(false);
+
+    notify();
+
     const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     
     // Znalezienie produktu w koszyku
@@ -72,6 +79,8 @@ function AddToCartButton({selectedColour, selectedSize, brand, productName, main
       {amount === 0 &&
         <button><h3>Produkt niedostępny</h3></button>
       }
+
+      {showWarning && <p style={{color: 'red', marginTop: '30px'}}>Wybierz kolor i rozmiar!</p>}
     </div>
   );
 }

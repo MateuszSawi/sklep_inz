@@ -18,7 +18,7 @@
   
   button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #ff47d19f;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -27,11 +27,11 @@
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #c7179b9f;
   }
   
   .activeTab {
-    background-color: #0056b3;
+    background-color: #aa0982;
   }
 
   //
@@ -74,7 +74,7 @@
       // border-radius: 5px;
       padding: 10px 10px;
       margin: 10px 0 0 0;
-      background-color: #b3b3b3;
+      background-color: #b3b3b37c;
       width: 250px;
       height: 250px;
 
@@ -88,7 +88,7 @@
     }
 
     .deleteButton {
-      background-color: #9e0000;
+      background-color: #aa0982;
       color: #fff;
       border: none;
       padding: 10px 15px;
@@ -99,7 +99,7 @@
       border-radius: 0px;
 
       &:hover {
-        background-color: #cc0000;
+        background-color: #750559;
       }
     }
     
@@ -131,7 +131,7 @@
     }
     
     button[type="submit"] {
-      background-color: #0074cc;
+      background-color: #aa0982;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -139,6 +139,6 @@
     }
     
     button[type="submit"]:hover {
-      background-color: #005aa3;
+      background-color: #750559;
     }
   }

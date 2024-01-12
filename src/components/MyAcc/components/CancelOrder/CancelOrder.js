@@ -15,9 +15,8 @@ const CancelOrder = ({id}) => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`, // Dodaj token jako nagłówek Authorization
     };
-
-    console.log(id)
     const apiUrl = `${apiK}/orders/${id}/cancel`;
+    console.log(apiUrl)
 
     // Wykonaj żądanie GET z nagłówkiem Authorization
     axios.get(apiUrl, { headers })
@@ -31,8 +30,8 @@ const CancelOrder = ({id}) => {
 
   return (
     <button 
-        style={{margin: '20px 0 0 0', backgroundColor: 'gray'}}
-        onClick={() => cancel()}
+      style={{margin: '20px 0 0 0', backgroundColor: 'gray'}}
+      onClick={() => cancel()}
     >Anuluj zamówienie</button>
   );
 };

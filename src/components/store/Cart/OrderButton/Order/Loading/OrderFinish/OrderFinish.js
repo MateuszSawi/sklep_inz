@@ -7,6 +7,7 @@ function OrderFinish() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify([]));
     // Symulacja ładowania przez 1 sekundę
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);

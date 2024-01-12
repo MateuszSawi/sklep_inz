@@ -34,10 +34,12 @@ function Order(props) {
 
     cart.forEach((cartItem) => {
       const { selectedSize, selectedColour, productCode, quantity } = cartItem;
+      const colour = selectedColour;
+      const size = selectedSize;
       for (let i = 0; i < quantity; i++) {
         productItemDetailsDtoList.push({
-          selectedSize,
-          selectedColour,
+          size,
+          colour,
           productCode,
         });
       }

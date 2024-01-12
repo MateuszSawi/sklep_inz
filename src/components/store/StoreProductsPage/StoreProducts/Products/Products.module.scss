@@ -144,7 +144,7 @@
 }
 
 .buttonAvailable {
-  background-color: $color_green;
+  background-color: #aa0982;
   color: $color_white;
   z-index: 999;
 
@@ -153,7 +153,7 @@
   }
 
   &:hover {
-    background-color: $color_darker_green; // Ciemniejszy niebieski przy najechaniu myszą
+    background-color: #750559; // Ciemniejszy niebieski przy najechaniu myszą
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); // Większy cień przy najechaniu myszą
   }
 

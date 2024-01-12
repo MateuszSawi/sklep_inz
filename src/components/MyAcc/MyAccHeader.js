@@ -57,12 +57,12 @@ const MyAccHeader = (props) => {
         >
           Zamówienia
         </button>
-        {/* <button
+        <button
           className={props.activeTab === 'Zmień hasło' ? styles.activeTab : ''}
           onClick={() => handleTabClick('Zmień hasło')}
         >
           Zmień hasło
-        </button> */}
+        </button>
         <button
           className={props.activeTab === 'Moje dane' ? styles.activeTab : ''}
           onClick={() => handleTabClick('Moje dane')}

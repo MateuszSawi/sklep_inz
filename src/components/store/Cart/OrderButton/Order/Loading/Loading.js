@@ -45,10 +45,16 @@ const Loading = ({products}) => {
   };
 
   return (
-    <button 
-      style={{margin: '20px 0 0 0'}}
-      onClick={() => order()}
-    >Złóż zamówienie </button>
+    <>
+    {(mainAddressId === '' || !mainAddressId) ? (
+      <p style={{margin: '20px 0 0 0', color: 'red'}}>Wybierz adres dostawy</p>
+    ) : (
+      <button 
+        style={{margin: '20px 0 0 0'}}
+        onClick={() => order()}
+      >Złóż zamówienie </button>
+    )}
+    </>
   );
 };
 

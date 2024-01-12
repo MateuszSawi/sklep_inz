@@ -52,10 +52,19 @@ const Orders = (props) => {
               <p>Numer budynku: {order.addressDto.buildingNumber}</p>
               <p>Numer mieszkania: {order.addressDto.apartmentNumber}</p>
             </div>
+            <h4>Zamówione produkty:</h4>
+            
+            {order.productItemsList.map((item) => (
+              <ul className={styles.custom}>
+                <li>Kod produktu: {item.productCode}</li>
+                <li>Kolor: {item.colour}</li>
+                <li>Rozmiar {item.size}</li>
+              </ul>
+            ))}
 
-            {/* {order.statusDto.orderStatus === 'CREATED' &&
+            {order.statusDto.orderStatus === 'CREATED' &&
               <CancelOrder id={order.id} />
-            } */}
+            }
           </div>
         ))}
       </div>
