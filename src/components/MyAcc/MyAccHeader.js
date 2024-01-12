@@ -24,6 +24,9 @@ const MyAccHeader = (props) => {
         case 'Wyloguj się':
             navigate('/moje-konto/wylogowywanie');
             break;
+        case 'Moje dane':
+            navigate('/moje-konto/moje-dane');
+            break;
         default:
             break;
     }
@@ -60,12 +63,12 @@ const MyAccHeader = (props) => {
         >
           Zmień hasło
         </button>
-        {/* <button
-          className={props.activeTab === 'Usuń konto' ? styles.activeTab : ''}
-          onClick={() => handleTabClick('Usuń konto')}
+        <button
+          className={props.activeTab === 'Moje dane' ? styles.activeTab : ''}
+          onClick={() => handleTabClick('Moje dane')}
         >
-          Usuń konto
-        </button> */}
+          Moje dane
+        </button>
         <button
           className={props.activeTab === 'Wyloguj się' ? styles.activeTab : ''}
           onClick={() => logOut()}

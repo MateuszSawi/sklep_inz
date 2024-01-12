@@ -18,9 +18,7 @@ function OrderButtonFromCart(props) {
 
   return (
     <>
-      {/* <button onClick={fetchStripeKeyAndClientSecret}>złóż zamówienie</button> */}
       <button onClick={navigateHandler}>Złóż zamówienie</button>
-      {/* {stripeElements} */}
       {warning && 
         <p className={styles.warning}>Twój koszyk jest pusty</p>
       }

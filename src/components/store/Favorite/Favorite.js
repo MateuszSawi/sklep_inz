@@ -7,6 +7,8 @@ import categoriesData from '../StoreProductsPage/categories';
 function Favorite() {
   const [favoriteItems, setFavoriteItems] = useState([]);
   const navigate = useNavigate();
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('favourite')) || [];
@@ -22,23 +24,6 @@ function Favorite() {
     setFavoriteItems(updatedFavoriteItems);
     localStorage.setItem('favourite', JSON.stringify(updatedFavoriteItems));
   };
-
-  // const handleAddToCartFromFavourites = (product) => {
-  //   // const maxQuantity = 9999;
-  //   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  //   const existingIndex = cartItems.findIndex(item => item.productCode === product.productCode);
-  
-  //   if (existingIndex > -1) {
-  //     // Aktualizacja ilości, jeśli produkt jest już w koszyku
-  //     const newQuantity = Math.min(cartItems[existingIndex].quantity + 1, cartItems[existingIndex].amount);
-  //     cartItems[existingIndex] = { ...cartItems[existingIndex], quantity: cartItems[existingIndex].amount };
-  //   } else {
-  //     // Dodanie nowego produktu do koszyka z ilością 1
-  //     cartItems.push({ ...product, quantity: 1 });
-  //   }
-  
-  //   localStorage.setItem('cart', JSON.stringify(cartItems));
-  // };
 
   return (
     <div className={styles.favorite}>
@@ -69,7 +54,7 @@ function Favorite() {
                 </div>
 
                 <div className={styles.innerInfoWrapper}>
-                  <p>Cena: {item.price} zł</p>
+                  <p>Cena: {(item.price * exchangeRate).toFixed(2)} {selectedCurrency}</p>
 
                   {/* <button onClick={() => handleAddToCartFromFavourites(item)} className={styles.addToCartButton}>
                     <p>Dodaj do koszyka</p>

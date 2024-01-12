@@ -13,6 +13,8 @@ function Order(props) {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const token = localStorage.getItem('accessToken');
   const mainAddressId = localStorage.getItem('mainAddressId');
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
 
   const deliveryCost = 30;
 
@@ -69,6 +71,32 @@ function Order(props) {
       });
   }, []);
 
+  // my data 
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, // Dodaj token jako nagłówek Authorization
+    };
+
+    const apiUrl = `${apiK}/users`;
+
+    // Wykonaj żądanie GET z nagłówkiem Authorization
+    axios.get(apiUrl, { headers })
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error('Błąd podczas pobierania danych użytkownika:', error);
+      });
+  }, []);
+
+  const adress = () => {
+    navigate('/moje-konto');
+  }
+
   return (
     <div className={styles.orderDetails}>
       <h2>Adres dostawy</h2>
@@ -89,11 +117,11 @@ function Order(props) {
             </div>
           ))}
           {(mainAddressId === '' || !mainAddressId) && (
-            <button>Wybierz adres do dostawy</button>
+            <button style={{margin:'20px 0'}} onClick={adress}>Wybierz adres do dostawy</button>
           )}
         </ul>
       ) : (
-        <p>Brak dostępnych adresów.</p>
+        <button style={{margin:'20px 0'}} onClick={adress}>Wybierz adres do dostawy</button>
       )}
 
       <h2>Podsumowanie koszyka</h2>
@@ -103,19 +131,21 @@ function Order(props) {
             <img src={cartItem.mainImage} alt={cartItem.productName} />
             <div className={styles.cartItemDetails}>
               <p>{cartItem.productName}</p>
-              <p>Cena: {cartItem.price} zł</p>
+              <p>Cena: {(cartItem.price * exchangeRate).toFixed(2)} {selectedCurrency}</p>
               <p>Ilość: {cartItem.quantity}</p>
-              <p>Łącznie: {cartItem.price * cartItem.quantity} zł</p>
+              <p>Łącznie: {(cartItem.price * cartItem.quantity * exchangeRate).toFixed(2)} {selectedCurrency}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <p className={styles.totalPrice}>Łączna cena produktów: {totalPrice} zł</p>
-      <p className={styles.totalPrice}>Cena dostawy: {deliveryCost} zł</p>
+      <p className={styles.totalPrice}>Łączna cena produktów: {(totalPrice * exchangeRate).toFixed(2)} {selectedCurrency}</p>
+      <p className={styles.totalPrice}>Cena dostawy: {(deliveryCost * exchangeRate).toFixed(2)} {selectedCurrency}</p>
       <p className={styles.totalPrice}>Metoda płatności: za pobraniem</p>
+
       <Loading products={products} />
-      <p className={styles.totalPrice}>Łączna cena zamówienia: {totalPrice + deliveryCost} zł</p>
+
+      <p className={styles.totalPrice}>Łączna cena zamówienia: {((totalPrice + deliveryCost) * exchangeRate).toFixed(2)} {selectedCurrency}</p>
     </div>
   );
 }

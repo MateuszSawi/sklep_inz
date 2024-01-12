@@ -8,8 +8,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Products(props) {
-
   const { category } = useParams();
+
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
 
   const generateToastIdFavourite = (prefix, productId) => `${prefix}-${productId}`;
   const generateToastIdCart = (prefix, productId) => `${prefix}-${productId}`;
@@ -50,49 +52,12 @@ function Products(props) {
       navigate(`/${category}/${productCode}`);
   };
 
-  // const handleAddToCart = (event, product) => {
-  //   event.stopPropagation();
-  
-  //   const { productCode, name, price, imageUrls } = product;
-  //   const maxQuantity = 9999; // Maksymalna ilość produktu
-  
-  //   // Pobranie aktualnej listy produktów z localStorage
-  //   const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-  //   // Znalezienie produktu w koszyku
-  //   const existingProductIndex = currentCart.findIndex(item => item.productCode === productCode);
-    
-  //   if (existingProductIndex > -1) {
-  //     // Sprawdzenie, czy nie przekracza maksymalnej ilości
-  //     if (currentCart[existingProductIndex].quantity < maxQuantity) {
-  //       currentCart[existingProductIndex].quantity += 1;
-  //     }
-  //   } else {
-  //     // Dodanie nowego produktu, jeśli nie istnieje w koszyku
-  //     const newProduct = {
-  //       productCode,
-  //       quantity: 1,
-  //       name,
-  //       price,
-  //       imageUrls
-  //     };
-  //     currentCart.push(newProduct);
-  //   }
-    
-  //   notifyCart(product.productCode);
-  //   localStorage.setItem('cart', JSON.stringify(currentCart));
-  // };
-
   const handleAddToFavourites = (event, product) => {
     event.stopPropagation();
     notifyFavourite(product.productCode);
-  
+
     const { productCode, name, price, imageUrls } = product;
-  
-    // Pobranie aktualnej listy ulubionych z localStorage
     const currentFavourites = JSON.parse(localStorage.getItem('favourite')) || [];
-    
-    // Sprawdzenie, czy produkt jest już w ulubionych
     const isProductInFavourites = currentFavourites.some(item => item.productCode === productCode);
   
     if (!isProductInFavourites) {
@@ -131,7 +96,7 @@ function Products(props) {
             </div>
 
             <div className={styles.cardBody}>
-              <p className={styles.productPrice}>Cena: {product.price} zł</p>
+              <p className={styles.productPrice}>Cena: {(product.price * exchangeRate).toFixed(2)} {selectedCurrency}</p>
               <div className={styles.buttonsWrapper}>
                 <div>
                   <button className={styles.buttonAvailable}

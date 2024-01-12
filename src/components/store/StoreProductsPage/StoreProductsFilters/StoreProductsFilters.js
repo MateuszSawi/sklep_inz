@@ -13,6 +13,9 @@ function StoreProductsFilters(props) {
   const [minimumPrice, setMinimumPrice] = useState(Number(sessionStorage.getItem('priceMin')) || 0);
   const [maximumPrice, setMaximumPrice] = useState(Number(sessionStorage.getItem('priceMax')) || 999);
 
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
+
   const { category } = useParams();
 
   // Obsługa zmiany płci/gender
@@ -113,7 +116,7 @@ function StoreProductsFilters(props) {
           value={maximumPrice} 
           min="1" 
           max="999" 
-          className={styles.num} onChange={handlePriceMaxChange} />zł
+          className={styles.num} onChange={handlePriceMaxChange} />{selectedCurrency}
       </div>
 
       <div className={styles.pagination}>

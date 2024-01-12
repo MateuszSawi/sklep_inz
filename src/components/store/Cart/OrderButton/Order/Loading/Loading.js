@@ -5,15 +5,12 @@ import { apiK } from '../../../../../../apiConfig';
 import { Link, useNavigate, useParams  } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import Payment from './Payment/Payment';
+import Payment from './OrderFinish/OrderFinish';
 
 const Loading = ({products}) => {
-
   const mainAddressId = localStorage.getItem('mainAddressId');
-
-  console.log(products)
-
-
+  const navigate = useNavigate();
+  
   const order = async () => {
     const token = localStorage.getItem('accessToken');
     const apiUrl = `${apiK}/orders`;
@@ -43,12 +40,10 @@ const Loading = ({products}) => {
     } catch (error) {
       console.error('Błąd podczas usuwania adresu:', error);
     }
+
+    navigate('/przetwarzanie');
   };
 
-
-
-
-  
   return (
     <button 
       style={{margin: '20px 0 0 0'}}

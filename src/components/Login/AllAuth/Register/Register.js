@@ -5,6 +5,9 @@ import { apiK, apiP } from '../../../../apiConfig';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     firstname: '',
@@ -39,15 +42,23 @@ const Register = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log('Użytkownik został zarejestrowany:', responseData);
+        setMessage('Rejestracja udana, możesz zalogowac się na swoje konto!')
         // Wyczyść formularz lub podejmij odpowiednie działania po udanej rejestracji.
       } else {
         console.error('Błąd podczas rejestracji:', response.statusText);
         // Obsłuż błąd, na przykład wyświetl komunikat dla użytkownika.
+        setMessage('')
       }
     } catch (error) {
       console.error('Wystąpił błąd podczas rejestracji:', error);
+      setMessage('')
     }
   };
+
+
+  const login = () => {
+    navigate('/logowanie');
+  }
 
   return (
     <div className={styles.registrationForm}>
@@ -114,6 +125,12 @@ const Register = () => {
           />
         </div> */}
         <button type="submit">Zarejestruj się</button>
+        {message !== '' &&
+          <>
+            <p style={{textAlign: 'center', color: 'green', marginTop: '10px'}}>{message}</p>
+            <button style={{marginTop: '10px', backgroundColor: 'gray'}} onClick={login}>Zaloguj się</button>
+          </>
+        }
       </form>
     </div>
   );

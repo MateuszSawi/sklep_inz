@@ -91,7 +91,6 @@ const Login = (props) => {
         <button type="submit">Zaloguj się</button>
       </form>
 
-
       <button className={styles.button} onClick={register}>Rejestracja</button>
     </div>
   );

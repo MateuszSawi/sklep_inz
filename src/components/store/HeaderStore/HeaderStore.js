@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './HeaderStore.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
-import SearchBar from './SearchBar/SearchBar';
+import CurrencySelector from './CurrencySelector/CurrencySelector'
 
 function HeaderStore() {
 
@@ -27,14 +27,13 @@ function HeaderStore() {
 
   return (
     <header className={styles.header}>
+      <CurrencySelector />
 
       <img 
         onClick={() => handleLinkClickMainPage()}
         src={process.env.PUBLIC_URL + '/website/logo/clothes.png'} 
-        alt={'Renox-logo'} 
+        alt={'logo'} 
       />
-
-      <SearchBar />
 
       <div className={styles.header_right}>
         <div onClick={() => handleLinkClickCart()}>

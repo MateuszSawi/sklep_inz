@@ -7,6 +7,8 @@ import categoriesData from '../StoreProductsPage/categories';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('cart')) || [];
@@ -98,7 +100,7 @@ function Cart() {
                 </div>
 
                 <div className={styles.innerInfoWrapper}>
-                    <p>Cena netto: {calculatePrice(item.price, item.quantity)} zł</p>
+                    <p>Cena: {(calculatePrice(item.price, item.quantity) * exchangeRate).toFixed(2)} {selectedCurrency}</p>
 
                     <div className={styles.cartQuantity}>
                       <button
@@ -130,7 +132,7 @@ function Cart() {
         
       )}
       <div className={styles.totalPrice}>
-        <p>Łączna suma netto: {calculateTotalNetto()} zł</p>
+        <p>Łączna suma netto: {(calculateTotalNetto() * exchangeRate).toFixed(2)} {selectedCurrency}</p>
         <OrderButtonFromCart 
           cartItems = {cartItems}
         />

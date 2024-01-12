@@ -11,13 +11,14 @@ import AddToCartButton from './AddToCartButton/AddToCartButton';
 import AddToFavourite from './AddToFavourite/AddToFavourite';
 
 function SingleProductMain() {
-
   const { category, productCode } = useParams();
+
+  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  const exchangeRate = localStorage.getItem('exchangeRate');
 
   const [product, setProduct] = useState([]);
   const [amount, setAmount] = useState(1);
   const [productDetails, setProductDetails] = useState([]);
-
   const [mainImage, setMainImage] = useState('');
 
   useEffect(() => {
@@ -25,11 +26,9 @@ function SingleProductMain() {
     .then(response => {
       setProduct(response.data.productBasicInfo);
       setProductDetails(response.data.productDetails);
-
       setMainImage(response.data.productBasicInfo.imageUrls[0]);
       setAmount(response.data.productDetails.amount)
       console.log(amount, '|', typeof(amount))
-      // console.log(productDetails)
     })
     .catch(error => {
       console.error(error);
@@ -54,11 +53,9 @@ function SingleProductMain() {
   const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
-    // if (quantity < product.quantity){              // warunek niepozwalający na dodanie wiecej niz max produktow w magazynie
-      if (quantity < amount){
-        setQuantity(quantity + 1);
-      }
-    // }
+    if (quantity < amount){
+      setQuantity(quantity + 1);
+    }
   };
 
   const decreaseQuantity = () => {
@@ -71,8 +68,6 @@ function SingleProductMain() {
     let newQuantity = parseInt(e.target.value, 10);
     if (isNaN(newQuantity) || newQuantity < 1) {
       setQuantity(1);
-    // } else if (newQuantity > product.quantity) {   // warunek niepozwalający na dodanie wiecej niz max produktow w magazynie
-      // setQuantity(product.quantity);
     } else if (newQuantity > amount) {
       setQuantity(amount);
     } else {
@@ -108,7 +103,6 @@ function SingleProductMain() {
       'PINK': 'Różowy',
       'GRAY': 'Szary',
       'BROWN': 'Brązowy',
-      // Dodaj więcej kolorów według potrzeb
     };
   
     return colors[color.toUpperCase()] || color;
@@ -137,8 +131,6 @@ function SingleProductMain() {
   
   return (
     <div className={styles.mainWrapper} >     
-      {/* <StoreProductsPath />  */}
-
       <div className={styles.wrapper} >
         <div>
           <h1 className={styles.titleWrapper}>
@@ -153,11 +145,6 @@ function SingleProductMain() {
             </div>
 
             <div className={styles.smallImages} >
-              {/* {product.imageUrls.map((imageLink, index) => (
-                <img src={imageLink} 
-                        onClick={() => setMainImage(imageLink)} 
-                        alt={`Product ${index}`} className={styles.mainImage} />
-              ))} */}
               <img src={mainImage} 
                         onClick={() => setMainImage(mainImage)} 
                         alt={`Product1`} className={styles.mainImage} />
@@ -190,8 +177,8 @@ function SingleProductMain() {
           <div>
             <div className={styles.priceWrapper} >
               <div className={styles.price}>
-                <h1>{product.price}</h1>
-                <h3>zł</h3>
+                <h1>{(product.price * exchangeRate).toFixed(2)}</h1>
+                <h3>{selectedCurrency}</h3>
               </div>
               
               {amount !== 0 && amount !== '0' &&
