@@ -85,7 +85,7 @@ function Cart() {
           
             <div key={item.productCode} className={styles.cartItem}>
               <div className={styles.titleWrapper}>
-                <h3 onClick={() => navigateTOProduct(item.product_id, item.category)}>{item.name}</h3>
+                <h3 onClick={() => navigateTOProduct(item.productCode, item.category)}>{item.productName}</h3>
               </div>
 
               <div className={styles.infoWrapper}>

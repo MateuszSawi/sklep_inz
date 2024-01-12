@@ -1,6 +1,4 @@
-/* RegistrationForm.module.scss */
-
-.registrationForm {
+.loginForm {
     max-width: 400px;
     margin: 100px auto 200px auto;
   
@@ -40,5 +38,15 @@
         cursor: pointer;
       }
     }
+  }
+
+  .button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
   

@@ -28,7 +28,7 @@ function SingleProductMain() {
 
       setMainImage(response.data.productBasicInfo.imageUrls[0]);
       setAmount(response.data.productDetails.amount)
-      // console.log(product)
+      console.log(amount, '|', typeof(amount))
       // console.log(productDetails)
     })
     .catch(error => {
@@ -197,11 +197,10 @@ function SingleProductMain() {
               {amount !== 0 && amount !== '0' &&
                 <p className={styles.quantity}>✔️ Na magazynie - {amount} {amountHandler(amount)}</p>
               }
-              {amount === 0 || amount === '0' &&
+              {amount === 0 &&
                 <p className={styles.quantity}>Niedostępne</p>
               }
 
-              
               <div className={styles.cartQuantity}>
                 <button onClick={decreaseQuantity}><p>-</p></button>
                 <input 
@@ -273,28 +272,31 @@ function SingleProductMain() {
             <div className={styles.price}>
               <h1>{product.price}</h1>
               <h3>zł</h3>
+              {amount}
             </div>
             
               {amount !== 0 && amount !== '0' &&
                 <p className={styles.quantity}>✔️ Na magazynie - {amount} {amountHandler(amount)}</p>
               }
-              {amount === 0 || amount === '0' &&
+              {amount == 0 &&
                 <p className={styles.quantity}>Niedostępne</p>
               }
             
-            <div className={styles.cartQuantity}>
-              <button onClick={decreaseQuantity}><p>-</p></button>
-              <input 
-                className={styles.quantityInput}
-                type="number" 
-                value={quantity} 
-                onChange={handleQuantityChange} 
-                min="1" 
-                max={product.amount} 
-              />
-              <button onClick={increaseQuantity}><p>+</p></button>
-              <p>ilość</p>
-            </div>
+            {amount !== 0 && amount !== '0' &&
+              <div className={styles.cartQuantity}>
+                <button onClick={decreaseQuantity}><p>-</p></button>
+                <input 
+                  className={styles.quantityInput}
+                  type="number" 
+                  value={quantity} 
+                  onChange={handleQuantityChange} 
+                  min="1" 
+                  max={product.amount} 
+                />
+                <button onClick={increaseQuantity}><p>+</p></button>
+                <p>ilość</p>
+              </div>
+            }
 
             <AddToCartButton
               quantity={quantity}

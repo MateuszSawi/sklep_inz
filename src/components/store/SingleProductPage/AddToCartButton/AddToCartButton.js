@@ -66,7 +66,12 @@ function AddToCartButton({selectedColour, selectedSize, brand, productName, main
 
   return (
     <div className={styles.wrapper}>
-      <button onClick={handleAddToCart}><h3>DO KOSZYKA</h3></button>
+      {amount !== 0 &&
+        <button onClick={handleAddToCart}><h3>DO KOSZYKA</h3></button>
+      }
+      {amount === 0 &&
+        <button><h3>Produkt niedostępny</h3></button>
+      }
     </div>
   );
 }

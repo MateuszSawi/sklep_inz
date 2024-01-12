@@ -19,24 +19,13 @@ function StoreStartPageInfo() {
         </div>
       </div>
       <div className={styles.infoItem}>
-        <FontAwesomeIcon icon={faUndo} />
-        <div>
-          <p>
-            <strong>Zwroty</strong>
-          </p>
-          <p>
-            Korzystna polityka zwrotów
-          </p>
-        </div>
-      </div>
-      <div className={styles.infoItem}>
         <FontAwesomeIcon icon={faCreditCard} />
         <div>
           <p>
             <strong>Płatności</strong>
           </p>
           <p>
-            Zapłać bezpiecznie on-line
+            Zapłać bezpiecznie przy odbiorze
           </p>
         </div>
       </div>
@@ -47,7 +36,7 @@ function StoreStartPageInfo() {
             <strong>Rabaty</strong>
           </p>
           <p>
-            Skontaktuj się z handlowcem
+            Skontaktuj się z nami
           </p>
         </div>
       </div>
@@ -58,7 +47,7 @@ function StoreStartPageInfo() {
             <strong>Wsparcie</strong>
           </p>
           <p>
-            25 LAT doświadczenia na rynku
+            Lata doświadczenia na rynku
           </p>
         </div>
       </div>

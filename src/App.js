@@ -19,12 +19,20 @@ import Loading from './components/store/Cart/OrderButton/Order/Loading/Loading';
 import Payment from './components/store/Cart/OrderButton/Order/Loading/Payment/Payment';
 
 import Register from './components/Login/AllAuth/Register/Register';
+import Login from './components/Login/AllAuth/Login/Login';
 // D:\GIT\Git\projects\forRaper\src\components\Login\AllAuth\Register\Register.js
 // import RegisterSuccessfull from './Login/AllAuth/Register/RegisterSuccessfull/RegisterSuccessfull';
 // import ResetPassword from './Login/AllAuth/ResetPassword/ResetPassword';
 // import ResetSetNewPassword from './Login/AllAuth/ResetSetNewPassword/ResetSetNewPassword'
 // import ChangePassword from './Login/AllAuth/ChangePassword/ChangePassword';
 // import LoginsMainPage from './Login/LoginsMainPage';
+
+import MyAcc from './components/MyAcc/MyAcc';
+
+import Orders from './components/MyAcc/components/Orders';
+import ChangePass from './components/MyAcc/components/ChangePass';
+import DeleteAcc from './components/MyAcc/components/DeleteAcc';
+import LogOut from './components/MyAcc/components/LogOut';
 
 import Cart from './components/store/Cart/Cart';
 import Favorite from './components/store/Favorite/Favorite';
@@ -35,6 +43,8 @@ import StoreProductsPage from './components/store/StoreProductsPage/StoreProduct
 import SingleProductMain from './components/store/SingleProductPage/SingleProductMain';
 
 function App() {
+
+  const [activeTab, setActiveTab] = useState('profil');
 
   return (
     <div className='container'>
@@ -55,9 +65,38 @@ function App() {
         <Route path="/koszyk" element={<Cart />} />
         <Route path="/ulubione" element={<Favorite />} />
 
-        {/* <Route path="/logowanie" element={<LoginsMainPage />} /> */}
+        <Route path="/logowanie" element={<Login setActiveTab={setActiveTab} />} />
         <Route path="/rejestracja" element={<Register />} />
-        {/* <Route path="/resetuj-hasło" element={<ResetPassword />} /> */}
+
+
+
+        <Route path="/moje-konto" element={<MyAcc 
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />} />
+
+        <Route path="/moje-konto/zamówienia" element={<Orders 
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />} />
+
+        <Route path="/moje-konto/usuń-konto" element={<DeleteAcc 
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />} />
+
+        <Route path="/moje-konto/zmień-hasło" element={<ChangePass 
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />} />
+        
+        <Route path="/moje-konto/wylogowywanie" element={<LogOut 
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />} />
+
+
+
         {/* <Route path="/zmiana-hasła" element={<ChangePassword />} />      */}
 
         <Route path="/zamówienie" element={<Order />} />

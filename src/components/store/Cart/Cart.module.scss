@@ -112,7 +112,7 @@
   button {
     background-color: #ffffff;
     border: 1px solid #dddddd;
-    // color: #333333;
+    color: #333333;
     font-size: 16px;
     padding: 5px 10px;
     border-radius: 4px;
@@ -190,6 +190,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #333333;
 
     &:hover {
       background-color: $color_lighter_gray;

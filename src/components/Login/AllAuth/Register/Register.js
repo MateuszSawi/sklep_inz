@@ -2,54 +2,56 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './Register.module.scss';
 import { apiK, apiP } from '../../../../apiConfig';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        firstname: '',
-        lastname: '',
-        birthDate: '',
-        password: '',
-      });
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-      };
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        const apiUrl = `${apiK}/auth/register`;
-        const requestBody = {
-          ...formData,
-          birthDate: new Date(formData.birthDate).toISOString().slice(0, 10),
-        };
-    
-        const headers = {
+  const [formData, setFormData] = useState({
+    email: '',
+    firstname: '',
+    lastname: '',
+    birthDate: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const apiUrl = `${apiK}/auth/register`;
+    const requestBody = {
+      ...formData,
+      birthDate: new Date(formData.birthDate).toISOString().slice(0, 10),
+    };
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
           'Content-Type': 'application/json',
-        };
-    
-        try {
-          const response = await axios.post(apiUrl, JSON.stringify(requestBody), { headers });
-    
-          console.log('Użytkownik został zarejestrowany:', response.data);
-    
-          setFormData({
-            email: '',
-            firstname: '',
-            lastname: '',
-            birthDate: '',
-            password: '',
-          });
-        } catch (error) {
-          console.error('Wystąpił błąd podczas rejestracji:', error);
-        }
-      };
+        },
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Użytkownik został zarejestrowany:', responseData);
+        // Wyczyść formularz lub podejmij odpowiednie działania po udanej rejestracji.
+      } else {
+        console.error('Błąd podczas rejestracji:', response.statusText);
+        // Obsłuż błąd, na przykład wyświetl komunikat dla użytkownika.
+      }
+    } catch (error) {
+      console.error('Wystąpił błąd podczas rejestracji:', error);
+    }
+  };
 
   return (
     <div className={styles.registrationForm}>
-      <h2>Rejestracja użytkownika</h2>
+      <h2>Rejestracja</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>

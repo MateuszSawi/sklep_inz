@@ -8,7 +8,7 @@ import { apiK, apiP } from '../../../../../apiConfig';
 function CategoriesMenu(props) {
   const refs = useRef({});
 
-  const { category } = useParams();
+  const { categoryLink } = useParams();
 
   const handleCategoryClick = (category) => () => {
     navigate(`/${category}`);
@@ -45,7 +45,7 @@ function CategoriesMenu(props) {
       props.setIsLoading(false);
     });
 
-    navigate(`/${category}`);
+    navigate(`/${categoryParam}`);
   };
 
   return (
