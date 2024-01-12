@@ -32,7 +32,7 @@ const ChangePass = (props) => {
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
-        body: JSON.stringify(newPassword),
+        body: newPassword,
         headers,
       });
   
