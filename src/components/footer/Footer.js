@@ -30,7 +30,7 @@ function Footer() {
             <div className={styles.box}>
               <p className={styles.footerColumn} 
                 style={{ cursor: 'default' }}>
-                Cltohes Shop
+                Clothes Shop
               </p>
               {/* <span className={styles.underlineWhite}></span> */}
             </div>

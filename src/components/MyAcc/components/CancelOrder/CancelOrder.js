@@ -32,7 +32,9 @@ const CancelOrder = ({id, setButton, button}) => {
     <button 
       style={{margin: '20px 0 0 0', backgroundColor: 'gray'}}
       onClick={() => cancel()}
-    >Anuluj zamówienie</button>
+    >
+      Anuluj zamówienie
+    </button>
   );
 };
 
