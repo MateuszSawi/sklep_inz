@@ -8,6 +8,7 @@ import CancelOrder from './CancelOrder/CancelOrder'
 
 const Orders = (props) => {
   const [orders, setOrders] = useState([]);
+  const [button, setButton] = useState(false);
 
   useEffect(() => {
     // Pobierz token dostępu z localStorage
@@ -28,7 +29,7 @@ const Orders = (props) => {
       .catch((error) => {
         console.error('Błąd podczas pobierania adresów:', error);
       });
-  }, []);
+  }, [button]);
 
   return (
     <div className={styles.myAccount}>
@@ -63,7 +64,7 @@ const Orders = (props) => {
             ))}
 
             {order.statusDto.orderStatus === 'CREATED' &&
-              <CancelOrder id={order.id} />
+              <CancelOrder id={order.id} setButton={setButton} button={button} />
             }
           </div>
         ))}

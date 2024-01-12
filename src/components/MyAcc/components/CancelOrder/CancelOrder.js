@@ -5,7 +5,7 @@ import styles from '../Orders.module.scss';
 import { apiK } from '../../../../apiConfig';
 import axios from 'axios';
 
-const CancelOrder = ({id}) => {
+const CancelOrder = ({id, setButton, button}) => {
 
   const cancel = () => {
     // Pobierz token dostępu z localStorage
@@ -21,7 +21,7 @@ const CancelOrder = ({id}) => {
     // Wykonaj żądanie GET z nagłówkiem Authorization
     axios.get(apiUrl, { headers })
       .then((response) => {
-        // setOrders(response.data.orders);
+        setButton(!button)
       })
       .catch((error) => {
         console.error('Błąd podczas pobierania adresów:', error);
