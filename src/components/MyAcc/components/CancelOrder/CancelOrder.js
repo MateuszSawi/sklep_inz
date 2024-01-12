@@ -27,8 +27,6 @@ const CancelOrder = ({id}) => {
       .catch((error) => {
         console.error('Błąd podczas pobierania adresów:', error);
       });
-
-
   }
 
   return (
