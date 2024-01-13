@@ -7,36 +7,30 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function StoreProductsFilters(props) {
   const selectedCurrency = localStorage.getItem('selectedCurrency');
   const exchangeRate = localStorage.getItem('exchangeRate');
-  // Zaktualizowane zmienne stanu
   const [selectedGender, setSelectedGender] = useState(sessionStorage.getItem('gender') || 'ALL');
   const [itemsPerPage, setItemsPerPage] = useState(Number(sessionStorage.getItem('pageSize')) || 30);
   const [currentPage, setCurrentPage] = useState(Number(sessionStorage.getItem('pageNumber')) || 1);
   const [selectedBrand, setSelectedBrand] = useState(sessionStorage.getItem('brand') || '');
   const [minimumPrice, setMinimumPrice] = useState(Number(sessionStorage.getItem('priceMin')) || 0);
   const [maximumPrice, setMaximumPrice] = useState(Number(sessionStorage.getItem('priceMax')) || 999);
-
   const { category } = useParams();
 
-  // Obsługa zmiany płci/gender
   const handleGenderChange = (event) => {
     setSelectedGender(event.target.value);
     sessionStorage.setItem('gender', event.target.value);
   };
 
-  // Obsługa zmiany liczby produktów na stronę
   const handleItemsPerPageChange = (event) => {
     const newValue = Number(event.target.value);
     setItemsPerPage(newValue);
     sessionStorage.setItem('pageSize', newValue);
   };
 
-  // Obsługa zmiany strony
   const handlePageChange = (newValue) => {
     setCurrentPage(newValue);
     sessionStorage.setItem('pageNumber', newValue);
   };
 
-  // Nowe obsługi filtrów
   const handleBrandChange = (event) => {
     setSelectedBrand(event.target.value);
     sessionStorage.setItem('brand', event.target.value);
@@ -94,7 +88,6 @@ function StoreProductsFilters(props) {
           <option value="ALL">Wszystkie</option>
           <option value="WOMEN">Kobiety</option>
           <option value="MEN">Mężczyźni</option>
-          {/* <option value="UNISEX">Unisex</option> */}
         </select>
         <select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.dropdown}>
           <option value="20">20 produktów</option>
@@ -125,7 +118,6 @@ function StoreProductsFilters(props) {
           max={sessionStorage.getItem('numberOfPages')}
           min={1}
           onChange={(e) => handlePageChange(Number(e.target.value))}
-          // max={sessionStorage.getItem('currentPage')}
         />
         <p>z {sessionStorage.getItem('numberOfPages')}</p>
       </div>

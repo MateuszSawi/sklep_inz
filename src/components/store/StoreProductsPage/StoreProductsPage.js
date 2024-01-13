@@ -5,11 +5,8 @@ import StoreProductsFilters from './StoreProductsFilters/StoreProductsFilters';
 import StoreStartPageInfo from './StoreStartPageInfo/StoreStartPageInfo';
 
 function StoreProductsPage() {
-
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  //total_pages
 
   return (
     <div>      

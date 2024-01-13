@@ -4,7 +4,6 @@ import styles from './MyAcc.module.scss';
 
 const MyAccHeader = (props) => {
   const navigate = useNavigate();
-//   const [activeTab, setActiveTab] = useState('profil');
 
   const handleTabClick = (tab) => {
     props.setActiveTab(tab);
@@ -31,7 +30,6 @@ const MyAccHeader = (props) => {
             break;
     }
   };
-
 
   const logOut = (tab) => {
     localStorage.setItem('accessToken', '');

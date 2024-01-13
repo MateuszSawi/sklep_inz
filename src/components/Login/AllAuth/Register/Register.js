@@ -41,12 +41,9 @@ const Register = () => {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log('Użytkownik został zarejestrowany:', responseData);
         setMessage('Rejestracja udana, możesz zalogowac się na swoje konto!')
-        // Wyczyść formularz lub podejmij odpowiednie działania po udanej rejestracji.
       } else {
         console.error('Błąd podczas rejestracji:', response.statusText);
-        // Obsłuż błąd, na przykład wyświetl komunikat dla użytkownika.
         setMessage('')
       }
     } catch (error) {
@@ -114,16 +111,6 @@ const Register = () => {
             required
           />
         </div>
-        {/* <div>
-          <label>Nazwa użytkownika:</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div> */}
         <button type="submit">Zarejestruj się</button>
         {message !== '' &&
           <>

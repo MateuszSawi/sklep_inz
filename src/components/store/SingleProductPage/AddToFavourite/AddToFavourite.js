@@ -31,17 +31,10 @@ function AddToFavourite({ productCode, productName, price, mainImage, category }
   const handleAddToFavourites = (event) => {
     event.stopPropagation();
     notify();
-  
-    // const { productCode, productName, brand, gender, price, mainImage } = props.product;
-  
-    // Pobranie aktualnej listy ulubionych z localStorage
     const currentFavourites = JSON.parse(localStorage.getItem('favourite')) || [];
-    
-    // Sprawdzenie, czy produkt jest już w ulubionych
     const isProductInFavourites = currentFavourites.some(item => item.productCode === productCode);
   
     if (!isProductInFavourites) {
-      // Dodanie nowego produktu do ulubionych
       const favouriteProduct = {
         productCode,
         productName,

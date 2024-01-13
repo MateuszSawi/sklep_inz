@@ -32,8 +32,7 @@ const Loading = ({products}) => {
       });
 
       if (response.ok) {
-        // Pomyślnie usunięto adres, możesz odświeżyć listę adresów
-        // np. pobierając ponownie dane z serwera.
+
       } else {
         console.error('Błąd podczas usuwania adresu:', response.statusText);
       }

@@ -57,9 +57,6 @@ function CategoriesMenu(props) {
       </Link>
       <div className={styles.storeProducts}>
         {categoriesData.map((item, index) => {
-          
-          // const isActive = activeCategory === category;
-
           return (
             <div key={index} className={styles.categoryWrapper}>
 

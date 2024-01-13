@@ -73,19 +73,16 @@ function Order(props) {
       });
   }, []);
 
-  // my data 
-
   const [data, setData] = useState({});
 
   useEffect(() => {
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, // Dodaj token jako nagłówek Authorization
+      'Authorization': `Bearer ${token}`, 
     };
 
     const apiUrl = `${apiK}/users`;
 
-    // Wykonaj żądanie GET z nagłówkiem Authorization
     axios.get(apiUrl, { headers })
       .then((response) => {
         setData(response.data);

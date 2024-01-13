@@ -1,6 +1,5 @@
 .myAccount {
     width: 100%;
-    // max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -34,8 +33,6 @@
     background-color: #aa0982;
   }
 
-  //
-
   .tab {
     margin: 20px;
   }
@@ -46,13 +43,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      // gap: 20px;
       flex-wrap: wrap;
     }
     
     .addressItem {
       border: 1px solid #ccc;
-      // border-radius: 5px;
       padding: 10px 10px;
       margin: 10px 0 0 0;
       background-color: #f9f9f9;
@@ -71,7 +66,6 @@
 
     .addressItemActive {
       border: 1px solid #b3b3b3;
-      // border-radius: 5px;
       padding: 10px 10px;
       margin: 10px 0 0 0;
       background-color: #b3b3b37c;
@@ -102,8 +96,7 @@
         background-color: #750559;
       }
     }
-    
-    /* Stylizacja dla formularza dodawania adresu */
+
     h3 {
       margin-top: 20px;
       font-size: 18px;

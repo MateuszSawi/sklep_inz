@@ -8,12 +8,11 @@ function OrderFinish() {
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify([]));
-    // Symulacja ładowania przez 1 sekundę
+
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
 
-    // Wyczyść timeout w przypadku odmontowania komponentu
     return () => clearTimeout(loadingTimeout);
   }, []);
 
@@ -25,7 +24,6 @@ function OrderFinish() {
     <div className={styles.loader}>
       {isLoading ? (
         <div className={styles.loader}>
-          {/* Dodaj stylizowany loader, na przykład kręcące się kółko */}
           <div className={styles.spinner}></div>
           <p>Ładowanie...</p>
         </div>

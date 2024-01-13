@@ -2,8 +2,6 @@
 
 .cards_wrapper {
   display: flex;
-  // grid-template-columns: 0.6fr 0.6fr 0.6fr 0.6fr 0.6fr 0.6fr;
-  // gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -11,7 +9,6 @@
 .card {
   background-color: $color_white;
   border-radius: 8px;
-  // background-color: red;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -29,7 +26,6 @@
   }
 
   @media (max-width: 504px) {
-    // align-items: flex-start;
     height: 150px;
     width: 100px;
   }

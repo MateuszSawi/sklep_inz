@@ -12,10 +12,8 @@ import AddToFavourite from './AddToFavourite/AddToFavourite';
 
 function SingleProductMain() {
   const { category, productCode } = useParams();
-
   const selectedCurrency = localStorage.getItem('selectedCurrency');
   const exchangeRate = localStorage.getItem('exchangeRate');
-
   const [product, setProduct] = useState([]);
   const [amount, setAmount] = useState(1);
   const [productDetails, setProductDetails] = useState([]);
@@ -28,7 +26,6 @@ function SingleProductMain() {
       setProductDetails(response.data.productDetails);
       setMainImage(response.data.productBasicInfo.imageUrls[0]);
       setAmount(response.data.productDetails.amount)
-      console.log(amount, '|', typeof(amount))
     })
     .catch(error => {
       console.error(error);
@@ -47,8 +44,6 @@ function SingleProductMain() {
     setIsModalOpen(false);
     setSelectedImage(null);
   };
-
-  // ----------------- quantity -----------------
 
   const [quantity, setQuantity] = useState(1);
 

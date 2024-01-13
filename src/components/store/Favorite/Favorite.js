@@ -6,7 +6,6 @@ import categoriesData from '../StoreProductsPage/categories';
 
 function Favorite() {
   const [favoriteItems, setFavoriteItems] = useState([]);
-  const navigate = useNavigate();
   const selectedCurrency = localStorage.getItem('selectedCurrency');
   const exchangeRate = localStorage.getItem('exchangeRate');
 
@@ -15,6 +14,8 @@ function Favorite() {
     setFavoriteItems(items);
   }, []);
 
+  const navigate = useNavigate();
+  
   const navigateTOProduct = (productCode, category) => {
     navigate(`/${category}/${productCode}`);
   }
@@ -48,22 +49,15 @@ function Favorite() {
                   <img src={item.mainImage} alt="Product" className={styles.image} />
                   <div>
                     <p>Numer produktu: {item.productCode} </p>
-                    {/* <p>Kategoria: {item.category} </p> */}
                     <p>Kategoria: {displayCategory} </p>
                   </div>
                 </div>
 
                 <div className={styles.innerInfoWrapper}>
                   <p>Cena: {(item.price * exchangeRate).toFixed(2)} {selectedCurrency}</p>
-
-                  {/* <button onClick={() => handleAddToCartFromFavourites(item)} className={styles.addToCartButton}>
-                    <p>Dodaj do koszyka</p>
-                  </button> */}
-
                   <button onClick={() => navigateTOProduct(item.productCode, item.category)} className={styles.addToCartButton}>
                     <p>Zobacz produkt</p>
                   </button>
-
                   <button onClick={() => handleRemoveItem(item.productCode)} className={styles.removeItem}>
                     Usuń z ulubionych
                     </button>

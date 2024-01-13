@@ -102,7 +102,6 @@ function Products(props) {
                   <button className={styles.buttonAvailable}
                     onClick={(event) => handleLinkClick(product.productCode)}
                   >
-                    {/* <img src="/store/cart.png" alt="cart" className={styles.icon}/> */}
                     <p>Zobacz produkt</p>
                   </button>
                 </div>

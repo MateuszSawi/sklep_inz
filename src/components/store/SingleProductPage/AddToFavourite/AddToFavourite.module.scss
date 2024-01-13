@@ -11,15 +11,15 @@
     align-items: center;
     max-width: 180px;
 
-    font-size: 16px; // Wielkość tekstu
-    cursor: pointer; // Kursor zmienia się na wskaźnik
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); // Cień pudełkowy
+    font-size: 16px; 
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
     transition: all 0.3s ease;
     background-color: $color_lightest_gray;
 
     &:hover {
-      background-color: $color_lighter_gray; // Ciemniejszy niebieski przy najechaniu myszą
-      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Większy cień przy najechaniu myszą
+      background-color: $color_lighter_gray; 
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
     }
   }
 

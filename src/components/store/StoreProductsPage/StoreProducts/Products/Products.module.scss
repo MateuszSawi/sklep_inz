@@ -61,10 +61,7 @@
     width: 200px;
     height: 100%;
     height: 200px;
-      object-fit: cover;
-    // object-fit: cover;
-    // object-fit: contain;
-    // border: solid 1px #ddd;
+    object-fit: cover;
 
     @media screen and (max-width: 700px) {
       width: 180px;
@@ -80,20 +77,19 @@
 
 .productImage {
   width: 100%;
-  // height: 150px;
   height: auto;
   object-fit: cover;
 }
 
 .watermark {
   display: block;
-  width: 100%; // Rozciąga znak wodny na całą szerokość karty
-  height: auto; // Zachowuje oryginalne proporcje obrazu
+  width: 100%; 
+  height: auto; 
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.05; // Dostosuj przezroczystość według potrzeb
-  z-index: 1; // Upewnij się, że znak wodny znajduje się nad innymi elementami
+  opacity: 0.05;
+  z-index: 1; 
 }
 
 .cardBody {
@@ -130,10 +126,10 @@
     border: none;
     height: 45px;
 
-    border-radius: 5px; // Zaokrąglone rogi
-    font-size: 16px; // Wielkość tekstu
-    cursor: pointer; // Kursor zmienia się na wskaźnik
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Cień pudełkowy
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
   }
 }
@@ -149,17 +145,17 @@
   z-index: 999;
 
   i {
-    margin-right: 5px; // Dodaj margines, jeśli używasz ikonki
+    margin-right: 5px; 
   }
 
   &:hover {
-    background-color: #750559; // Ciemniejszy niebieski przy najechaniu myszą
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); // Większy cień przy najechaniu myszą
+    background-color: #750559; 
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   &:active {
-    background-color: $color_darker_green; // Jeszcze ciemniejszy niebieski przy kliknięciu
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); // Mniejszy cień przy wciśnięciu
+    background-color: $color_darker_green; 
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
   }
 }
 
@@ -168,30 +164,28 @@
   color: $color_dark;
 
   &:hover {
-    background-color: $color_gray_darker; // Ciemniejszy niebieski przy najechaniu myszą
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); // Większy cień przy najechaniu myszą
+    background-color: $color_gray_darker; 
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
   }
 }
 
 .addToFavourite {
-  // background-color: $color_darker_green;\
   margin-left: 10px;
   
-
   button {
     padding: 10px 12px;
     height: 45px;
 
-    border-radius: 5px; // Zaokrąglone rogi
-    font-size: 16px; // Wielkość tekstu
-    cursor: pointer; // Kursor zmienia się na wskaźnik
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); // Cień pudełkowy
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     background-color: $color_lightest_gray;
 
     &:hover {
-      background-color: $color_lighter_gray; // Ciemniejszy niebieski przy najechaniu myszą
-      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Większy cień przy najechaniu myszą
+      background-color: $color_lighter_gray; 
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
     }
   }
 
@@ -218,8 +212,6 @@
   align-items: center;
 }
 
-//
-
 .loadingWrapper {
   display: flex;
   justify-content: center;
@@ -230,25 +222,19 @@
   right: 0;
   bottom: 0;
   z-index: 999999999;
-  background-color: rgba(255, 255, 255, 0.5); /* Półprzezroczyste tło */
+  background-color: rgba(255, 255, 255, 0.5); 
 }
 
 .loadingScreen {
-  // position: fixed;
-  // top: 50%;
-  // left: 0;
-  // width: 100%;
-  // height: 50vh;
-  // background-color: rgba(255, 255, 255, 0.7); // Półprzezroczyste tło
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; // Upewnij się, że pokrywa inne elementy
+  z-index: 1000; 
 }
 
 .loader {
-  border: 5px solid #f3f3f3; // Jasny kolor krawędzi
-  border-top: 5px solid $color_green; // Kolor górnej krawędzi
+  border: 5px solid #f3f3f3; 
+  border-top: 5px solid $color_green; 
   border-radius: 50%;
   width: 50px;
   height: 50px;

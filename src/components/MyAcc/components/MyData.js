@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import styles from './MyData.module.scss'; // Importuj style z odpowiedniego pliku SCSS
+import styles from './MyData.module.scss'; 
 import MyAccHeader from '../MyAccHeader';
 import { apiK } from '../../../apiConfig';
 import axios from 'axios';
@@ -9,17 +9,15 @@ const MyData = (props) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    // Pobierz token dostępu z localStorage
     const token = localStorage.getItem('accessToken');
 
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, // Dodaj token jako nagłówek Authorization
+      'Authorization': `Bearer ${token}`, 
     };
 
     const apiUrl = `${apiK}/users`;
 
-    // Wykonaj żądanie GET z nagłówkiem Authorization
     axios.get(apiUrl, { headers })
       .then((response) => {
         setData(response.data);

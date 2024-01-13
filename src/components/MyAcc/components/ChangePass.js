@@ -38,11 +38,8 @@ const ChangePass = (props) => {
   
       if (response.ok) {
         const responseData = await response.json();
-        console.log('Hasło zostało zmienione:', responseData);
-        // Wyczyść formularz lub podejmij odpowiednie działania po udanej zmianie hasła.
       } else {
         console.error('Błąd podczas zmiany hasła:', response.statusText);
-        // Obsłuż błąd, na przykład wyświetl komunikat dla użytkownika.
       }
     } catch (error) {
       console.error('Wystąpił błąd podczas zmiany hasła:', error);

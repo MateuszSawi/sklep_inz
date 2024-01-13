@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, {  useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './StoreProducts.module.scss';
-import categoriesData from '../categories';
-import { FaChevronDown } from 'react-icons/fa';
 import axios from 'axios';
-import { apiK, apiP } from '../../../../apiConfig';
-
+import { apiK } from '../../../../apiConfig';
 import Products from './Products/Products';
 import CategoriesMenu from './CategoriesMenu/CategoriesMenu';
 
 function StoreProducts(props) {
   const { category } = useParams();
-  // const [isLoading, setIsLoading] = useState(false);
   const selectedCurrency = localStorage.getItem('selectedCurrency');
   const exchangeRate = localStorage.getItem('exchangeRate');
 
@@ -31,18 +27,14 @@ function StoreProducts(props) {
     })
     .then(response => {
       props.setProducts(response.data.products);
-
-      console.log(response)
-
       sessionStorage.setItem('numberOfPages', response.data.numberOfPages);
     })
     .catch(error => {
       console.error(error);
     })
     .finally(() => {
-      props.setIsLoading(false); // Ustaw ładowanie na false po zakończeniu żądania
+      props.setIsLoading(false);
     });
-
   }, []);
 
   return (
@@ -56,12 +48,10 @@ function StoreProducts(props) {
           setProducts={props.setProducts}
         />
       </div>
-
       <div>
         <Products 
           isLoading={props.isLoading}
           setIsLoading={props.setIsLoading}
-  
           products={props.products} 
           setProducts={props.setProducts}
         />

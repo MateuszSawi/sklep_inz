@@ -21,26 +21,22 @@ const MyAcc = (props) => {
   });
 
   useEffect(() => {
-    // Pobierz token dostępu z localStorage
     const token = localStorage.getItem('accessToken');
 
     if (!token) {
-      // Tutaj możesz obsłużyć brak tokenu, na przykład przekierować użytkownika do logowania
       return;
     }
 
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, // Dodaj token jako nagłówek Authorization
+      'Authorization': `Bearer ${token}`, 
     };
 
     const apiUrl = `${apiK}/users/addresses`;
 
-    // Wykonaj żądanie GET z nagłówkiem Authorization
     axios.get(apiUrl, { headers })
       .then((response) => {
         setUserAddresses(response.data.addresses);
-        console.log(response.data.addresses);
       })
       .catch((error) => {
         console.error('Błąd podczas pobierania adresów:', error);
@@ -49,7 +45,6 @@ const MyAcc = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Wysyłanie nowego adresu do API
     const token = localStorage.getItem('accessToken');
     const apiUrl = `${apiK}/users/addresses`;
     const headers = {
@@ -62,12 +57,9 @@ const MyAcc = (props) => {
       id: 0,
     };
 
-    console.log(requestBody, token);
-
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
-        // body: JSON.stringify(requestBody),
         body: JSON.stringify(
           requestBody
         ),
@@ -77,14 +69,11 @@ const MyAcc = (props) => {
         },
       });
 
-      console.log(response);
-
       if (response.ok) {
         const responseData = await response.json();
 
       } else {
         console.error('error:', response.statusText);
-        // Obsłuż błąd, na przykład wyświetl komunikat dla użytkownika.
       }
     } catch (error) {
       console.error('errorcatch:', error);
@@ -103,7 +92,6 @@ const MyAcc = (props) => {
   };
 
   const handleDeleteAddress = async (addressId) => {
-    // Wykonaj żądanie API do usuwania adresu na podstawie jego ID
     const token = localStorage.getItem('accessToken');
     const apiUrl = `${apiK}/users/addresses/${addressId}`;
     const headers = {
@@ -118,8 +106,6 @@ const MyAcc = (props) => {
       });
 
       if (response.ok) {
-        // Pomyślnie usunięto adres, możesz odświeżyć listę adresów
-        // np. pobierając ponownie dane z serwera.
       } else {
         console.error('Błąd podczas usuwania adresu:', response.statusText);
       }
@@ -136,18 +122,13 @@ const MyAcc = (props) => {
   };
 
   const mainAdress = (id) => {
-    // Sprawdzamy, czy główny adres jest już ustawiony
     const mainAddressId = localStorage.getItem('mainAddressId');
 
     if (mainAddressId == id) {
-      // Jeśli kliknięto już wybrany adres, usuwamy go z localStorage
       localStorage.removeItem('mainAddressId');
     } else {
-      // W przeciwnym razie ustawiamy nowy adres jako główny w localStorage
       localStorage.setItem('mainAddressId', id);
     }
-
-    // Odświeżamy komponent
     setButtonClicked(!buttonClicked);
   }
 

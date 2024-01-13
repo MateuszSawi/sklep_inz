@@ -17,7 +17,7 @@ function Cart() {
 
   const handleQuantityChange = (productCode, newQuantity, amount) => {
     newQuantity = parseInt(newQuantity, 10);
-    newQuantity = newQuantity > amount ? amount : newQuantity; // Ograniczenie do 9999
+    newQuantity = newQuantity > amount ? amount : newQuantity; 
     if (!isNaN(newQuantity) && newQuantity >= 1) {
       const updatedCartItems = cartItems.map(item => {
         if (item.productCode === productCode) {
@@ -33,7 +33,7 @@ function Cart() {
   const handleIncreaseQuantity = (productCode, amount) => {
     const updatedCartItems = cartItems.map(item => {
       if (item.productCode === productCode) {
-        const newQuantity = item.quantity < amount ? item.quantity + 1 : amount; // Ograniczenie do 9999
+        const newQuantity = item.quantity < amount ? item.quantity + 1 : amount;
         return { ...item, quantity: newQuantity };
       }
       return item;
@@ -54,7 +54,7 @@ function Cart() {
   };
 
   const calculatePrice = (price, quantity) => {
-    return (price * quantity).toFixed(2); // Zaokrąglenie do dwóch miejsc po przecinku
+    return (price * quantity).toFixed(2); 
   };
 
   const handleRemoveItem = (productCode) => {

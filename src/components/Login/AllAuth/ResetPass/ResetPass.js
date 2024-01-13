@@ -28,19 +28,15 @@ const ResetPassword = () => {
       newPassword: newPassword,
     };
 
-    const token = localStorage.getItem('accessToken'); // Pobierz token z localStorage
+    const token = localStorage.getItem('accessToken'); 
 
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, // Dodaj token jako nagłówek Authorization
+      'Authorization': `Bearer ${token}`, 
     };
 
     try {
       const response = await axios.post(apiUrl, JSON.stringify(requestBody), { headers });
-
-      console.log('Hasło zostało zresetowane:', response.data);
-
-      // Tutaj możesz przekierować użytkownika lub wykonać inne akcje po zresetowaniu hasła
 
       setNewPassword('');
       setConfirmationPassword('');

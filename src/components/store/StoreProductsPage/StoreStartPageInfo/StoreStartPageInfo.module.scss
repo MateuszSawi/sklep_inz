@@ -6,12 +6,7 @@
   justify-content: space-between;
   justify-content: center;
   flex-wrap: wrap;
-
   margin: 100px 0px;
-
-  @media (max-width: 1142px) {
-    // justify-content: flex-start;
-  }
 }
 
 .infoItem {
@@ -27,7 +22,6 @@
   @media (max-width: 1142px) {
     scale: 0.8;
   }
-
 
   p {
     text-align: left;

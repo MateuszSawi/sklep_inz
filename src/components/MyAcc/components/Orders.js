@@ -11,17 +11,14 @@ const Orders = (props) => {
   const [button, setButton] = useState(false);
 
   useEffect(() => {
-    // Pobierz token dostępu z localStorage
     const token = localStorage.getItem('accessToken');
-
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, // Dodaj token jako nagłówek Authorization
+      'Authorization': `Bearer ${token}`, 
     };
 
     const apiUrl = `${apiK}/orders`;
 
-    // Wykonaj żądanie GET z nagłówkiem Authorization
     axios.get(apiUrl, { headers })
       .then((response) => {
         setOrders(response.data.orders);

@@ -5,7 +5,6 @@ import MyAccHeader from '../MyAccHeader'
 
 const DeleteAcc = (props) => {
 
-
   return (
     <div className={styles.myAccount}>
       <MyAccHeader 
@@ -13,7 +12,6 @@ const DeleteAcc = (props) => {
             setActiveTab={props.setActiveTab}
         />
         DeleteAcc
-      
     </div>
   );
 };

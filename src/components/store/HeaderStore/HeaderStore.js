@@ -9,19 +9,19 @@ function HeaderStore() {
 
   const navigate = useNavigate();
 
-  const handleLinkClickUser = (category, title) => {
+  const handleLinkClickUser = () => {
     navigate(`/logowanie`);
   };
 
-  const handleLinkClickCart = (category, title) => {
+  const handleLinkClickCart = () => {
     navigate(`/koszyk`);
   };
 
-  const handleLinkClickFavorite = (category, title) => {
+  const handleLinkClickFavorite = () => {
     navigate(`/ulubione`);
   };
 
-  const handleLinkClickMainPage = (category, title) => {
+  const handleLinkClickMainPage = () => {
     navigate(`/`);
   };
 
@@ -31,7 +31,7 @@ function HeaderStore() {
 
       <img 
         onClick={() => handleLinkClickMainPage()}
-        src={process.env.PUBLIC_URL + '/website/logo/clothes.png'} 
+        src={process.env.PUBLIC_URL + '/website/logo/Clothes.png'} 
         alt={'logo'} 
       />
 

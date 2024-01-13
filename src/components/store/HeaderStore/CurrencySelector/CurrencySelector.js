@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CurrencySelector.module.scss';
+import currencyRates from '../../../../currencyData.js';
 
 function CurrencySelector() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState(
-    localStorage.getItem('selectedCurrency') || 'PLN'
+    localStorage.getItem('selectedCurrency') || 'zł'
   );
   const [exchangeRate, setExchangeRate] = useState(
     parseFloat(localStorage.getItem('exchangeRate')) || 1
+  );
+  const [currency, setCurrency] = useState(
+    localStorage.getItem('currencyToDisplay') || 'PLN'
   );
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleCurrencyChange = (currency, rate) => {
-    setSelectedCurrency(currency);
-    setExchangeRate(rate);
+  const handleCurrencyChange = (selectedCurrency, exchangeRate, currencyToDisplay) => {
+    setSelectedCurrency(selectedCurrency);
+    setExchangeRate(exchangeRate);
+    setCurrency(currencyToDisplay)
     setIsOpen(false);
     sessionStorage.setItem('priceMin', 1);
     sessionStorage.setItem('priceMax', 999);
@@ -27,27 +32,30 @@ function CurrencySelector() {
   useEffect(() => {
     localStorage.setItem('selectedCurrency', selectedCurrency);
     localStorage.setItem('exchangeRate', exchangeRate.toString());
+    localStorage.setItem('currencyToDisplay', currency);
   }, [selectedCurrency, exchangeRate]);
 
-  let currencyToDisplay;
-  if (selectedCurrency === 'zł') {
-    currencyToDisplay = 'PLN';
-  } else if (selectedCurrency === '€') {
-    currencyToDisplay = 'EUR';
-  } else if (selectedCurrency === '$') {
-    currencyToDisplay = 'USD';
-  }
+  // let currencyToDisplay;
+  // if (selectedCurrency === 'zł') {
+  //   currencyToDisplay = 'PLN';
+  // } else if (selectedCurrency === '€') {
+  //   currencyToDisplay = 'EUR';
+  // } else if (selectedCurrency === '$') {
+  //   currencyToDisplay = 'USD';
+  // }
 
   return (
     <div className={styles.currencySelector}>
       <button className={styles.currencyToggleButton} onClick={toggleMenu}>
-        {currencyToDisplay}
+        {currency}
       </button>
       {isOpen && (
         <ul className={styles.currencyOptions}>
-          <li onClick={() => handleCurrencyChange('zł', 1)}>PLN</li>
-          <li onClick={() => handleCurrencyChange('€', 0.2203)}>EUR</li>
-          <li onClick={() => handleCurrencyChange('$', 0.2632)}>USD</li>
+          {Object.entries(currencyRates).map(([key, { exchangeRate, selectedCurrency, currencyToDisplay }]) => (
+            <li key={key} onClick={() => handleCurrencyChange(selectedCurrency, exchangeRate, currencyToDisplay)}>
+              {key}
+            </li>
+          ))}
         </ul>
       )}
     </div>

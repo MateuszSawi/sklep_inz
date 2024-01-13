@@ -8,8 +8,6 @@
   background: linear-gradient(to top, #ff47d100, #ff47d19f);
   padding: 20px 100px 20px 100px;
 
-  // width: 90%;
-
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -34,21 +32,21 @@
       max-width: 400px;
       min-width: 280px;
       border: 1px solid $color_white;
-      border-radius: 20px; /* Zaokrąglenie narożników */
-      box-shadow: $box_shadow_input; /* Lekki cień */
+      border-radius: 20px; 
+      box-shadow: $box_shadow_input; 
     
       .input {
         flex: 1;
         border: none;
         padding: 10px;
-        border-radius: 20px; /* Dla kompatybilności z różnymi przeglądarkami */
-        outline: none; /* Usunięcie obramowania na focus */
+        border-radius: 20px;
+        outline: none;
       }
     
       .searchButton {
         background-color: $color_white;
         border: none;
-        border-radius: 20px; /* Zaokrąglenie narożników przycisku */
+        border-radius: 20px; 
         cursor: pointer;
         padding: 10px;
       }
@@ -56,7 +54,7 @@
   }
 
   .inputContainer:focus-within {
-    box-shadow: $box_shadow_input_focused; // Zmiana cienia dla .inputContainer, gdy dowolny z jego dzieci jest w fokusie
+    box-shadow: $box_shadow_input_focused; 
   }
 
   &_right {
@@ -64,8 +62,8 @@
     gap: 1rem;
 
     .icon {
-      font-size: 1.5rem; /* Rozmiar ikon */
-      color: $color_dark; /* Kolor ikon */
+      font-size: 1.5rem; 
+      color: $color_dark; 
       cursor: pointer;
 
       @media screen and (max-width: 768px) {
@@ -76,10 +74,7 @@
   }
 }
 
-//
-
 .resultsContainer {
-  // max-height: 0;
   overflow: hidden;
   position: absolute;
   transition: max-height 0.5s ease-out;
@@ -90,7 +85,6 @@
   background-color: $color_white;
   box-shadow: $box-shadow-light;
   padding: 10px 10px;
-  // transform: translateY(290px);
   top: 162px;
   width: 400px;
   z-index: 999;
@@ -144,7 +138,6 @@
 
   @media screen and (max-width: 768px) {
     width: 280px;
-    // transform: translateY(290px);
     top: 162px;
 
     p {
@@ -153,14 +146,10 @@
   }
 }
 
-
-//
-
 .loadingWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  // position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -171,21 +160,15 @@
 }
 
 .loadingScreen {
-  // position: fixed;
-  // top: 50%;
-  // left: 0;
-  // width: 100%;
-  // height: 50vh;
-  // background-color: rgba(255, 255, 255, 0.7); // Półprzezroczyste tło
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; // Upewnij się, że pokrywa inne elementy
+  z-index: 1000; 
 }
 
 .loader {
-  border: 5px solid #f3f3f3; // Jasny kolor krawędzi
-  border-top: 5px solid $color_green; // Kolor górnej krawędzi
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid $color_green;
   border-radius: 50%;
   width: 20px;
   height: 20px;

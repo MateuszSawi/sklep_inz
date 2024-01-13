@@ -3,14 +3,11 @@
 .container {
   display: flex;
   flex-direction: row;
-  // align-items: center;
   justify-content: space-around;
-  // gap: 20px; 
   background-color: $color_background_gray;
   padding: 80px 0 120px 0;
 
   @media (max-width: 1300px) {
-    
     .cartSummaryInnerWrapper {
       display: none;
     }
@@ -68,11 +65,9 @@
   input {
     padding: 10px;
     border: none;
-    // border-radius: 0px;
     font-size: 16px;
     box-shadow: $box_shadow_input_delivery;
     width: 280px;
-    // background-color: $color_logins_inputs;
     text-align: left;
     margin-bottom: 20px;
 
@@ -80,7 +75,6 @@
       outline: none;
       border: none;
       box-shadow: $box_shadow_input_delivery_focused;
-      // background-color: $box_shadow_input_delivery_focused;
     }
   }
 
@@ -92,7 +86,6 @@
     box-shadow: $box_shadow_input_delivery;
     width: 280px;
     height: 120px;
-    // background-color: $color_logins_inputs;
     text-align: left;
     margin-bottom: 20px;
 
@@ -100,7 +93,6 @@
       outline: none;
       border: none;
       box-shadow: $box_shadow_input_delivery_focused;
-      // background-color: $color_logins_inputs_focused;
       resize: vertical;
     }
   }
@@ -116,10 +108,6 @@
     cursor: pointer;
   }
 }
-
-//
-
-/* Order.module.scss */
 
 .orderDetails {
   margin: 20px;

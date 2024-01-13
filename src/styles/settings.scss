@@ -1,4 +1,4 @@
-// Kolory
+
 $color_dark: #221F20;
 $color_black: #050505;
 $color_white: #fff;
@@ -16,33 +16,27 @@ $color_light_green: rgb(45, 172, 45);
 $color_button_favourite_green: rgba(12, 110, 12, 0.753);
 $color_green: green;
 $color_darker_green: rgb(0, 104, 0);
-// $color_most_dark_green: rgb(0, 56, 0);
 $color_red: red;
 $color_red_dark: rgb(150, 0, 0);
 $color_logins_inputs: #9696963a;
 $color_logins_inputs_focused: #96969650;
-
 $color-text-light: #7a7a7a;
 $color-border: #e0e0e0;
 $color-footer: #2a2a2a;
 $color-footer-text: #bdbdbd;
 $color_background_gray: #f6f6f6;
 
-// Czcionki
 $font-family-base: 'Arial', sans-serif;
 $font-size-base: 16px;
 $font-weight-bold: bold;
-
 $font_price: 500 42px/50px 'Roboto', Arial, sans-serif;
 $font_price_small_px: 500 32px/40px 'Roboto', Arial, sans-serif;
 $font_price_desc: 500 21px/25px 'Roboto', Arial, sans-serif;
 $font_button_specyfication: 500 21px/26px 'Roboto', Arial, sans-serif;
-
 $font_categories: 500 17px/23px 'Roboto', Arial, sans-serif;
 $font_subcategories: 500 14px/21px 'Roboto', Arial, sans-serif;
 $font_small: 300 12px/16px 'Roboto', Arial, sans-serif;
 
-// Cienie
 $box-shadow-light: 2px 4px 6px rgba(0, 0, 0, 0.4);
 $box-shadow-medium: 0px 6px 12px rgba(0, 0, 0, 0.15);
 $box-shadow-strong: 0px 10px 20px rgba(0, 0, 0, 0.2);
@@ -60,23 +54,9 @@ $box_shadow_hover_green: 2px 4px 5px green;
 $box_shadow_cards_main_page: 2px 4px 10px rgba(0, 0, 0, 0.3);
 $box_shadow_cards_main_page_hover: 2px 4px 10px rgba(0, 0, 0, 0.3);
 
-// Inne zmienne, takie jak paddingi, marginesy itp.
 $container-width: 80%;
 $max-width: 1200px;
 $base-padding: 1rem;
 $base-radius: 0.25rem;
 
-// Efekty
 $transition-speed: 0.3s;
-
-
-
-
-
-
-
-
-
-// cursor: pointer;
-// transition: background-color 0.3s ease;
-// box-shadow: 5px 10px 10px $color_button_shadow;

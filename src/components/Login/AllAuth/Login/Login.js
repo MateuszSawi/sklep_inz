@@ -39,8 +39,6 @@ const Login = (props) => {
     try {
       const response = await axios.post(apiUrl, JSON.stringify(requestBody), { headers });
 
-      console.log('Zalogowano użytkownika:', response.data);
-
       handleLoginSuccess(response.data);
 
       setFormData({
@@ -55,7 +53,6 @@ const Login = (props) => {
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
-      // Jeśli accessToken istnieje, przekieruj użytkownika na /moje-konto
       navigate('/moje-konto');
     }
   }, []);
