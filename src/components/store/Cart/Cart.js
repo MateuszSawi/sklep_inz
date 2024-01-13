@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Cart.module.scss';
-import { Link, useNavigate, useParams  } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
 import OrderButtonFromCart from './OrderButton/OrderButtonFromCart'
 import categoriesData from '../StoreProductsPage/categories';
 

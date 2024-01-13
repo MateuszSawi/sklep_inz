@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './StoreStartPageCategories.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function StoreStartPageCategories(props) {
+function StoreStartPageCategories() {
 
   const data = [
     {

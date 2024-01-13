@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../MyAcc.module.scss';
 import MyAccHeader from '../MyAccHeader';
-import { apiK, apiP } from '../../../apiConfig';
+import { apiK } from '../../../apiConfig';
 
 const ChangePass = (props) => {
   const [formData, setFormData] = useState({
@@ -25,10 +25,6 @@ const ChangePass = (props) => {
 
     const newPassword = formData.newPassword;
   
-    const requestBody = {
-      newPassword
-    };
-  
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -37,7 +33,7 @@ const ChangePass = (props) => {
       });
   
       if (response.ok) {
-        const responseData = await response.json();
+        // const responseData = await response.json();
       } else {
         console.error('Błąd podczas zmiany hasła:', response.statusText);
       }

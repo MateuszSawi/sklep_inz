@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Login.module.scss';
-import { apiK, apiP } from '../../../../apiConfig';
-import { Link, useNavigate } from 'react-router-dom';
+import { apiK } from '../../../../apiConfig';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
   const navigate = useNavigate();

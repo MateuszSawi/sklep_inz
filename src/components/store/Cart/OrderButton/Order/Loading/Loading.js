@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import styles from '../Order.module.scss';
-import axios from 'axios';
+import React from 'react';
+// import styles from '../Order.module.scss';
+// import axios from 'axios';
 import { apiK } from '../../../../../../apiConfig';
-import { Link, useNavigate, useParams  } from 'react-router-dom';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import Payment from './OrderFinish/OrderFinish';
+import { useNavigate } from 'react-router-dom';
 
 const Loading = ({products}) => {
   const mainAddressId = localStorage.getItem('mainAddressId');

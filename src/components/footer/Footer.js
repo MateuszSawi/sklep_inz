@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './Footer.module.scss';
-import copy from 'copy-to-clipboard';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaFacebookSquare, FaPhoneAlt, FaEnvelope, FaAngleRight } from "react-icons/fa";
+import { FaFacebookSquare, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 function Footer() {
 
-  const handleCopyToClipboard = (text) => {
+  const handleCopyToClipboard = () => {
 
   };
 

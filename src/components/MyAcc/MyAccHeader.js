@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './MyAcc.module.scss';
 
 const MyAccHeader = (props) => {
@@ -31,7 +31,7 @@ const MyAccHeader = (props) => {
     }
   };
 
-  const logOut = (tab) => {
+  const logOut = () => {
     localStorage.setItem('accessToken', '');
 
     const token = localStorage.getItem('accessToken');

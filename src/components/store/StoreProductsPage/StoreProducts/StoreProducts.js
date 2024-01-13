@@ -8,7 +8,7 @@ import CategoriesMenu from './CategoriesMenu/CategoriesMenu';
 
 function StoreProducts(props) {
   const { category } = useParams();
-  const selectedCurrency = localStorage.getItem('selectedCurrency');
+  // const selectedCurrency = localStorage.getItem('selectedCurrency');
   const exchangeRate = localStorage.getItem('exchangeRate');
 
   useEffect(() => {

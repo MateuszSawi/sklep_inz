@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate, useParams  } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { Link, useNavigate  } from 'react-router-dom';
 import styles from './CategoriesMenu.module.scss';
 import categoriesData from '../../categories';
 import axios from 'axios';
-import { apiK, apiP } from '../../../../../apiConfig';
+import { apiK } from '../../../../../apiConfig';
 
 function CategoriesMenu(props) {
   const refs = useRef({});
 
-  const { categoryLink } = useParams();
+  // const { categoryLink } = useParams();
 
   const handleCategoryClick = (category) => () => {
     navigate(`/${category}`);

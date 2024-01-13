@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
-import styles from '../Orders.module.scss';
+import React from 'react';
 import { apiK } from '../../../../apiConfig';
 import axios from 'axios';
 
@@ -15,7 +13,7 @@ const CancelOrder = ({id, setButton, button}) => {
     };
     const apiUrl = `${apiK}/orders/${id}/cancel`;
     axios.get(apiUrl, { headers })
-      .then((response) => {
+      .then(() => {
         setButton(!button)
       })
       .catch((error) => {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './OrderButtonFromCart.module.scss';
-import { Link, useNavigate, useParams  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function OrderButtonFromCart(props) {
   const [warning, setWarning] = useState(false);

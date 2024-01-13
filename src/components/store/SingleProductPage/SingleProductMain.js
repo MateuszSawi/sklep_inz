@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SingleProductMain.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { apiK, apiP } from '../../../apiConfig';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { apiP } from '../../../apiConfig';
 import categoriesData from '../StoreProductsPage/categories';
 
 import AddToCartButton from './AddToCartButton/AddToCartButton';

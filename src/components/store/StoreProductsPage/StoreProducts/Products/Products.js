@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate, useParams  } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useParams  } from 'react-router-dom';
 import styles from './Products.module.scss';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { ToastContainer, toast } from 'react-toastify';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Products(props) {

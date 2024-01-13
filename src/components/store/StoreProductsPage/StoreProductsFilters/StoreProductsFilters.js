@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './StoreProductsFilters.module.scss';
 import axios from 'axios';
-import { apiK, apiP } from '../../../../apiConfig';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { apiK } from '../../../../apiConfig';
+import { useParams } from 'react-router-dom';
 
 function StoreProductsFilters(props) {
   const selectedCurrency = localStorage.getItem('selectedCurrency');

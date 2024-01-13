@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from './AddToCartButton.module.scss';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate, useParams  } from 'react-router-dom';
+import { useParams  } from 'react-router-dom';
 
 function AddToCartButton({selectedColour, selectedSize, brand, productName, mainImage, price, quantity, amount, category, productCode}) {
 
-  const { categoryLink, productCodeLink } = useParams();
+  // const { categoryLink, productCodeLink } = useParams();
   const [showWarning, setShowWarning] = useState(false);
 
   const toastId = React.useRef(null); 

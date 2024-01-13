@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Order.module.scss';
 import Loading from './Loading/Loading'
+import { apiK } from '../../../../../apiConfig';
 
-import { apiK, apiP } from '../../../../../apiConfig';
-
-function Order(props) {
+function Order() {
   const navigate = useNavigate();
   const [userAddresses, setUserAddresses] = useState([]);
   const cart = JSON.parse(localStorage.getItem('cart')) || [];

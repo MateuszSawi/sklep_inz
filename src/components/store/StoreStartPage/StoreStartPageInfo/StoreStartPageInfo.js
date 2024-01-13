@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './StoreStartPageInfo.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTruck, faUndo, faCreditCard, faPercent, faLifeRing } from '@fortawesome/free-solid-svg-icons';
+import { faTruck, faCreditCard, faPercent, faLifeRing } from '@fortawesome/free-solid-svg-icons';
 
 
 function StoreStartPageInfo() {

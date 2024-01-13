@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styles from './MyAcc.module.scss';
 import MyAccHeader from './MyAccHeader';
 import { apiK } from '../../apiConfig';
 import axios from 'axios';
 
 const MyAcc = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [userAddresses, setUserAddresses] = useState([]);
   const [buttonClicked, setButtonClicked] = useState(false);
-  const accessToken = localStorage.getItem('accessToken');
-  const [addresses, setAddresses] = useState([]);
+  // const accessToken = localStorage.getItem('accessToken');
+  // const [addresses, setAddresses] = useState([]);
   const [formData, setFormData] = useState({
     country: '',
     city: '',
@@ -47,10 +47,10 @@ const MyAcc = (props) => {
     e.preventDefault();
     const token = localStorage.getItem('accessToken');
     const apiUrl = `${apiK}/users/addresses`;
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    };
+    // const headers = {
+    //   'Content-Type': 'application/json',
+    //   'Authorization': `Bearer ${token}`,
+    // };
 
     const requestBody = {
       ...formData,
@@ -70,7 +70,7 @@ const MyAcc = (props) => {
       });
 
       if (response.ok) {
-        const responseData = await response.json();
+        // const responseData = await response.json();
 
       } else {
         console.error('error:', response.statusText);
